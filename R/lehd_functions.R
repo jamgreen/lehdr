@@ -39,8 +39,8 @@ grab_wac <-  function(state, year=2014, segment = "S000", jobtype = "JT00", trac
 #' TODO
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
-#' @param segment ...
-#' @param jobtype ...
+#' @param segment TODO
+#' @param jobtype TODO
 #' @param tract logical whether to aggregate h_geocode to h_tract_id.
 #' @return A data frame containing block or tract level WAC.
 #' @import dplyr
@@ -71,8 +71,8 @@ grab_rac <- function(state, year = 2014, segment = "S000", jobtype = "JT00", tra
 #' TODO
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
-#' @param segment ...
-#' @param jobtype ...
+#' @param main TODO
+#' @param jobtype TODO
 #' @param tract logical whether to aggregate h_geocode to h_tract_id and w_geocode to w_tract_id.
 #' @return A data frame containing block or tract level OD.
 #' @import dplyr

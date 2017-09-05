@@ -2,10 +2,10 @@ Package: lehdr
 Type: Package
 Title: Grab LEHD Flat Files
 Version: 0.1.0
-Author: Jamaal Green
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: Jamaal Green [cre,aut], Liming Wang [aut]
+Maintainer: Jamaal Green <jamaal@somewhere.net>
 Description: lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -15,7 +15,6 @@ Imports:
     dplyr
 Suggests:
     testthat,
-    tidycensus, 
-    tigris
-VignetteBuilder: knitr    
+    knitr
+VignetteBuilder: knitr
 RoxygenNote: 6.0.1

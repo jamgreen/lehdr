@@ -12,9 +12,9 @@ grab_rac(state, year = 2014, segment = "S000", jobtype = "JT00",
 
 \item{year}{year of the wac data.}
 
-\item{segment}{...}
+\item{segment}{TODO}
 
-\item{jobtype}{...}
+\item{jobtype}{TODO}
 
 \item{tract}{logical whether to aggregate h_geocode to h_tract_id.}
 }

@@ -12,11 +12,11 @@ grab_od(state, year = 2014, main = "main", jobtype = "JT00",
 
 \item{year}{year of the wac data.}
 
-\item{jobtype}{...}
+\item{main}{TODO}
+
+\item{jobtype}{TODO}
 
 \item{tract}{logical whether to aggregate h_geocode to h_tract_id and w_geocode to w_tract_id.}
-
-\item{segment}{...}
 }
 \value{
 A data frame containing block or tract level OD.
