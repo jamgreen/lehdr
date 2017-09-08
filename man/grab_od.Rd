@@ -12,9 +12,11 @@ grab_od(state, year = 2014, main = "main", jobtype = "JT00",
 
 \item{year}{year of the wac data.}
 
-\item{main}{TODO}
+\item{main}{Part of state file: "main" includes jobs with both workplace and residence in the state,
+"aux" includes jobs with workplace in the state and residence out of state}
 
-\item{jobtype}{TODO}
+\item{jobtype}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
+"JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs}
 
 \item{tract}{logical whether to aggregate h_geocode to h_tract_id and w_geocode to w_tract_id.}
 }
