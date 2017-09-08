@@ -5,8 +5,15 @@
 #'
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
-#' @param segment ...
-#' @param jobtype ...
+#' @param segment Segment of the workforce: "S000" total number of jobs for workers,
+#' "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers aged 30-54,
+#' "SA03" number of jobs for workers 55 and older, "SE01" number of jobs with earnings $1,250/month or less,
+#' "SE02" number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs with earnings greater
+#' than $3,333/month, "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
+#' Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
+#' industry sectors 
+#' @param jobtype Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
+#' "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs
 #' @param tract logical whether to aggregate w_geocode to w_tract_id.
 #' @return A data frame containing block or tract level WAC.
 #' @import dplyr
@@ -39,8 +46,15 @@ grab_wac <-  function(state, year=2014, segment = "S000", jobtype = "JT00", trac
 #' TODO
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
-#' @param segment TODO
-#' @param jobtype TODO
+#' @param segment Segment of the workforce: "S000" total number of jobs for workers,
+#' "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers aged 30-54,
+#' "SA03" number of jobs for workers 55 and older, "SE01" number of jobs with earnings $1,250/month or less,
+#' "SE02" number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs with earnings greater
+#' than $3,333/month, "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
+#' Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
+#' industry sectors 
+#' @param jobtype Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
+#' "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs
 #' @param tract logical whether to aggregate h_geocode to h_tract_id.
 #' @return A data frame containing block or tract level WAC.
 #' @import dplyr
@@ -71,8 +85,10 @@ grab_rac <- function(state, year = 2014, segment = "S000", jobtype = "JT00", tra
 #' TODO
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
-#' @param main TODO
-#' @param jobtype TODO
+#' @param main Part of state file: "main" includes jobs with both workplace and residence in the state,
+#' "aux" includes jobs with workplace in the state and residence out of state
+#' @param jobtype Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
+#' "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs
 #' @param tract logical whether to aggregate h_geocode to h_tract_id and w_geocode to w_tract_id.
 #' @return A data frame containing block or tract level OD.
 #' @import dplyr
