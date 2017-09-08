@@ -6,10 +6,11 @@
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
 #' @param segment Segment of the workforce: "S000" total number of jobs for workers,
-#' "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers aged 30-54,
-#' "SA03" number of jobs for workers 55 and older, "SE01" number of jobs with earnings $1,250/month or less,
-#' "SE02" number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs with earnings greater
-#' than $3,333/month, "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
+#' "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers 
+#' aged 30-54,"SA03" number of jobs for workers 55 and older, "SE01" number of jobs 
+#' with earnings $1,250/month or less, "SE02" number of jobs with earnings $1,251 to 
+#' $3,333/month, "SE03" number of jobs with earnings greater than $3,333/month, 
+#' "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
 #' Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
 #' industry sectors 
 #' @param jobtype Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
@@ -47,10 +48,11 @@ grab_wac <-  function(state, year=2014, segment = "S000", jobtype = "JT00", trac
 #' @param state US state abbrevation in lower case.
 #' @param year year of the wac data.
 #' @param segment Segment of the workforce: "S000" total number of jobs for workers,
-#' "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers aged 30-54,
-#' "SA03" number of jobs for workers 55 and older, "SE01" number of jobs with earnings $1,250/month or less,
-#' "SE02" number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs with earnings greater
-#' than $3,333/month, "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
+#' "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers 
+#' aged 30-54,"SA03" number of jobs for workers 55 and older, "SE01" number of jobs 
+#' with earnings $1,250/month or less, "SE02" number of jobs with earnings $1,251 to 
+#' $3,333/month, "SE03" number of jobs with earnings greater than $3,333/month, 
+#' "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
 #' Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
 #' industry sectors 
 #' @param jobtype Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
