@@ -30,5 +30,8 @@ industry sectors}
 A data frame containing block or tract level WAC.
 }
 \description{
+Download workplace association files from LODES
+}
+\details{
 \code{grab_wac} downloads and loads LEHD WAC data into a data frame (tibble)
 }

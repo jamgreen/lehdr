@@ -10,7 +10,7 @@ grab_rac(state, year = 2014, segment = "S000", jobtype = "JT00",
 \arguments{
 \item{state}{US state abbrevation in lower case.}
 
-\item{year}{year of the wac data.}
+\item{year}{year of the rac data.}
 
 \item{segment}{Segment of the workforce: "S000" total number of jobs for workers,
 "SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers 
@@ -30,5 +30,8 @@ industry sectors}
 A data frame containing block or tract level WAC.
 }
 \description{
+Download residential association files from LODES
+}
+\details{
 TODO
 }

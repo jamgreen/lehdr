@@ -10,7 +10,7 @@ grab_od(state, year = 2014, main = "main", jobtype = "JT00",
 \arguments{
 \item{state}{US state abbrevation in lower case.}
 
-\item{year}{year of the wac data.}
+\item{year}{year of the OD data.}
 
 \item{main}{Part of state file: "main" includes jobs with both workplace and residence in the state,
 "aux" includes jobs with workplace in the state and residence out of state}
@@ -24,5 +24,8 @@ grab_od(state, year = 2014, main = "main", jobtype = "JT00",
 A data frame containing block or tract level OD.
 }
 \description{
+Download origin-destination data from LODES
+}
+\details{
 TODO
 }
