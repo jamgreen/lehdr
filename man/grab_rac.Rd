@@ -12,9 +12,9 @@ grab_rac(state, year = 2014, segment = "S000", jobtype = "JT00",
 
 \item{year}{year of the wac data.}
 
-\item{segment}{TODO}
+\item{segment}{Segment of the workforce, "S000" for total number of jobs, "SA01" for jobs with workers aged 29 or younger, "SA02" for jobs with workers aged 30-54, "SA03" for jobs with workers aged 55 or older, "SE01" for number of jobs with earnings less than $1,250/month, "SE02" for number of jobs with earnings between $1,251 to $3,333/month, "SE03" for number of jobs with earnings greater than $3,333/month, "SI01" number of jobs in Goods Producing industry sectors, "SIO2" number of jobs in Trade, Transportation and Utility sectors, "SI03" number of jobs in all other industry sectors}
 
-\item{jobtype}{TODO}
+\item{jobtype}{Job type, "JT00" for All Jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs, "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs}
 
 \item{tract}{logical whether to aggregate h_geocode to h_tract_id.}
 }
@@ -22,5 +22,5 @@ grab_rac(state, year = 2014, segment = "S000", jobtype = "JT00",
 A data frame containing block or tract level WAC.
 }
 \description{
-TODO
+\code{grab_rac} downloads and loads LEHD RAC data into a data frame (tibble)
 }
