@@ -2,7 +2,6 @@
 title: "README"
 author: "Jamaal Green"
 date: "September 7, 2017"
-output: html_document
 ---
 
 #lehdr
