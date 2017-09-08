@@ -12,9 +12,9 @@ grab_od(state, year = 2014, main = "main", jobtype = "JT00",
 
 \item{year}{year of the wac data.}
 
-\item{main}{Part of the state file for OD tables. "main" for workers who reside in the state. "aux" for workers who reside out of the state}
+\item{main}{TODO}
 
-\item{jobtype}{Job type, "JT00" for All Jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs, "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs}
+\item{jobtype}{TODO}
 
 \item{tract}{logical whether to aggregate h_geocode to h_tract_id and w_geocode to w_tract_id.}
 }
@@ -22,5 +22,5 @@ grab_od(state, year = 2014, main = "main", jobtype = "JT00",
 A data frame containing block or tract level OD.
 }
 \description{
-\code{grab_od} downloads and loads LEHD Origin-Destination data into a data frame (tibble)
+TODO
 }
