@@ -12,6 +12,7 @@ Imports:
     readr, 
     stringr, 
     glue,
+    httr,
     dplyr
 Suggests:
     testthat,

@@ -29,9 +29,6 @@
 #' @importFrom httr GET stop_for_status HEAD write_disk
 #' 
 #' 
-#' \code{grab_lodes} downloads and loads LEHD LODES OD, WAC, and RAC data into a 
-#' dataframe (tibble)
-#' 
 #' @export
 #
 #
