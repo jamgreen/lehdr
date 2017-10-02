@@ -16,7 +16,7 @@
 #' "SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
 #' Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
 #' industry sectors 
-#' @param part Part of the state file, can have values of "main" or "aux" in OD files. "Main"
+#' @param state_part Part of the state file, can have values of "main" or "aux" in OD files. "Main"
 #' includes workers with their workplace and residence in the state. "Aux" includes workers with 
 #' residences out of state and workplace in the state of interest
 #' @param tract logical whether to aggregate w_geocode to w_tract_id.
@@ -35,15 +35,18 @@
 #
 
 
-grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), job_type, segment, part,
-                       tract = FALSE, download_dir = getwd()) {
+grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), 
+                       job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"), 
+                       segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02",
+                                   "SE03", "SI01", "SI02", "SI03"), part, 
+                       tract = FALSE, state_part = NULL, download_dir = getwd()) {
   
   state <- tolower(state)
   type <- match.arg(tolower(lodes_type), c("od", "rac", "wac"))
   
   url <- if(type == "od") {
     url <- 
-      glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{part}_{job_type}_{year}.csv.gz")
+      glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{state_part}_{job_type}_{year}.csv.gz")
   } else{
     url <- 
       glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{segment}_{job_type}_{year}.csv.gz")
@@ -56,13 +59,14 @@ grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), job_type
   
   if(file.exists(fil)) {
     message(glue::glue("Cached version of file found in {fil}\n Reading now..."))
-  }else{
+  } else {
     message(glue::glue("Downloading {url} to {fil} now..."))
     res <- httr::GET(url, httr::write_disk(fil))
   }
   
-  df <- suppressMessages(readr::read_csv(fil, col_types = cols(w_geocode = col_character(), 
-                                                               createdate = col_character())))
+  df <- suppressMessages(readr::read_csv(fil, 
+                                         col_types = cols(w_geocode = col_character(), 
+                                                        createdate = col_character())))
   
   if (tract == TRUE & lodes_type == "od") {
     
@@ -80,8 +84,7 @@ grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), job_type
     df <- df %>% 
       group_by(w_tract_id) %>% 
       summarise_if(is.numeric, funs(sum))
-    
-  }
+    }
   
   return(df)
   
