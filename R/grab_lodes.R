@@ -70,7 +70,7 @@ grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), job_type
     df$h_tract_id <- stringr::str_sub(df$h_geocode, 1, 11)
     df <- df %>% select(-w_geocode, -h_geocode, -createdate)
     df <- df %>% 
-      group_by(state, w_tract_id, h_tract_id) %>% 
+      group_by(w_tract_id, h_tract_id) %>% 
       summarise_if(is.numeric, funs(sum))
     
   } else{
@@ -78,7 +78,7 @@ grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), job_type
     df$w_tract_id <-  stringr::str_sub(df$w_geocode, 1, 11)
     df <- df %>% select(-w_geocode, -createdate)
     df <- df %>% 
-      group_by(state, w_tract_id) %>% 
+      group_by(w_tract_id) %>% 
       summarise_if(is.numeric, funs(sum))
     
   }
