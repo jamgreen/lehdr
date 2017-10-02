@@ -39,7 +39,7 @@ grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), job_type
                        tract = FALSE, download_dir = getwd()) {
   
   state <- tolower(state)
-  type <- match.arg(tolower(type), c("od", "rac", "wac"))
+  type <- match.arg(tolower(lodes_type), c("od", "rac", "wac"))
   
   url <- if(type == "od") {
     url <- 
