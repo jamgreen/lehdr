@@ -6,7 +6,7 @@ date: "September 7, 2017"
 
 # lehdr
 
-**lehdr** is an R package that allows users to interface with the Longitudinal and Employer-Household Dynamics (LEHD) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:
+**lehdr** is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:
 
 ```
 install.packages("devtools")
@@ -21,4 +21,4 @@ The LODES dataset is frequently used by transportation and economic development 
 
 # Future Development
 
-Currently, **lehdr** is designed to grab the LODES flat files (origin-destination, workplace, and residential association files) and includes an option to aggregate results to the census tract level from the block level that the LODES tables come in. Next steps include linking this package with the **sf** and **tigris** packages to allow for easier mapping of LODES data. 
+Currently, **lehdr** is designed to grab the LODES flat files (origin-destination, workplace, and residential association files) and includes an option to aggregate results to the census tract level from the block level that the LODES tables come in. Next steps include linking this package with the [**sf**](https://cran.r-project.org/web/packages/sf/index.html) and [**tigris**](https://cran.r-project.org/web/packages/tigris/index.html) packages to allow for easier mapping of LODES data. 
