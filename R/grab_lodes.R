@@ -38,7 +38,7 @@
 grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"), 
                        job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"), 
                        segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02",
-                                   "SE03", "SI01", "SI02", "SI03"), part, 
+                                   "SE03", "SI01", "SI02", "SI03"),  
                        tract = FALSE, state_part = NULL, download_dir = getwd()) {
   
   state <- tolower(state)
@@ -64,9 +64,18 @@ grab_lodes <- function(state, year, lodes_type = c("od", "rac", "wac"),
     res <- httr::GET(url, httr::write_disk(fil))
   }
   
-  df <- suppressMessages(readr::read_csv(fil, 
+  if (lodes_type != "od") {
+    
+    df <- suppressMessages(readr::read_csv(fil, 
                                          col_types = cols(w_geocode = col_character(), 
                                                         createdate = col_character())))
+  } else {
+    
+    df <- suppressMessages(readr::read_csv(fil, 
+                                           col_types = cols(w_geocode = col_character(),
+                                                            h_geocode = col_character(),
+                                                            createdate = col_character())))
+  }
   
   df <- df %>% 
     mutate(year=year,

@@ -105,14 +105,16 @@ grab_od <- function(state, year = 2014, main = "main", jobtype = "JT00", tract =
     df <- read_csv(url, col_types = cols(w_geocode = col_character(), 
                                          h_geocode = col_character(),
                                          createdate = col_character()))
-    df$year <- year
+    df <- df %>% 
+      mutate(year=year,
+             state=toupper(state))
 
     if (tract == TRUE){
       df$w_tract_id <- stringr::str_sub(df$w_geocode, 1, 11)
       df$h_tract_id <- stringr::str_sub(df$h_geocode, 1, 11)
       df <- df %>% select(-w_geocode, -h_geocode, -createdate)
       df <- df %>% 
-        group_by(w_tract_id, h_tract_id) %>% 
+        group_by(w_tract_id, h_tract_id, year) %>% 
         summarise_if(is.numeric, funs(sum))
     }
     return(df)

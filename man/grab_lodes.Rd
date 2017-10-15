@@ -4,8 +4,11 @@
 \alias{grab_lodes}
 \title{Download and load LODES data into a data frame (tibble)}
 \usage{
-grab_lodes(state, year, lodes_type = c("od", "rac", "wac"), job_type, segment,
-  part, tract = FALSE, download_dir = getwd())
+grab_lodes(state, year, lodes_type = c("od", "rac", "wac"),
+  job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"),
+  segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01",
+  "SI02", "SI03"), tract = FALSE, state_part = NULL,
+  download_dir = getwd())
 }
 \arguments{
 \item{state}{US state abbreviation in lower case}
@@ -29,11 +32,11 @@ $3,333/month, "SE03" number of jobs with earnings greater than $3,333/month,
 Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
 industry sectors}
 
-\item{part}{Part of the state file, can have values of "main" or "aux" in OD files. "Main"
+\item{tract}{logical whether to aggregate w_geocode to w_tract_id.}
+
+\item{state_part}{Part of the state file, can have values of "main" or "aux" in OD files. "Main"
 includes workers with their workplace and residence in the state. "Aux" includes workers with 
 residences out of state and workplace in the state of interest}
-
-\item{tract}{logical whether to aggregate w_geocode to w_tract_id.}
 
 \item{download_dir}{Directory where lodes table will be downloaded}
 }
