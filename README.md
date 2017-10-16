@@ -25,4 +25,4 @@ Currently, **lehdr** is designed to grab the LODES flat files (origin-destinatio
 
 # Build Status
 
-[![Travis-CI Build Status]https://travis-ci.org/jamgreen/lehdr)
+[![Travis-CI Build Status](https://travis-ci.org/jamgreen/lehdr)
