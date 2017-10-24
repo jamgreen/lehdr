@@ -1,7 +1,7 @@
 Package: lehdr
 Type: Package
 Title: Grab LEHD Flat Files
-Version: 0.1.0
+Version: 0.2.0
 Author: Jamaal Green [cre,aut], Liming Wang [aut]
 Maintainer: Jamaal Green <jamaal@somewhere.net>
 Description: lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.
@@ -10,6 +10,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     readr, 
+    rlang,
     stringr, 
     glue,
     httr,

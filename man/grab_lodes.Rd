@@ -8,12 +8,12 @@ grab_lodes(state, year, lodes_type = c("od", "rac", "wac"),
   job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"),
   segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01",
   "SI02", "SI03"), tract = FALSE, state_part = NULL,
-  download_dir = getwd())
+  download_dir = file.path(getwd(), "lodes_raw"))
 }
 \arguments{
-\item{state}{US state abbreviation in lower case}
+\item{state}{US state abbreviation in lower case, can be a vector of states}
 
-\item{year}{year of the lodes data}
+\item{year}{year of the lodes data, can be a vector of years}
 
 \item{lodes_type}{table type: "origin-destination", "residential association", 
 or "workplace association". OD files give a home and destination census block
@@ -23,13 +23,14 @@ blocks and workplace association files give job totals of worker job census bloc
 \item{job_type}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
 "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs}
 
-\item{segment}{Segment of the workforce: "S000" total number of jobs for workers,
-"SA01" number of jobs forworker aged 29 or younger, "SA02" number of jobs for workers 
-aged 30-54,"SA03" number of jobs for workers 55 and older, "SE01" number of jobs 
-with earnings $1,250/month or less, "SE02" number of jobs with earnings $1,251 to 
-$3,333/month, "SE03" number of jobs with earnings greater than $3,333/month, 
-"SI01" number of jobs in Goods Producing industry sectors, "SI02" number of jobs in
-Trade, Transportation, and Utilities industry sectors, "SI03" number of jobs in All Other Services 
+\item{segment}{Segment of the workforce: "S000" total number of jobs for
+workers, "SA01" number of jobs forworker aged 29 or younger, "SA02" number
+of jobs for workers aged 30-54,"SA03" number of jobs for workers 55 and
+older, "SE01" number of jobs with earnings $1,250/month or less, "SE02"
+number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs
+with earnings greater than $3,333/month, "SI01" number of jobs in Goods
+Producing industry sectors, "SI02" number of jobs in Trade, Transportation,
+and Utilities industry sectors, "SI03" number of jobs in All Other Services
 industry sectors}
 
 \item{tract}{logical whether to aggregate w_geocode to w_tract_id.}

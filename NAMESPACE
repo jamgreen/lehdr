@@ -2,6 +2,7 @@
 
 export(grab_lodes)
 import(dplyr)
+importFrom(glue,glue)
 importFrom(httr,GET)
 importFrom(httr,HEAD)
 importFrom(httr,stop_for_status)
@@ -9,3 +10,4 @@ importFrom(httr,write_disk)
 importFrom(readr,col_character)
 importFrom(readr,cols)
 importFrom(readr,read_csv)
+importFrom(stats,na.omit)
