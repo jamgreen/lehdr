@@ -8,11 +8,23 @@ date: "September 7, 2017"
 
 **lehdr** is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:
 
-```
-install.packages("devtools")
-library(devtools)
+## Installation
 
+```{r}
+install.packages("devtools")
 devtools::install_github("jamgreen/lehdr")
+```
+
+## Usage
+
+```{r}
+library(lehdr)
+
+grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+           segment = "SA01", state_part = "main", tract = TRUE)
+           
+grab_lodes(state = c('or', 'ri'), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
+           segment = "SA01", state_part = "main", tract = TRUE)           
 ```
 
 # Why lehdr?
