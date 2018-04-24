@@ -1,0 +1,23 @@
+---------------------
+
+title: "Getting Started with lehdr"
+author: "Jamaal Green"
+
+---------------------
+
+This vignette is a brief introduction to the package includings its installation and making some basic queries. 
+
+#Introduction
+
+**lehdr** is an R package that allows users to draw [Longitudinal and Employer Household Dynamics](https://lehd.ces.census.gov/data/#lodes) Origin-Destination Employment Statistics (LODES) datasets returned as dataframes. The LODES dataset forms the backbone of the US Census's [**OntheMap**](https://onthemap.ces.census.gov/) web app that allows users to track changing spatial employment patterns at a fine geographic scale. While OnTheMap is useful, it is a limited tool that does not easily allow comparisons over time or across geographies. This package exists to make querying the tables that form the OnTheMap easier for urban researchers and practitioners, such as transportation and economic development planners and disaster preparedness professionals.
+
+#Installation
+
+**lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr** and **ggplot2**
+
+```{r, message=FALSE, warning=FALSE}
+if(!require(pacman)){install.packages("pacman"); library(pacman)}
+devtools::install_github("jamgreen/lehdr")
+p_load(ggplot2, dplyr)
+
+```
