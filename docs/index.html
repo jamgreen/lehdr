@@ -99,7 +99,13 @@ grab_lodes(state = c('or', 'ri'), year = c(2013, 2014), lodes_type = "od", job_t
 <div id="future-development" class="section level1">
 <h1 class="hasAnchor">
 <a href="#future-development" class="anchor"></a>Future Development</h1>
-<p>Currently, <strong>lehdr</strong> is designed to grab the LODES flat files (origin-destination, workplace, and residential association files) and includes an option to aggregate results to the census tract level from the block level that the LODES tables come in. Next steps include linking this package with the <a href="https://cran.r-project.org/web/packages/sf/index.html"><strong>sf</strong></a> and <a href="https://cran.r-project.org/web/packages/tigris/index.html"><strong>tigris</strong></a> packages to allow for easier mapping of LODES data.</p>
+<p>Currently, <strong>lehdr</strong> is designed to grab the LODES flat files (origin-destination, workplace, and residential association files) and includes an option to aggregate results to the census tract level for analysts who find the fuzzing at the block level too great.</p>
+<p>Next steps include exploring integration of the package with the <a href="https://cran.r-project.org/web/packages/sf/index.html"><strong>sf</strong></a> and <a href="https://cran.r-project.org/web/packages/tigris/index.html"><strong>tigris</strong></a> packages to allow for easier mapping of LODES data.</p>
+</div>
+<div id="acknowledgements" class="section level1">
+<h1 class="hasAnchor">
+<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h1>
+<p>This package would not exist in its current format without the inspiration of <a href="https://rud.is/b/">Bob Rudis’s</a> <a href="https://github.com/hrbrmstr/lodes">lodes package</a></p>
 </div>
 <div id="build-status" class="section level1">
 <h1 class="hasAnchor">
@@ -125,13 +131,19 @@ grab_lodes(state = c('or', 'ri'), year = c(2013, 2014), lodes_type = "od", job_t
 </li>
 </ul>
 </div>
+<div class="developers">
+<h2>Developers</h2>
+<ul class="list-unstyled">
+<li>Jamaal Green W. <br><small class="roles"> Maintainer, author </small>  </li>
+</ul>
+</div>
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by Jamaal Green W..</p>
 </div>
 
 <div class="pkgdown">
