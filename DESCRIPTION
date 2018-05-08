@@ -2,7 +2,7 @@ Package: lehdr
 Type: Package
 Title: Grab LEHD Flat Files
 Version: 0.2.0
-Authors@R: person("Jamaal", "W.", "Green", role = c("cre","aut"), person("Liming", "Wang", role =c("aut"))
+Authors@R: c(person("Jamaal", "W.", "Green", role = c("cre","aut"), person("Liming", "Wang", role =c("aut"))))
 Maintainer: Jamaal Green <jamaal.green@gmail.com>
 Description: lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.
 License: MIT + file LICENSE
