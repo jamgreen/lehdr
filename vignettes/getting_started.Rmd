@@ -19,7 +19,7 @@ This vignette is a brief introduction to the package includings its installation
 **lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr** and **ggplot2**
 
 ```{r, message=FALSE, warning=FALSE}
-if(!require(pacman)){install.packages("pacman"); library(pacman)}
+if(!require(pacman)){install.packages("pacman", repos = "http://cran.us.r-project.org"); library(pacman)}
 devtools::install_github("jamgreen/lehdr")
 p_load(ggplot2, dplyr)
 
