@@ -1,7 +1,10 @@
 ---------------------
 
-title: "Getting Started with lehdr"
 author: "Jamaal Green"
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Getting Started with lehdr}
+  %\usepackage[UTF-8]{inputenc}
 
 ---------------------
 
