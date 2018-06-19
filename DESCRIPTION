@@ -7,7 +7,7 @@ Authors@R: c(person("Jamaal", "W.", "Green", role = c("cre","aut"), email="jamaa
               person("Dillon", "Mahmoudi", role =c("aut"), email="dillonm@umbc.edu"))
 Maintainer: Jamaal Green <jamaal.green@gmail.com>
 Description: lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.
-Depends: R (>= 3.2.3), nlme
+Depends: R (>= 3.2.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
