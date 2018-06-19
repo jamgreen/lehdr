@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 lodes_raw
+
+man/aggregate_lodes_df\.Rd

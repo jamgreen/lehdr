@@ -6,7 +6,7 @@ date: "September 7, 2017"
 
 # lehdr
 
-**lehdr** is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:
+**lehdr** (pronounced: _lee dur_ like a metric _litre_) is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:
 
 ## Installation
 
@@ -16,7 +16,7 @@ devtools::install_github("jamgreen/lehdr")
 ```
 
 ## Usage
-# Usage
+
 After loading the library, this first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
 
 ```{r usage 1}
@@ -38,7 +38,7 @@ Other common uses might include retrieving Residential or Work Area Characterist
 
 ## Why lehdr?
 
-The LODES dataset is frequently used by transportation and economic development planners, regional economists, disaster managers and other public servants in order to have a fine grained understaning of the distribution of employment. Such data is integral for regional travel demand models that help to dictate transportation policy options, regional economists and economic development planners interested in the spatial distribution of particular kinds of work use the data to weigh different industrial or workforce policy options. Finally, as a census product, the LODES data can be joined to census Decennial or American Community Survey data to help visualize the interactions between different population groups and work. In short, the LODES dataset is the only source of detailed geographic information on employment for the country and should be more widely available for researchers and analysts who work on regional development issues. 
+The LODES dataset is frequently used by transportation and economic development planners, regional economists, disaster managers and other public servants in order to have a fine grained understanding of the distribution of employment. Such data is integral for regional travel demand models that help to dictate transportation policy options, regional economists and economic development planners interested in the spatial distribution of particular kinds of work use the data to weigh different industrial or workforce policy options. Finally, as a census product, the LODES data can be joined to census Decennial or American Community Survey data to help visualize the interactions between different population groups and work. In short, the LODES dataset is the only source of detailed geographic information on employment for the country and should be more widely available for researchers and analysts who work on regional development issues. 
 
 ## Future Development
 

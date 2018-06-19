@@ -1,23 +1,20 @@
----------------------
-
+---
+title: "Getting Started with lehdr"
+subtitle: <u>Common uses of lehdr</u>
 author:
 - name: Jamaal Green
-  affiliation: Portland State University
-  email: jamgreen@pdx.edu
 - name: Dillon Mahmoudi
-  affiliation: University of Maryland, Baltimore County
-  email: dillonm@umbc.edu
+- name: Liming Wang
 package: lehdr
-date: `r Sys.Date()`
+date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteEngine{knitr::knitr}
   %\VignetteIndexEntry{Getting Started with lehdr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[UTF-8]{inputenc}
+---
 
----------------------
-
-This vignette is a brief introduction to the package includings its installation and making some basic queries. 
+This vignette is a brief introduction to the package including its installation and making some basic queries. 
 
 # Introduction
 
@@ -63,7 +60,7 @@ mdrac_county_jobs <- mdrac_jobs %>% mutate(w_county_fips = str_sub(w_geocode, 1,
 ```
 
 ## Aggregating at County level
-To aggregate at theh county level, continuing the above example, we must also drop the original lock geoid `w_geocode`, group by our new variable `w_county_fips` and our existing variables `year` and `createdate`, then aggregate the remaining numeric variables.
+To aggregate at the county level, continuing the above example, we must also drop the original lock geoid `w_geocode`, group by our new variable `w_county_fips` and our existing variables `year` and `createdate`, then aggregate the remaining numeric variables.
 ```{r example_county_agg}
 mdrac_county_jobs <- mdrac_jobs %>% mutate(w_county_fips = str_sub(w_geocode, 1, 5)) %>% 
   select(-"w_geocode") %>%
