@@ -100,14 +100,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
 <p>After loading the library, this first example pulls the Oregon (<code>state = "or"</code>) 2014 (<code>year = 2014</code>), origin-destination (<code>lodes_type = "od"</code>), all jobs including private primary, secondary, and Federal (<code>job_type = "JT01"</code>), all jobs across ages, earnings, and industry (<code>segment = "S000"</code>), aggregated at the Census Tract level rather than the default Census Block (<code>agg_geo = "tract"</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lehdr)</code></pre></div>
-<pre><code>## Loading required package: nlme</code></pre>
-<pre><code>## 
-## Attaching package: 'nlme'</code></pre>
-<pre><code>## The following object is masked from 'package:dplyr':
-## 
-##     collapse</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">or_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"or"</span>, <span class="dt">year =</span> <span class="dv">2014</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lehdr)
+or_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"or"</span>, <span class="dt">year =</span> <span class="dv">2014</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
            <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</code></pre></div>
 <pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/or/od/or_od_main_JT01_2014.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz now...</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(or_od)</code></pre></div>
