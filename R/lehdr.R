@@ -20,11 +20,10 @@
 #'   Producing industry sectors, "SI02" number of jobs in Trade, Transportation,
 #'   and Utilities industry sectors, "SI03" number of jobs in All Other Services
 #'   industry sectors
-#' @param state_part Part of the state file, can have values of "main" or "aux"
-#'   in OD files. "Main" includes workers with their workplace and residence in
-#'   the state. "Aux" includes workers with residences out of state and
-#'   workplace in the state of interest
-#' @param agg_geo Aggregate to a geography other than Census Block (default). Can be "bg" for block group, tract", or "county".
+#' residences out of state and workplace in the state of interest
+#' includes workers with their workplace and residence in the state. "Aux" includes workers with 
+#' @param state_part Part of the state file, can have values of "main" or "aux" in OD files. "Main"
+#' @param agg_geo Aggregate to a geography other than Census Block (default). Can be "bg" for block group, tract", "county", or "state".
 #' @param download_dir Directory where lodes table will be downloaded
 #'
 #' @description Download LODES OD, RAC, and WAC tables
@@ -34,18 +33,16 @@
 #' @importFrom httr GET stop_for_status HEAD write_disk
 #' @importFrom glue glue
 #' @importFrom stats na.omit
-#'
-#' @importFrom stringr str_sub
+#' @importFrom stringr str_sub str_extract
 #'  
 #' @export
-
 grab_lodes <- function(state, year, 
-                       lodes_type = "od", 
+                       lodes_type = c("od", "rac", "wac"),
                        job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"), 
                        segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02",
                                    "SE03", "SI01", "SI02", "SI03"),  
-                       agg_geo = "block",
-                       state_part = NULL, 
+                       agg_geo = c("block", "bg", "tract", "county", "state"),
+                       state_part = c("","main","aux"), 
                        download_dir = file.path(getwd(), "lodes_raw")) {
   
   if (length(state) > 1 | length(year) > 1) {
@@ -65,11 +62,18 @@ grab_lodes <- function(state, year,
   # Format inputs
   state <- tolower(state)
   
-  # This handles the error in the `lodes_type` argument
-  lodes_type <- match.arg(tolower(lodes_type), c("od", "rac", "wac"))
+  # Handle errors and set default arguments
+  lodes_type <- match.arg(tolower(lodes_type), c(NULL, "od", "rac", "wac"))
+  agg_geo_to <- match.arg(tolower(agg_geo), c(NULL, "block", "bg", "tract", "county", "state"))
+  job_type <- match.arg(job_type, c(NULL, "JT00", "JT01", "JT02", "JT03", "JT04", "JT05"))
+  segment <- match.arg(segment, c(NULL, "S000", "SA01", "SA02", "SA03", "SE01", "SE02","SE03", "SI01", "SI02", "SI03"))
+  state_part <- match.arg(state_part, c("","main","aux"))
   
-  # This handles the error in the `agg_geo` argument, if NULL it sets to block (the first non-null value)
-  agg_geo_to <- match.arg(tolower(agg_geo), c(NULL, "block", "bg", "tract", "county"))
+  # If someone uses od, but doesn't set state_part
+  if(lodes_type == "od" && state_part == "") {
+    state_part == "main"
+    warning("state_part is required when setting lodes_type =\"od\", defaulting to state_part=\"main\"")
+  }
   
   # Setup col_types and url variables, used in the if statement
   cols_types <- cols()
@@ -77,13 +81,17 @@ grab_lodes <- function(state, year,
   
   # Read LODES_types and set col_types
   if (lodes_type == "od") {
+    # Set url for od
     url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{state_part}_{job_type}_{year}.csv.gz")
+    # Set column types for od
     col_types <- cols(w_geocode = col_character(), 
                       h_geocode = col_character(),
                       createdate = col_character())
   } else {
+    # Set url for rac/wac
     url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{segment}_{job_type}_{year}.csv.gz")    
-    # Avoid an error message by setting the col_type to NULL for those that won't appear
+
+    # Set column types for rac/wac -- h_ is home, w_ is work (from LODES)
     if (lodes_type == "rac") {
       col_types <- cols(h_geocode = col_character(),
                         createdate = col_character())
@@ -123,13 +131,15 @@ grab_lodes <- function(state, year,
     year=year,
     state=toupper(state))
   
-  # Group by geography, if the agg_geo_to variable is "block" or NULL (not passed via args), 
+  # Group by geography
+  # If the agg_geo_to variable is "block" or NULL (not passed via args), 
   # then skip this step as the data is already in block format
   if(agg_geo_to != "block" && !is.null(agg_geo_to)) { 
     id_len <- switch(agg_geo_to, 
                      "bg" = 12, 
                      "tract" = 11, 
-                     "county" = 5)
+                     "county" = 5,
+                     "state" = 2)
     lehdr_df <- aggregate_lodes_df(lehdr_df, id_len, agg_geo_to)
   }
 
@@ -141,14 +151,19 @@ grab_lodes <- function(state, year,
 #' 
 #' @param geoid_to The number of characters to do the aggregation on from the geoid
 #' @param aggname What the level is called, like "tract" etc
-
+#' @description Helper function for lehdr which aggregates block geographies based on the block id.
+#' @import dplyr
+#' @importFrom glue glue
+#' @importFrom stats na.omit
+#' @importFrom stringr str_sub str_extract
 aggregate_lodes_df <- function(.lehdr_df, geoid_to, aggname) {
   .lehdr_df <- .lehdr_df %>% 
-    mutate_at(vars(ends_with("_geocode")), funs(stringr::str_sub(., 1, geoid_to))) %>% 
+    mutate_at(vars(ends_with("_geocode")),
+              funs(stringr::str_sub(., 1, geoid_to))) %>% 
     rename_at(vars(ends_with("_geocode")), 
               funs(stringr::str_replace(., "geocode", aggname)))
   
-  ## Group by column(s) ending with "_tract_id"
+  ## Group by column(s) ending with "_{aggname}" as passed
   geoid_cols <- stringr::str_extract(names(.lehdr_df), glue::glue(".*_{aggname}$")) %>% na.omit()
   group_cols <- c("year", "state", geoid_cols)
   group_syms <- rlang::syms(group_cols)

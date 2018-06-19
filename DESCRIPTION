@@ -2,9 +2,12 @@ Package: lehdr
 Type: Package
 Title: Grab LEHD Flat Files
 Version: 0.2.0
-Authors@R: c(person("Jamaal", "W.", "Green", role = c("cre","aut"), person("Liming", "Wang", role =c("aut"))))
+Authors@R: c(person("Jamaal", "W.", "Green", role = c("cre","aut"), email="jamaal.green@gmail.com"), 
+              person("Liming", "Wang", role =c("aut"), email="lmwang@pdx.edu"), 
+              person("Dillon", "Mahmoudi", role =c("aut"), email="dillonm@umbc.edu"))
 Maintainer: Jamaal Green <jamaal.green@gmail.com>
 Description: lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.
+Depends: R (>= 3.2.3), nlme
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -20,3 +23,4 @@ Suggests:
     knitr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+URL: https://www.github.com/jamgreen/lehdr
