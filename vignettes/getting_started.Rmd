@@ -36,15 +36,19 @@ After loading the library, this first example pulls the Oregon (`state = "or"`) 
 
 ```{r usage 1}
 library(lehdr)
-grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
+or_od <- grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
            segment = "S000", state_part = "main", agg_geo = "tract")
+
+head(or_od)
 ```
 
 The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014 (`year = c(2013, 2014)` or `year = 2013:2014`).
 
 ```{r usage2}           
-grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
-           segment = "S000", state_part = "main", agg_geo = "tract")           
+or_ri_od <- grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
+           segment = "S000", state_part = "main", agg_geo = "tract")     
+
+head(or_ri_od)
 ```
 
 Not all years are available for each state. To see all options for `lodes_type`, `job_type`, and `segment` and the availability for each state/year, please see the most recent LEHD Technical Document at https://lehd.ces.census.gov/data/lodes/LODES7/.
@@ -52,6 +56,7 @@ Not all years are available for each state. To see all options for `lodes_type`,
 Other common uses might include retrieving Residential or Work Area Characteristics (`lodes_type = "rac"` or `lodes_type = "wac"` respectively), low income jobs (`segment = "SE01"`) or good producing jobs (`segment = "SI01"`). Other common geographies might include retrieving data at the Census Block level (`agg_geo = "block"`, not necessary as it is default).
 
 # Additional Examples
+
 ## Adding at County level signifiers
 The following examples loads work area characteristics (wac), then uses the work area geoid `w_geocode` to create a variable that is just the county `w_county_fips`. Similar transformations can be made on residence area characteristics (rac) by using the `h_geocode` variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a `h_county_fips` and on `w_county_fips`.
 ```{r example_county_var}
@@ -75,6 +80,7 @@ mdrac_county_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", j
 ```
 
 ## Aggregating Origin-Destination 
+
 Aggregating at origin-destination is also built-in, where aggregation takes place on both the `h_geocode` and `w_geocode` variables:
 ```{r example_county_agg3}
 mdrac_county_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
@@ -82,6 +88,7 @@ mdrac_county_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", j
 ```
 
 ## Functions at Block Group or Tract level
+
 Similarly, built-in functions exist to group at Block Group and Tract levels.
 ```{r example_county}
 mdrac_bg_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 

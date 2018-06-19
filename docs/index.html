@@ -8,8 +8,8 @@
 <title>Grab LEHD Flat Files • lehdr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Grab LEHD Flat Files">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Grab LEHD Flat Files">
 <meta property="og:description" content="lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -72,7 +72,7 @@
 <div id="lehdr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#lehdr" class="anchor"></a>lehdr</h1></div>
-<p><strong>lehdr</strong> is an R package that allows users to interface with the <a href="https://lehd.ces.census.gov/">Longitudinal and Employer-Household Dynamics (LEHD)</a> Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:</p>
+<p><strong>lehdr</strong> (pronounced: <em>lee dur</em> like a metric <em>litre</em>) is an R package that allows users to interface with the <a href="https://lehd.ces.census.gov/">Longitudinal and Employer-Household Dynamics (LEHD)</a> Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is currently in development and can be installed at:</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -82,35 +82,34 @@ devtools::install_github("jamgreen/lehdr")</code></pre>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<pre class="{r}"><code>library(lehdr)
-
-grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
-           segment = "SA01", state_part = "main", tract = TRUE)
-           
-grab_lodes(state = c('or', 'ri'), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
-           segment = "SA01", state_part = "main", tract = TRUE)           </code></pre>
+<p>After loading the library, this first example pulls the Oregon (<code>state = "or"</code>) 2014 (<code>year = 2014</code>), origin-destination (<code>lodes_type = "od"</code>), all jobs including private primary, secondary, and Federal (<code>job_type = "JT01"</code>), all jobs across ages, earnings, and industry (<code>segment = "S000"</code>), aggregated at the Census Tract level rather than the default Census Block (<code>agg_geo = "tract"</code>).</p>
+<p><code>{r usage 1} library(lehdr) grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01",             segment = "S000", state_part = "main", agg_geo = "tract")</code></p>
+<p>The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (<code>state = c("or", "ri")</code>) for 2013 and 2014 (<code>year = c(2013, 2014)</code> or <code>year = 2013:2014</code>).</p>
+<p><code>{r usage2}            grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01",             segment = "S000", state_part = "main", agg_geo = "tract")</code></p>
+<p>Not all years are available for each state. To see all options for <code>lodes_type</code>, <code>job_type</code>, and <code>segment</code> and the availability for each state/year, please see the most recent LEHD Technical Document at <a href="https://lehd.ces.census.gov/data/lodes/LODES7/" class="uri">https://lehd.ces.census.gov/data/lodes/LODES7/</a>.</p>
+<p>Other common uses might include retrieving Residential or Work Area Characteristics (<code>lodes_type = "rac"</code> or <code>lodes_type = "wac"</code> respectively), low income jobs (<code>segment = "SE01"</code>) or good producing jobs (<code>segment = "SI01"</code>). Other common geographies might include retrieving data at the Census Block level (<code>agg_geo = "block"</code>, not necessary as it is default).</p>
 </div>
+<div id="why-lehdr" class="section level2">
+<h2 class="hasAnchor">
+<a href="#why-lehdr" class="anchor"></a>Why lehdr?</h2>
+<p>The LODES dataset is frequently used by transportation and economic development planners, regional economists, disaster managers and other public servants in order to have a fine grained understanding of the distribution of employment. Such data is integral for regional travel demand models that help to dictate transportation policy options, regional economists and economic development planners interested in the spatial distribution of particular kinds of work use the data to weigh different industrial or workforce policy options. Finally, as a census product, the LODES data can be joined to census Decennial or American Community Survey data to help visualize the interactions between different population groups and work. In short, the LODES dataset is the only source of detailed geographic information on employment for the country and should be more widely available for researchers and analysts who work on regional development issues.</p>
 </div>
-<div id="why-lehdr" class="section level1">
-<h1 class="hasAnchor">
-<a href="#why-lehdr" class="anchor"></a>Why lehdr?</h1>
-<p>The LODES dataset is frequently used by transportation and economic development planners, regional economists, disaster managers and other public servants in order to have a fine grained understaning of the distribution of employment. Such data is integral for regional travel demand models that help to dictate transportation policy options, regional economists and economic development planners interested in the spatial distribution of particular kinds of work use the data to weigh different industrial or workforce policy options. Finally, as a census product, the LODES data can be joined to census Decennial or American Community Survey data to help visualize the interactions between different population groups and work. In short, the LODES dataset is the only source of detailed geographic information on employment for the country and should be more widely available for researchers and analysts who work on regional development issues.</p>
-</div>
-<div id="future-development" class="section level1">
-<h1 class="hasAnchor">
-<a href="#future-development" class="anchor"></a>Future Development</h1>
+<div id="future-development" class="section level2">
+<h2 class="hasAnchor">
+<a href="#future-development" class="anchor"></a>Future Development</h2>
 <p>Currently, <strong>lehdr</strong> is designed to grab the LODES flat files (origin-destination, workplace, and residential association files) and includes an option to aggregate results to the census tract level for analysts who find the fuzzing at the block level too great.</p>
 <p>Next steps include exploring integration of the package with the <a href="https://cran.r-project.org/web/packages/sf/index.html"><strong>sf</strong></a> and <a href="https://cran.r-project.org/web/packages/tigris/index.html"><strong>tigris</strong></a> packages to allow for easier mapping of LODES data.</p>
 </div>
-<div id="acknowledgements" class="section level1">
-<h1 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h1>
+<div id="acknowledgements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
 <p>This package would not exist in its current format without the inspiration of <a href="https://rud.is/b/">Bob Rudis’s</a> <a href="https://github.com/hrbrmstr/lodes">lodes package</a></p>
 </div>
-<div id="build-status" class="section level1">
-<h1 class="hasAnchor">
-<a href="#build-status" class="anchor"></a>Build Status</h1>
+<div id="build-status" class="section level2">
+<h2 class="hasAnchor">
+<a href="#build-status" class="anchor"></a>Build Status</h2>
 <p><a href="https://travis-ci.org/jamgreen/lehdr"><img src="https://travis-ci.org/jamgreen/lehdr.svg?branch=master" alt="Build Status"></a></p>
+</div>
 </div>
 
   </div>
@@ -135,6 +134,8 @@ grab_lodes(state = c('or', 'ri'), year = c(2013, 2014), lodes_type = "od", job_t
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Jamaal Green W. <br><small class="roles"> Maintainer, author </small>  </li>
+<li>Liming Wang <br><small class="roles"> Author </small>  </li>
+<li>Dillon Mahmoudi <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -143,7 +144,7 @@ grab_lodes(state = c('or', 'ri'), year = c(2013, 2014), lodes_type = "od", job_t
 
 
       <footer><div class="copyright">
-  <p>Developed by Jamaal Green W..</p>
+  <p>Developed by Jamaal Green W., Liming Wang, Dillon Mahmoudi.</p>
 </div>
 
 <div class="pkgdown">

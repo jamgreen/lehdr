@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> • lehdr</title>
+<title>Getting Started with lehdr • lehdr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with lehdr">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -67,8 +67,13 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1></h1>
-            
+      <h1>Getting Started with lehdr</h1>
+            <h3 class="subtitle"><u>Common uses of lehdr</u></h3>
+                        <h4 class="author">Jamaal Green</h4>
+                                    <h4 class="author">Dillon Mahmoudi</h4>
+                                    <h4 class="author">Liming Wang</h4>
+                        
+            <h4 class="date">19 June 2018</h4>
       
       
       <div class="hidden name"><code>getting_started.Rmd</code></div>
@@ -77,10 +82,7 @@
 
     
     
-<hr>
-<p>title: “Getting Started with lehdr” author: “Jamaal Green”</p>
-<hr>
-<p>This vignette is a brief introduction to the package includings its installation and making some basic queries.</p>
+<p>This vignette is a brief introduction to the package including its installation and making some basic queries.</p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
@@ -89,10 +91,106 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p><strong>lehdr</strong> has not yet been submitted to CRAN so installing using <strong>devtools</strong> is required. Additionally, we’ll be using <strong>dplyr</strong> and <strong>ggplot2</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(pacman)){<span class="kw">install.packages</span>(<span class="st">"pacman"</span>); <span class="kw">library</span>(pacman)}
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jamgreen/lehdr"</span>)
-<span class="kw">p_load</span>(ggplot2, dplyr)</code></pre></div>
+<p><strong>lehdr</strong> has not yet been submitted to CRAN so installing using <strong>devtools</strong> is required. Additionally, we’ll be using <strong>dplyr</strong> and <strong>ggplot2</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(pacman)){<span class="kw">install.packages</span>(<span class="st">"pacman"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.us.r-project.org"</span>); <span class="kw">library</span>(pacman)}
+<span class="kw"><a href="http://www.rdocumentation.org/packages/pacman/topics/p_load">p_load</a></span>(ggplot2, stringi, stringr, dplyr)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"jamgreen/lehdr"</span>)</code></pre></div>
+</div>
+<div id="usage" class="section level1">
+<h1 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h1>
+<p>After loading the library, this first example pulls the Oregon (<code>state = "or"</code>) 2014 (<code>year = 2014</code>), origin-destination (<code>lodes_type = "od"</code>), all jobs including private primary, secondary, and Federal (<code>job_type = "JT01"</code>), all jobs across ages, earnings, and industry (<code>segment = "S000"</code>), aggregated at the Census Tract level rather than the default Census Block (<code>agg_geo = "tract"</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lehdr)</code></pre></div>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## 
+## Attaching package: 'nlme'</code></pre>
+<pre><code>## The following object is masked from 'package:dplyr':
+## 
+##     collapse</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">or_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"or"</span>, <span class="dt">year =</span> <span class="dv">2014</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</code></pre></div>
+<pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/or/od/or_od_main_JT01_2014.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz now...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(or_od)</code></pre></div>
+<pre><code>## # A tibble: 6 x 14
+## # Groups:   year, state, w_tract [1]
+##    year state w_tract   h_tract   S000  SA01  SA02  SA03  SE01  SE02  SE03
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1  2014 OR    41001950… 4100195…    89     6    37    46    35    30    24
+## 2  2014 OR    41001950… 4100195…    35     2    25     8     6    13    16
+## 3  2014 OR    41001950… 4100195…    23     6    12     5     5    12     6
+## 4  2014 OR    41001950… 4100195…    20     0    17     3     4     4    12
+## 5  2014 OR    41001950… 4100195…    24     8    10     6     3    12     9
+## 6  2014 OR    41001950… 4100195…    10     3     5     2     4     5     1
+## # ... with 3 more variables: SI01 &lt;int&gt;, SI02 &lt;int&gt;, SI03 &lt;int&gt;</code></pre>
+<p>The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (<code>state = c("or", "ri")</code>) for 2013 and 2014 (<code>year = c(2013, 2014)</code> or <code>year = 2013:2014</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">or_ri_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="kw">c</span>(<span class="st">"or"</span>, <span class="st">"ri"</span>), <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2013</span>, <span class="dv">2014</span>), <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)     </code></pre></div>
+<pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/or/od/or_od_main_JT01_2013.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2013.csv.gz now...</code></pre>
+<pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/ri/od/ri_od_main_JT01_2013.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2013.csv.gz now...</code></pre>
+<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
+## Reading now...</code></pre>
+<pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/ri/od/ri_od_main_JT01_2014.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2014.csv.gz now...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(or_ri_od)</code></pre></div>
+<pre><code>## # A tibble: 6 x 14
+## # Groups:   year, state, w_tract [1]
+##   year  state w_tract   h_tract   S000  SA01  SA02  SA03  SE01  SE02  SE03
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1 2013  OR    41001950… 4100195…    80     4    39    37    25    30    25
+## 2 2013  OR    41001950… 4100195…    27     4    15     8     8    11     8
+## 3 2013  OR    41001950… 4100195…    11     1     5     5     6     3     2
+## 4 2013  OR    41001950… 4100195…    21     3    14     4     5     8     8
+## 5 2013  OR    41001950… 4100195…    27    12     8     7     4    15     8
+## 6 2013  OR    41001950… 4100195…     4     1     2     1     2     0     2
+## # ... with 3 more variables: SI01 &lt;int&gt;, SI02 &lt;int&gt;, SI03 &lt;int&gt;</code></pre>
+<p>Not all years are available for each state. To see all options for <code>lodes_type</code>, <code>job_type</code>, and <code>segment</code> and the availability for each state/year, please see the most recent LEHD Technical Document at <a href="https://lehd.ces.census.gov/data/lodes/LODES7/" class="uri">https://lehd.ces.census.gov/data/lodes/LODES7/</a>.</p>
+<p>Other common uses might include retrieving Residential or Work Area Characteristics (<code>lodes_type = "rac"</code> or <code>lodes_type = "wac"</code> respectively), low income jobs (<code>segment = "SE01"</code>) or good producing jobs (<code>segment = "SI01"</code>). Other common geographies might include retrieving data at the Census Block level (<code>agg_geo = "block"</code>, not necessary as it is default).</p>
+</div>
+<div id="additional-examples" class="section level1">
+<h1 class="hasAnchor">
+<a href="#additional-examples" class="anchor"></a>Additional Examples</h1>
+<div id="adding-at-county-level-signifiers" class="section level2">
+<h2 class="hasAnchor">
+<a href="#adding-at-county-level-signifiers" class="anchor"></a>Adding at County level signifiers</h2>
+<p>The following examples loads work area characteristics (wac), then uses the work area geoid <code>w_geocode</code> to create a variable that is just the county <code>w_county_fips</code>. Similar transformations can be made on residence area characteristics (rac) by using the <code>h_geocode</code> variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a <code>h_county_fips</code> and on <code>w_county_fips</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_jobs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"wac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, <span class="dt">segment =</span> <span class="st">"S000"</span>)</code></pre></div>
+<pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/md/wac/md_wac_S000_JT01_2015.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/md_wac_S000_JT01_2015.csv.gz now...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_county_jobs &lt;-<span class="st"> </span>mdrac_jobs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>))</code></pre></div>
+</div>
+<div id="aggregating-at-county-level" class="section level2">
+<h2 class="hasAnchor">
+<a href="#aggregating-at-county-level" class="anchor"></a>Aggregating at County level</h2>
+<p>To aggregate at the county level, continuing the above example, we must also drop the original lock geoid <code>w_geocode</code>, group by our new variable <code>w_county_fips</code> and our existing variables <code>year</code> and <code>createdate</code>, then aggregate the remaining numeric variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_county_jobs &lt;-<span class="st"> </span>mdrac_jobs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="st">"w_geocode"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(w_county_fips, state, year, createdate) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, sum)</code></pre></div>
+<p>This functionality is also built-in to the package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_county_jobs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>)</code></pre></div>
+<pre><code>## Downloading https://lehd.ces.census.gov/data/lodes/LODES7/md/rac/md_rac_S000_JT01_2015.csv.gz to /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz now...</code></pre>
+</div>
+<div id="aggregating-origin-destination" class="section level2">
+<h2 class="hasAnchor">
+<a href="#aggregating-origin-destination" class="anchor"></a>Aggregating Origin-Destination</h2>
+<p>Aggregating at origin-destination is also built-in, where aggregation takes place on both the <code>h_geocode</code> and <code>w_geocode</code> variables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_county_jobs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>)</code></pre></div>
+<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+## Reading now...</code></pre>
+</div>
+<div id="functions-at-block-group-or-tract-level" class="section level2">
+<h2 class="hasAnchor">
+<a href="#functions-at-block-group-or-tract-level" class="anchor"></a>Functions at Block Group or Tract level</h2>
+<p>Similarly, built-in functions exist to group at Block Group and Tract levels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_bg_jobs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"bg"</span>)</code></pre></div>
+<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+## Reading now...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mdrac_tract_jobs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, 
+           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</code></pre></div>
+<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+## Reading now...</code></pre>
+</div>
 </div>
   </div>
 
@@ -103,6 +201,15 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#installation">Installation</a></li>
+      <li><a href="#usage">Usage</a></li>
+      <li>
+<a href="#additional-examples">Additional Examples</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#adding-at-county-level-signifiers">Adding at County level signifiers</a></li>
+      <li><a href="#aggregating-at-county-level">Aggregating at County level</a></li>
+      <li><a href="#aggregating-origin-destination">Aggregating Origin-Destination</a></li>
+      <li><a href="#functions-at-block-group-or-tract-level">Functions at Block Group or Tract level</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>
@@ -111,7 +218,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 
 
       <footer><div class="copyright">
-  <p>Developed by Jamaal Green W..</p>
+  <p>Developed by Jamaal Green W., Liming Wang, Dillon Mahmoudi.</p>
 </div>
 
 <div class="pkgdown">

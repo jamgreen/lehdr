@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Download LODES OD, RAC, and WAC tables" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -111,31 +114,34 @@
     <pre class="usage"><span class='fu'>grab_lodes</span>(<span class='no'>state</span>, <span class='no'>year</span>, <span class='kw'>lodes_type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"od"</span>, <span class='st'>"rac"</span>, <span class='st'>"wac"</span>),
   <span class='kw'>job_type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"JT00"</span>, <span class='st'>"JT01"</span>, <span class='st'>"JT02"</span>, <span class='st'>"JT03"</span>, <span class='st'>"JT04"</span>, <span class='st'>"JT05"</span>),
   <span class='kw'>segment</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"S000"</span>, <span class='st'>"SA01"</span>, <span class='st'>"SA02"</span>, <span class='st'>"SA03"</span>, <span class='st'>"SE01"</span>, <span class='st'>"SE02"</span>, <span class='st'>"SE03"</span>, <span class='st'>"SI01"</span>,
-  <span class='st'>"SI02"</span>, <span class='st'>"SI03"</span>), <span class='kw'>tract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>state_part</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>getwd</span>(), <span class='st'>"lodes_raw"</span>))</pre>
+  <span class='st'>"SI02"</span>, <span class='st'>"SI03"</span>), <span class='kw'>agg_geo</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"block"</span>, <span class='st'>"bg"</span>, <span class='st'>"tract"</span>, <span class='st'>"county"</span>, <span class='st'>"state"</span>),
+  <span class='kw'>state_part</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>, <span class='st'>"main"</span>, <span class='st'>"aux"</span>), <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>getwd</span>(),
+  <span class='st'>"lodes_raw"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>state</th>
-      <td><p>US state abbreviation in lower case, can be a vector of states</p></td>
+      <td><p>US state abbreviation in lower case, can be a vector of states.</p></td>
     </tr>
     <tr>
       <th>year</th>
-      <td><p>year of the lodes data, can be a vector of years</p></td>
+      <td><p>year of the lodes data, can be a vector of years.</p></td>
     </tr>
     <tr>
       <th>lodes_type</th>
-      <td><p>table type: "origin-destination", "residential association", 
-or "workplace association". OD files give a home and destination census block
-for workers. Residential association files give job totals of worker home census 
-blocks and workplace association files give job totals of worker job census blocks</p></td>
+      <td><p>table type, values can be origin-destination ("od"), 
+residential association ("rac"), or workplace association ("wac"). od 
+files give a home and destination census block for workers. Residential 
+files give job totals of worker home census blocks and workplace files 
+give job totals of worker job census blocks</p></td>
     </tr>
     <tr>
       <th>job_type</th>
-      <td><p>Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
-"JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs</p></td>
+      <td><p>Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, 
+"JT02" for All Private Jobs, "JT03" for Private Primary jobs, "JT04" for
+All Federal jobs, "JT05" for Federal Primary jobs</p></td>
     </tr>
     <tr>
       <th>segment</th>
@@ -145,23 +151,25 @@ of jobs for workers aged 30-54,"SA03" number of jobs for workers 55 and
 older, "SE01" number of jobs with earnings $1,250/month or less, "SE02"
 number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs
 with earnings greater than $3,333/month, "SI01" number of jobs in Goods
-Producing industry sectors, "SI02" number of jobs in Trade, Transportation,
-and Utilities industry sectors, "SI03" number of jobs in All Other Services
-industry sectors</p></td>
+Producing industry sectors, "SI02" number of jobs in Trade, 
+Transportation, and Utilities industry sectors, "SI03" number of jobs in 
+All Other Services industry sectors</p></td>
     </tr>
     <tr>
-      <th>tract</th>
-      <td><p>logical whether to aggregate w_geocode to w_tract_id.</p></td>
+      <th>agg_geo</th>
+      <td><p>Aggregate to a geography other than Census Block (default). 
+Values can be "bg" for block group, "tract", "county", or "state".</p></td>
     </tr>
     <tr>
       <th>state_part</th>
-      <td><p>Part of the state file, can have values of "main" or "aux" in OD files. "Main"
-includes workers with their workplace and residence in the state. "Aux" includes workers with 
-residences out of state and workplace in the state of interest</p></td>
+      <td><p>Part of the state file, can have values of "main" or "aux"
+in OD files. Using "main" includes workers with their workplace and
+residence in the state. Using "aux" includes workers with residences out 
+of state and workplace in the state of interest</p></td>
     </tr>
     <tr>
       <th>download_dir</th>
-      <td><p>Directory where lodes table will be downloaded</p></td>
+      <td><p>Directory where lodes table will be downloaded.</p></td>
     </tr>
     </table>
     
@@ -184,7 +192,7 @@ residences out of state and workplace in the state of interest</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jamaal Green W..</p>
+  <p>Developed by Jamaal Green W., Liming Wang, Dillon Mahmoudi.</p>
 </div>
 
 <div class="pkgdown">
