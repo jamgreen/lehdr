@@ -1,14 +1,16 @@
-#' 
+#'
 #' Download and load LODES data into a data frame (tibble)
-#' 
+#'
 #' @param state US state abbreviation in lower case, can be a vector of states
 #' @param year year of the lodes data, can be a vector of years
-#' @param lodes_type table type: "origin-destination", "residential association", 
-#'        or "workplace association". OD files give a home and destination census block
-#'        for workers. Residential association files give job totals of worker home census 
-#'        blocks and workplace association files give job totals of worker job census blocks
-#' @param job_type Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
-#'        "JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs
+#' @param lodes_type table type: "origin-destination", "residential
+#'   association", or "workplace association". OD files give a home and
+#'   destination census block for workers. Residential association files give
+#'   job totals of worker home census blocks and workplace association files
+#'   give job totals of worker job census blocks
+#' @param job_type Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02"
+#'   for All Private Jobs, "JT03" for Private Primary Jobs, "JT04" for All
+#'   Federal Jobs, "JT05" for Federal Primary Jobs
 #' @param segment Segment of the workforce: "S000" total number of jobs for
 #'   workers, "SA01" number of jobs forworker aged 29 or younger, "SA02" number
 #'   of jobs for workers aged 30-54,"SA03" number of jobs for workers 55 and
@@ -18,19 +20,21 @@
 #'   Producing industry sectors, "SI02" number of jobs in Trade, Transportation,
 #'   and Utilities industry sectors, "SI03" number of jobs in All Other Services
 #'   industry sectors
-#' @param state_part Part of the state file, can have values of "main" or "aux" in OD files. "Main"
-#' includes workers with their workplace and residence in the state. "Aux" includes workers with 
-#' residences out of state and workplace in the state of interest
+#' @param state_part Part of the state file, can have values of "main" or "aux"
+#'   in OD files. "Main" includes workers with their workplace and residence in
+#'   the state. "Aux" includes workers with residences out of state and
+#'   workplace in the state of interest
 #' @param agg_geo Aggregate to a geography other than Census Block (default). Can be "bg" for block group, tract", or "county".
 #' @param download_dir Directory where lodes table will be downloaded
-#' 
+#'
 #' @description Download LODES OD, RAC, and WAC tables
 #' @return a dataframe (tibble) of block or tract level LODES files
 #' @import dplyr
-#' @importFrom readr read_csv cols col_character 
+#' @importFrom readr read_csv cols col_character
 #' @importFrom httr GET stop_for_status HEAD write_disk
 #' @importFrom glue glue
 #' @importFrom stats na.omit
+#'
 #' @importFrom stringr str_sub
 #'  
 #' @export
