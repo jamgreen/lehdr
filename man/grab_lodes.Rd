@@ -4,24 +4,25 @@
 \alias{grab_lodes}
 \title{Download and load LODES data into a data frame (tibble)}
 \usage{
-grab_lodes(state, year, lodes_type = c("od", "rac", "wac"),
-  job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"),
-  segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01",
-  "SI02", "SI03"), tract = FALSE, state_part = NULL,
-  download_dir = file.path(getwd(), "lodes_raw"))
+grab_lodes(state, year, lodes_type = "od", job_type = c("JT00", "JT01",
+  "JT02", "JT03", "JT04", "JT05"), segment = c("S000", "SA01", "SA02", "SA03",
+  "SE01", "SE02", "SE03", "SI01", "SI02", "SI03"), agg_geo = "block",
+  state_part = NULL, download_dir = file.path(getwd(), "lodes_raw"))
 }
 \arguments{
 \item{state}{US state abbreviation in lower case, can be a vector of states}
 
 \item{year}{year of the lodes data, can be a vector of years}
 
-\item{lodes_type}{table type: "origin-destination", "residential association", 
-or "workplace association". OD files give a home and destination census block
-for workers. Residential association files give job totals of worker home census 
-blocks and workplace association files give job totals of worker job census blocks}
+\item{lodes_type}{table type: "origin-destination", "residential
+association", or "workplace association". OD files give a home and
+destination census block for workers. Residential association files give
+job totals of worker home census blocks and workplace association files
+give job totals of worker job census blocks}
 
-\item{job_type}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02" for All Private Jobs,
-"JT03" for Private Primary Jobs, "JT04" for All Federal Jobs, "JT05" for Federal Primary Jobs}
+\item{job_type}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, "JT02"
+for All Private Jobs, "JT03" for Private Primary Jobs, "JT04" for All
+Federal Jobs, "JT05" for Federal Primary Jobs}
 
 \item{segment}{Segment of the workforce: "S000" total number of jobs for
 workers, "SA01" number of jobs forworker aged 29 or younger, "SA02" number
@@ -33,11 +34,12 @@ Producing industry sectors, "SI02" number of jobs in Trade, Transportation,
 and Utilities industry sectors, "SI03" number of jobs in All Other Services
 industry sectors}
 
-\item{tract}{logical whether to aggregate w_geocode to w_tract_id.}
+\item{agg_geo}{Aggregate to a geography other than Census Block (default). Can be "bg" for block group, tract", or "county".}
 
-\item{state_part}{Part of the state file, can have values of "main" or "aux" in OD files. "Main"
-includes workers with their workplace and residence in the state. "Aux" includes workers with 
-residences out of state and workplace in the state of interest}
+\item{state_part}{Part of the state file, can have values of "main" or "aux"
+in OD files. "Main" includes workers with their workplace and residence in
+the state. "Aux" includes workers with residences out of state and
+workplace in the state of interest}
 
 \item{download_dir}{Directory where lodes table will be downloaded}
 }

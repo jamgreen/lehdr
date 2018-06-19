@@ -24,9 +24,6 @@
 #'   in OD files. "Main" includes workers with their workplace and residence in
 #'   the state. "Aux" includes workers with residences out of state and
 #'   workplace in the state of interest
-#' @param state_part Part of the state file, can have values of "main" or "aux" in OD files. "Main"
-#' includes workers with their workplace and residence in the state. "Aux" includes workers with 
-#' residences out of state and workplace in the state of interest
 #' @param agg_geo Aggregate to a geography other than Census Block (default). Can be "bg" for block group, tract", or "county".
 #' @param download_dir Directory where lodes table will be downloaded
 #'

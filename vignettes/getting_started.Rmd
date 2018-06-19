@@ -29,8 +29,8 @@ This vignette is a brief introduction to the package includings its installation
 
 ```{r, message=FALSE, warning=FALSE}
 if(!require(pacman)){install.packages("pacman", repos = "http://cran.us.r-project.org"); library(pacman)}
+p_load(ggplot2, stringi, stringr, dplyr)
 devtools::install_github("jamgreen/lehdr")
-p_load(ggplot2, dplyr)
 
 ```
 
@@ -58,7 +58,6 @@ Other common uses might include retrieving Residential or Work Area Characterist
 ## Adding at County level signifiers
 The following examples loads work area characteristics (wac), then uses the work area geoid `w_geocode` to create a variable that is just the county `w_county_fips`. Similar transformations can be made on residence area characteristics (rac) by using the `h_geocode` variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a `h_county_fips` and on `w_county_fips`.
 ```{r example_county_var}
-library(stringr)
 mdrac_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "wac", job_type = "JT01", segment = "S000")
 mdrac_county_jobs <- mdrac_jobs %>% mutate(w_county_fips = str_sub(w_geocode, 1, 5))
 ```
@@ -81,14 +80,13 @@ mdrac_county_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", j
 ## Aggregating Origin-Destination 
 Aggregating at origin-destination is also built-in, where aggregation takes place on both the `h_geocode` and `w_geocode` variables:
 ```{r example_county_agg3}
-mdrac_county_jobs <- grab_lodes(state = "od", year = 2015, lodes_type = "rac", job_type = "JT01", 
+mdrac_county_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
            segment = "S000", agg_geo = "county", state_part = "main")
 ```
 
 ## Functions at Block Group or Tract level
 Similarly, built-in functions exist to group at Block Group and Tract levels.
 ```{r example_county}
-library(stringr)
 mdrac_bg_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
            segment = "S000", agg_geo = "bg")
 mdrac_tract_jobs <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
