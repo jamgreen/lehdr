@@ -149,6 +149,8 @@
 #'"Payroll"
 #'Total Quarterly Payroll
 #'Total quarterly payroll for all jobs
+#'
+#'@param key Census API key
 #' 
 #'
 
