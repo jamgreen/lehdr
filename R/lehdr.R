@@ -171,6 +171,7 @@ aggregate_lodes_df <- function(lehdr_df2, geoid_to, aggname) {
   group_syms <- rlang::syms(group_cols)
   lehdr_df2 <- lehdr_df2 %>%
     group_by(!!!group_syms) %>% 
-    summarise_if(is.numeric, funs(sum))
+    summarise_if(is.numeric, funs(sum)) %>% 
+    ungroup()
   return(lehdr_df2)
 }

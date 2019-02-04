@@ -22,5 +22,5 @@ Suggests:
     testthat,
     knitr
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 URL: https://www.github.com/jamgreen/lehdr
