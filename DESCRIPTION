@@ -20,7 +20,8 @@ Imports:
     dplyr
 Suggests:
     testthat,
-    knitr
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 URL: https://www.github.com/jamgreen/lehdr
