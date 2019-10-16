@@ -9,6 +9,8 @@ package: lehdr
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
+  %\VignetteDepends{devtools}
+  %\VignetteDepends{ggplot2}
   %\VignetteIndexEntry{Getting Started with lehdr}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
@@ -25,8 +27,11 @@ This vignette is a brief introduction to the package including its installation 
 **lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr** and **ggplot2**.
 
 ```{r, message=FALSE, warning=FALSE}
-if(!require(pacman)){install.packages("pacman", repos = "http://cran.us.r-project.org"); library(pacman)}
-p_load(ggplot2, stringi, stringr, dplyr, devtools)
+install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())))
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(devtools)
 
 devtools::install_github("jamgreen/lehdr")
 library(lehdr)
