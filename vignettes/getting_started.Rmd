@@ -27,7 +27,8 @@ This vignette is a brief introduction to the package including its installation 
 **lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr** and **ggplot2**.
 
 ```{r, message=FALSE, warning=FALSE}
-install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())))
+install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())),
+                 repos="http://cran.rstudio.com")
 library(dplyr)
 library(ggplot2)
 library(stringr)
