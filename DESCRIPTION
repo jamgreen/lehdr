@@ -1,6 +1,6 @@
 Package: lehdr
 Type: Package
-Title: Grab LEHD Flat Files
+Title: Grab Longitudinal Employer-Household Dynamics (LEHD) Flat Files
 Version: 0.2.2
 Authors@R: c(person("Jamaal", "Green", role = c("cre","aut"), email="jamaal.green@gmail.com"), 
               person("Liming", "Wang", role =c("aut"), email="lmwang@pdx.edu"), 
