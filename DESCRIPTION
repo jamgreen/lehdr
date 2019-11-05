@@ -1,8 +1,8 @@
 Package: lehdr
 Type: Package
 Title: Grab LEHD Flat Files
-Version: 0.2.1
-Authors@R: c(person("Jamaal", "W.", "Green", role = c("cre","aut"), email="jamaal.green@gmail.com"), 
+Version: 0.2.2
+Authors@R: c(person("Jamaal", "Green", role = c("cre","aut"), email="jamaal.green@gmail.com"), 
               person("Liming", "Wang", role =c("aut"), email="lmwang@pdx.edu"), 
               person("Dillon", "Mahmoudi", role =c("aut"), email="dillonm@umbc.edu"))
 Maintainer: Jamaal Green <jamaal.green@gmail.com>

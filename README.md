@@ -44,7 +44,7 @@ The LODES dataset is frequently used by transportation and economic development 
 
 Currently, **lehdr** is designed to grab the LODES flat files (origin-destination, workplace, and residential association files) and includes an option to aggregate results to the census tract level for analysts who find the fuzzing at the block level too great. 
 
-Next steps include exploring integration of the package with the [**sf**](https://cran.r-project.org/web/packages/sf/index.html) and [**tigris**](https://cran.r-project.org/web/packages/tigris/index.html) packages to allow for easier mapping of LODES data. 
+Next steps include exploring integration of the package with the [**sf**]( https://CRAN.R-project.org/package=sf) and [**tigris**]( https://CRAN.R-project.org/package=tigris) packages to allow for easier mapping of LODES data. 
 
 ## Acknowledgements
 
