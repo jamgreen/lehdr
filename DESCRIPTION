@@ -6,7 +6,7 @@ Authors@R: c(person("Jamaal", "Green", role = c("cre","aut"), email="jamaal.gree
               person("Liming", "Wang", role =c("aut"), email="lmwang@pdx.edu"), 
               person("Dillon", "Mahmoudi", role =c("aut"), email="dillonm@umbc.edu"))
 Maintainer: Jamaal Green <jamaal.green@gmail.com>
-Description: lehdr is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the census tract level for convenience.
+Description: The lehdr package is designed to query LEHD workplace/residential association and origin-destination flat files. It also has the option of aggregating up to the state level for convenience.
 Depends: R (>= 3.2.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
