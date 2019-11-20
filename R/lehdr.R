@@ -37,6 +37,27 @@
 #' @importFrom stats na.omit
 #' @importFrom stringr str_sub str_extract
 #'  
+#' @examples
+#' \dontrun{
+#'  # download and load 2014 block level O-D data for Oregon
+#'  blk_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+#'                          segment = "SA01", state_part = "main")
+#'                          
+#'  # download and load 2014 O-D data for Oregon and aggregate 
+#'  # to the tract level                     
+#'  trt_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+#'                          segment = "SA01", state_part = "main", agg_geo = "tract")
+#'                          
+#'  # download and load 2014 RAC data for Oregon and aggregate 
+#'  # to the tract level                                              
+#'  trt_df_or_rac <- grab_lodes(state = 'or', year = 2014, lodes_type = "rac", job_type = "JT01", 
+#'                           segment = "SA01", agg_geo = "tract")
+#'                           
+#'  # download and load 2014 WAC data for Oregon and aggregate 
+#'  # to the tract level                        
+#'  trt_df_or_wac <- grab_lodes(state = 'or', year = 2014, lodes_type = "wac", job_type = "JT01", 
+#'                           segment = "SA01", agg_geo = "tract")
+#' }                         
 #' @export
 grab_lodes <- function(state, year, 
                        lodes_type = c("od", "rac", "wac"),
@@ -159,6 +180,7 @@ grab_lodes <- function(state, year,
 #' @importFrom glue glue
 #' @importFrom stats na.omit
 #' @importFrom stringr str_sub str_extract
+
 aggregate_lodes_df <- function(lehdr_df, geoid_to, aggname) {
   lehdr_df <- lehdr_df %>% 
     mutate_at(vars(ends_with("_geocode")),
