@@ -4,12 +4,17 @@
 \alias{grab_lodes}
 \title{Download and load LODES data into a data frame (tibble)}
 \usage{
-grab_lodes(state, year, lodes_type = c("od", "rac", "wac"),
+grab_lodes(
+  state,
+  year,
+  lodes_type = c("od", "rac", "wac"),
   job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"),
-  segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03",
-  "SI01", "SI02", "SI03"), agg_geo = c("block", "bg", "tract", "county",
-  "state"), state_part = c("", "main", "aux"),
-  download_dir = file.path(getwd(), "lodes_raw"))
+  segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01", "SI02",
+    "SI03"),
+  agg_geo = c("block", "bg", "tract", "county", "state"),
+  state_part = c("", "main", "aux"),
+  download_dir = file.path(getwd(), "lodes_raw")
+)
 }
 \arguments{
 \item{state}{US state abbreviation in lower case, can be a vector of states.}

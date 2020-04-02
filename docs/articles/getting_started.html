@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Getting Started with lehdr • lehdr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with lehdr">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lehdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -65,6 +66,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -74,7 +76,7 @@
                                     <h4 class="author">Dillon Mahmoudi</h4>
                                     <h4 class="author">Liming Wang</h4>
                         
-            <h4 class="date">04 February 2019</h4>
+            <h4 class="date">22 January 2020</h4>
       
       
       <div class="hidden name"><code>getting_started.Rmd</code></div>
@@ -92,97 +94,96 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p><strong>lehdr</strong> has not yet been submitted to CRAN so installing using <strong>devtools</strong> is required. Additionally, we’ll be using <strong>dplyr</strong> and <strong>ggplot2</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(pacman)){<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"pacman"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.us.r-project.org"</span>); <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pacman)}</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/pacman/topics/p_load">p_load</a></span>(ggplot2, stringi, stringr, dplyr, devtools)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jamgreen/lehdr"</span>)</a></code></pre></div>
-<pre><code>## BH       (1.66.0-1 -&gt; 1.69.0-1) [CRAN]
-## clipr    (0.4.1    -&gt; 0.5.0   ) [CRAN]
-## curl     (3.2      -&gt; 3.3     ) [CRAN]
-## httr     (1.3.1    -&gt; 1.4.0   ) [CRAN]
-## jsonlite (1.5      -&gt; 1.6     ) [CRAN]
-## openssl  (1.1      -&gt; 1.2.1   ) [CRAN]
-## pillar   (1.3.0    -&gt; 1.3.1   ) [CRAN]
-## purrr    (0.2.5    -&gt; 0.3.0   ) [CRAN]
-## readr    (1.2.1    -&gt; 1.3.1   ) [CRAN]
-## tibble   (1.4.2    -&gt; 2.0.1   ) [CRAN]
+<p><strong>lehdr</strong> has not yet been submitted to CRAN so installing using <strong>devtools</strong> is required. Additionally, we’ll be using <strong>dplyr</strong>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())),</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">#                 repos="http://cran.rstudio.com")</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(stringr)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"jamgreen/lehdr"</span>)</a></code></pre></div>
+<pre><code>## stringi (1.4.4 -&gt; 1.4.5) [CRAN]
+## 
+##   There is a binary version available but the source version is later:
+##         binary source needs_compilation
+## stringi  1.4.4  1.4.5              TRUE
+## 
 ##   
-   checking for file ‘/tmp/RtmpyGu1V0/remotes7ab419ff0fc8/jamgreen-lehdr-c2c663e/DESCRIPTION’ ...
   
-✔  checking for file ‘/tmp/RtmpyGu1V0/remotes7ab419ff0fc8/jamgreen-lehdr-c2c663e/DESCRIPTION’ (369ms)
+  
+   checking for file 'C:\Users\elmue\AppData\Local\Temp\RtmpSaJWbs\remotes490828207bac\jamgreen-lehdr-a350639/DESCRIPTION' ...
+  
+v  checking for file 'C:\Users\elmue\AppData\Local\Temp\RtmpSaJWbs\remotes490828207bac\jamgreen-lehdr-a350639/DESCRIPTION' (366ms)
 ## 
   
-─  preparing ‘lehdr’:
+  
+  
+-  preparing 'lehdr':
+##    checking DESCRIPTION meta-information ...
+  
+   checking DESCRIPTION meta-information ... 
+  
+v  checking DESCRIPTION meta-information
 ## 
   
-   checking DESCRIPTION meta-information ...
   
-─  checking DESCRIPTION meta-information ...It is recommended to use ‘given’ instead of ‘middle’.
+  
+-  checking for LF line-endings in source and make files and shell scripts
 ## 
   
-    OK
+-  checking for empty or unneeded directories
 ## 
   
-   It is recommended to use ‘given’ instead of ‘middle’.
-## 
   
-─  checking for LF line-endings in source and make files and shell scripts
-## 
   
-─  checking for empty or unneeded directories
-## 
-  
-─  building ‘lehdr_0.2.0.tar.gz’
+-  building 'lehdr_0.2.3.tar.gz'
 ## 
   
    
 ## </code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lehdr)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lehdr)</a></code></pre></div>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
 <p>This first example pulls the Oregon (<code>state = "or"</code>) 2014 (<code>year = 2014</code>), origin-destination (<code>lodes_type = "od"</code>), all jobs including private primary, secondary, and Federal (<code>job_type = "JT01"</code>), all jobs across ages, earnings, and industry (<code>segment = "S000"</code>), aggregated at the Census Tract level rather than the default Census Block (<code>agg_geo = "tract"</code>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">or_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"or"</span>, <span class="dt">year =</span> <span class="dv">2014</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">or_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"or"</span>, <span class="dt">year =</span> <span class="dv">2014</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb4-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
 ## Reading now...</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(or_od)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(or_od)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 14
-## # Groups:   year, state, w_tract [1]
-##    year state w_tract h_tract  S000  SA01  SA02  SA03  SE01  SE02  SE03
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2014 OR    410019… 410019…    89     6    37    46    35    30    24
-## 2  2014 OR    410019… 410019…    35     2    25     8     6    13    16
-## 3  2014 OR    410019… 410019…    23     6    12     5     5    12     6
-## 4  2014 OR    410019… 410019…    20     0    17     3     4     4    12
-## 5  2014 OR    410019… 410019…    24     8    10     6     3    12     9
-## 6  2014 OR    410019… 410019…    10     3     5     2     4     5     1
-## # ... with 3 more variables: SI01 &lt;dbl&gt;, SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
+##    year state w_tract h_tract  S000  SA01  SA02  SA03  SE01  SE02  SE03  SI01
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  2014 OR    410019~ 410019~    89     6    37    46    35    30    24    21
+## 2  2014 OR    410019~ 410019~    35     2    25     8     6    13    16     1
+## 3  2014 OR    410019~ 410019~    23     6    12     5     5    12     6     7
+## 4  2014 OR    410019~ 410019~    20     0    17     3     4     4    12     4
+## 5  2014 OR    410019~ 410019~    24     8    10     6     3    12     9     6
+## 6  2014 OR    410019~ 410019~    10     3     5     2     4     5     1     2
+## # ... with 2 more variables: SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
 <p>The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (<code>state = c("or", "ri")</code>) for 2013 and 2014 (<code>year = c(2013, 2014)</code> or <code>year = 2013:2014</code>).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">or_ri_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"or"</span>, <span class="st">"ri"</span>), <span class="dt">year =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2013</span>, <span class="dv">2014</span>), <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)     </a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2013.csv.gz
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">or_ri_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"or"</span>, <span class="st">"ri"</span>), <span class="dt">year =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2013</span>, <span class="dv">2014</span>), <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb8-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)     </a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/or_od_main_JT01_2013.csv.gz
 ## Reading now...</code></pre>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2013.csv.gz
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2013.csv.gz
 ## Reading now...</code></pre>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
 ## Reading now...</code></pre>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2014.csv.gz
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2014.csv.gz
 ## Reading now...</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(or_ri_od)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(or_ri_od)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 14
-## # Groups:   year, state, w_tract [1]
-##   year  state w_tract h_tract  S000  SA01  SA02  SA03  SE01  SE02  SE03
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 2013  OR    410019… 410019…    80     4    39    37    25    30    25
-## 2 2013  OR    410019… 410019…    27     4    15     8     8    11     8
-## 3 2013  OR    410019… 410019…    11     1     5     5     6     3     2
-## 4 2013  OR    410019… 410019…    21     3    14     4     5     8     8
-## 5 2013  OR    410019… 410019…    27    12     8     7     4    15     8
-## 6 2013  OR    410019… 410019…     4     1     2     1     2     0     2
-## # ... with 3 more variables: SI01 &lt;dbl&gt;, SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
+##   year  state w_tract h_tract  S000  SA01  SA02  SA03  SE01  SE02  SE03  SI01
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 2013  OR    410019~ 410019~    80     4    39    37    25    30    25    25
+## 2 2013  OR    410019~ 410019~    27     4    15     8     8    11     8     3
+## 3 2013  OR    410019~ 410019~    11     1     5     5     6     3     2     1
+## 4 2013  OR    410019~ 410019~    21     3    14     4     5     8     8     4
+## 5 2013  OR    410019~ 410019~    27    12     8     7     4    15     8     8
+## 6 2013  OR    410019~ 410019~     4     1     2     1     2     0     2     0
+## # ... with 2 more variables: SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
 <p>Not all years are available for each state. To see all options for <code>lodes_type</code>, <code>job_type</code>, and <code>segment</code> and the availability for each state/year, please see the most recent LEHD Technical Document at <a href="https://lehd.ces.census.gov/data/lodes/LODES7/" class="uri">https://lehd.ces.census.gov/data/lodes/LODES7/</a>.</p>
 <p>Other common uses might include retrieving Residential or Work Area Characteristics (<code>lodes_type = "rac"</code> or <code>lodes_type = "wac"</code> respectively), low income jobs (<code>segment = "SE01"</code>) or good producing jobs (<code>segment = "SI01"</code>). Other common geographies might include retrieving data at the Census Block level (<code>agg_geo = "block"</code>, not necessary as it is default) – but see below for other aggregation levels.</p>
 </div>
@@ -193,197 +194,189 @@
 <h2 class="hasAnchor">
 <a href="#using-county-level-signifiers" class="anchor"></a>Using County level signifiers</h2>
 <p>The following examples loads work area characteristics (wac), then uses the work area geoid <code>w_geocode</code> to create a variable that is just the county <code>w_county_fips</code>. Similar transformations can be made on residence area characteristics (rac) by using the <code>h_geocode</code> variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a <code>h_county_fips</code> and on <code>w_county_fips</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">md_wac &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"wac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, <span class="dt">segment =</span> <span class="st">"S000"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_wac_S000_JT01_2015.csv.gz
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">md_wac &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"wac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, <span class="dt">segment =</span> <span class="st">"S000"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_wac_S000_JT01_2015.csv.gz
 ## Reading now...</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_wac)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_wac)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 55
-##   w_geocode  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 24001000…     7     3     3     1     4     3     0     0     0     0
-## 2 24001000…     1     0     1     0     0     1     0     0     0     0
-## 3 24001000…    10     2     3     5     7     3     0     0     0     0
-## 4 24001000…     2     0     2     0     0     1     1     0     0     0
-## 5 24001000…     8     4     4     0     7     1     0     0     0     0
-## 6 24001000…     2     0     2     0     0     2     0     0     0     0
-## # ... with 44 more variables: CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;,
-## #   CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;,
-## #   CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;,
-## #   CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;,
-## #   CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
-## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;,
-## #   CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;, CFA02 &lt;dbl&gt;,
-## #   CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;, CFS02 &lt;dbl&gt;,
-## #   CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;, createdate &lt;chr&gt;, year &lt;dbl&gt;,
-## #   state &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">md_wac_county &lt;-<span class="st"> </span>md_wac <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_wac_county)</a></code></pre></div>
+##   w_geocode  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03 CNS04
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 24001000~     7     3     3     1     4     3     0     0     0     0     0
+## 2 24001000~     1     0     1     0     0     1     0     0     0     0     0
+## 3 24001000~    10     2     3     5     7     3     0     0     0     0     0
+## 4 24001000~     2     0     2     0     0     1     1     0     0     0     0
+## 5 24001000~     8     4     4     0     7     1     0     0     0     0     0
+## 6 24001000~     2     0     2     0     0     2     0     0     0     0     0
+## # ... with 43 more variables: CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;,
+## #   CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;,
+## #   CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;,
+## #   CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
+## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
+## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;,
+## #   CFA02 &lt;dbl&gt;, CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;,
+## #   CFS02 &lt;dbl&gt;, CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;, createdate &lt;chr&gt;,
+## #   year &lt;dbl&gt;, state &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">md_wac_county &lt;-<span class="st"> </span>md_wac <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb19-2" title="2"></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_wac_county)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 56
-##   w_geocode  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 24001000…     7     3     3     1     4     3     0     0     0     0
-## 2 24001000…     1     0     1     0     0     1     0     0     0     0
-## 3 24001000…    10     2     3     5     7     3     0     0     0     0
-## 4 24001000…     2     0     2     0     0     1     1     0     0     0
-## 5 24001000…     8     4     4     0     7     1     0     0     0     0
-## 6 24001000…     2     0     2     0     0     2     0     0     0     0
-## # ... with 45 more variables: CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;,
-## #   CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;,
-## #   CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;,
-## #   CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;,
-## #   CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
-## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;,
-## #   CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;, CFA02 &lt;dbl&gt;,
-## #   CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;, CFS02 &lt;dbl&gt;,
-## #   CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;, createdate &lt;chr&gt;, year &lt;dbl&gt;,
-## #   state &lt;chr&gt;, w_county_fips &lt;chr&gt;</code></pre>
+##   w_geocode  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03 CNS04
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 24001000~     7     3     3     1     4     3     0     0     0     0     0
+## 2 24001000~     1     0     1     0     0     1     0     0     0     0     0
+## 3 24001000~    10     2     3     5     7     3     0     0     0     0     0
+## 4 24001000~     2     0     2     0     0     1     1     0     0     0     0
+## 5 24001000~     8     4     4     0     7     1     0     0     0     0     0
+## 6 24001000~     2     0     2     0     0     2     0     0     0     0     0
+## # ... with 44 more variables: CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;,
+## #   CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;,
+## #   CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;,
+## #   CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
+## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
+## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;,
+## #   CFA02 &lt;dbl&gt;, CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;,
+## #   CFS02 &lt;dbl&gt;, CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;, createdate &lt;chr&gt;,
+## #   year &lt;dbl&gt;, state &lt;chr&gt;, w_county_fips &lt;chr&gt;</code></pre>
 </div>
 <div id="two-ways-to-aggregate-at-the-county-level" class="section level2">
 <h2 class="hasAnchor">
 <a href="#two-ways-to-aggregate-at-the-county-level" class="anchor"></a>Two ways to aggregate at the County level</h2>
 <p>To aggregate at the county level, continuing the above example, we must also drop the original lock geoid <code>w_geocode</code>, group by our new variable <code>w_county_fips</code> and our existing variables <code>year</code> and <code>createdate</code>, then aggregate the remaining numeric variables. This method only works for wac and rac LODES types.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">md_wac_county &lt;-<span class="st"> </span>md_wac <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="st">"w_geocode"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(w_county_fips, state, year, createdate) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, sum)</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_wac_county)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">md_wac_county &lt;-<span class="st"> </span>md_wac <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="st">"w_geocode"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(w_county_fips, state, year, createdate) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, sum)</a>
+<a class="sourceLine" id="cb21-5" title="5"></a>
+<a class="sourceLine" id="cb21-6" title="6"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_wac_county)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 55
 ## # Groups:   w_county_fips, state, year [6]
-##   w_county_fips state  year createdate   C000  CA01   CA02  CA03  CE01
-##   &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 24001         MD     2015 20170919    25887  5653  13801  6433  5938
-## 2 24003         MD     2015 20170919   237881 57186 125917 54778 44280
-## 3 24005         MD     2015 20170919   345823 82049 180737 83037 68082
-## 4 24009         MD     2015 20170919    20063  5119  10381  4563  4539
-## 5 24011         MD     2015 20170919     7939  1567   4179  2193  1346
-## 6 24013         MD     2015 20170919    52618 13124  26078 13416 11985
-## # ... with 46 more variables: CE02 &lt;dbl&gt;, CE03 &lt;dbl&gt;, CNS01 &lt;dbl&gt;,
-## #   CNS02 &lt;dbl&gt;, CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;,
-## #   CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;,
-## #   CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;,
-## #   CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;,
-## #   CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
-## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;,
-## #   CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;, CFA02 &lt;dbl&gt;,
-## #   CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;, CFS02 &lt;dbl&gt;,
-## #   CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;</code></pre>
+##   w_county_fips state  year createdate   C000  CA01   CA02  CA03  CE01   CE02
+##   &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 24001         MD     2015 20190826    25887  5653  13801  6433  5938  11081
+## 2 24003         MD     2015 20190826   237881 57186 125917 54778 44280  72498
+## 3 24005         MD     2015 20190826   345823 82049 180737 83037 68082 112227
+## 4 24009         MD     2015 20190826    20063  5119  10381  4563  4539   6775
+## 5 24011         MD     2015 20190826     7939  1567   4179  2193  1346   3293
+## 6 24013         MD     2015 20190826    52618 13124  26078 13416 11985  18843
+## # ... with 45 more variables: CE03 &lt;dbl&gt;, CNS01 &lt;dbl&gt;, CNS02 &lt;dbl&gt;,
+## #   CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;,
+## #   CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;,
+## #   CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;,
+## #   CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
+## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
+## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;,
+## #   CFA02 &lt;dbl&gt;, CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;,
+## #   CFS02 &lt;dbl&gt;, CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;</code></pre>
 <p>Alternatively, this functionality is also built-in to the package and advisable for origin-destination grabs (see below). Here, we aggregate rac data and include an argument to aggregate at the County level (<code>agg_geo = "county"</code>):</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">md_rac_county &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">md_rac_county &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb23-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
 ## Reading now...</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_rac_county)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_county)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 44
-## # Groups:   year, state [1]
-##    year state h_county   C000  CA01   CA02  CA03  CE01   CE02   CE03 CNS01
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001     24683  5488  13029  6166  5598  10294   8791    51
-## 2  2015 MD    24003    239448 51183 131370 56895 38474  63597 137377   214
-## 3  2015 MD    24005    371923 79755 198238 93930 62676 112646 196601   426
-## 4  2015 MD    24009     32868  7565  17830  7473  5643   9029  18196    48
-## 5  2015 MD    24011     14935  3285   7827  3823  2800   5829   6306   238
-## 6  2015 MD    24013     80254 17028  42593 20633 13426  21670  45158   347
-## # ... with 33 more variables: CNS02 &lt;dbl&gt;, CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;,
-## #   CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;,
-## #   CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;,
-## #   CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;,
-## #   CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;,
-## #   CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
-## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
+##    year state h_county   C000  CA01   CA02  CA03  CE01   CE02   CE03 CNS01 CNS02
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  2015 MD    24001     24683  5488  13029  6166  5598  10294   8791    51   140
+## 2  2015 MD    24003    239454 51186 131373 56895 38476  63599 137379   214    84
+## 3  2015 MD    24005    371927 79756 198239 93932 62678 112647 196602   426    99
+## 4  2015 MD    24009     32868  7565  17830  7473  5643   9029  18196    48    11
+## 5  2015 MD    24011     14935  3285   7827  3823  2800   5829   6306   238    13
+## 6  2015 MD    24013     80257 17028  42594 20635 13427  21671  45159   347    31
+## # ... with 32 more variables: CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;,
+## #   CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;,
+## #   CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;,
+## #   CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;,
+## #   CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
+## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;,
+## #   CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
 </div>
 <div id="aggregating-origin-destination" class="section level2">
 <h2 class="hasAnchor">
 <a href="#aggregating-origin-destination" class="anchor"></a>Aggregating Origin-Destination</h2>
 <p>As mentioned above, aggregating origin-destination is built-in. This takes care of aggregation on both the <code>h_geocode</code> and <code>w_geocode</code> variables:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">md_od_county &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_od_main_JT01_2015.csv.gz
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">md_od_county &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb27-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_od_main_JT01_2015.csv.gz
 ## Reading now...</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_od_county)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_od_county)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 14
-## # Groups:   year, state, w_county [1]
-##    year state w_county h_county  S000  SA01  SA02  SA03  SE01  SE02  SE03
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001    24001    16347  3533  8570  4244  3911  7249  5187
-## 2  2015 MD    24001    24003      171    48    78    45    53    51    67
-## 3  2015 MD    24001    24005      272    68   140    64    73    92   107
-## 4  2015 MD    24001    24009       29    13     8     8    15     7     7
-## 5  2015 MD    24001    24011        9     1     7     1     2     3     4
-## 6  2015 MD    24001    24013       74    22    41    11    24    22    28
-## # ... with 3 more variables: SI01 &lt;dbl&gt;, SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
+##    year state w_county h_county  S000  SA01  SA02  SA03  SE01  SE02  SE03  SI01
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  2015 MD    24001    24001    16347  3533  8570  4244  3911  7249  5187  1908
+## 2  2015 MD    24001    24003      171    48    78    45    53    51    67    10
+## 3  2015 MD    24001    24005      272    68   140    64    73    92   107     7
+## 4  2015 MD    24001    24009       29    13     8     8    15     7     7     1
+## 5  2015 MD    24001    24011        9     1     7     1     2     3     4     0
+## 6  2015 MD    24001    24013       74    22    41    11    24    22    28     2
+## # ... with 2 more variables: SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
 </div>
 <div id="aggregating-at-block-group-tract-or-state-level" class="section level2">
 <h2 class="hasAnchor">
 <a href="#aggregating-at-block-group-tract-or-state-level" class="anchor"></a>Aggregating at Block Group, Tract, or State level</h2>
 <p>Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the <code>agg_geo</code> argument. This aggregation works for all three LODES types, including origin-destination.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">md_rac_bg &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"bg"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">md_rac_bg &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb31-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"bg"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
 ## Reading now...</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_rac_bg)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_bg)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 44
-## # Groups:   year, state [1]
-##    year state h_bg    C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001…   251    56   126    69    51   103    97     2     2
-## 2  2015 MD    24001…   452    90   242   120    91   183   178     3     6
-## 3  2015 MD    24001…   341    71   191    79    74   150   117     1     4
-## 4  2015 MD    24001…   294    51   157    86    52   124   118     1     2
-## 5  2015 MD    24001…   352    66   196    90    78   134   140     1     0
-## 6  2015 MD    24001…   550   119   286   145   105   244   201     1     2
-## # ... with 32 more variables: CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;,
-## #   CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;,
-## #   CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;,
-## #   CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;,
-## #   CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;,
-## #   CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;,
-## #   CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">md_rac_tract &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_rac_tract)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 44
-## # Groups:   year, state [1]
-##    year state h_tra…  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001…  1044   217   559   268   216   436   392     6    12
-## 2  2015 MD    24001…  1196   236   639   321   235   502   459     3     4
-## 3  2015 MD    24001…   945   206   493   246   225   395   325     3     1
-## 4  2015 MD    24001…  1134   228   598   308   282   466   386     0     5
-## 5  2015 MD    24001…   746   159   371   216   184   337   225     1     2
-## 6  2015 MD    24001…  1091   265   573   253   261   459   371     1     2
-## # ... with 32 more variables: CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;,
-## #   CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;,
-## #   CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;,
-## #   CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;,
-## #   CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;,
-## #   CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;,
-## #   CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">md_rac_state &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"state"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in /home/jamgreen/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(md_rac_state)</a></code></pre></div>
-<pre><code>## # A tibble: 1 x 44
-## # Groups:   year, state [1]
-##    year state h_state   C000   CA01   CA02   CA03   CE01   CE02   CE03
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1  2015 MD    24      2.53e6 536266 1.39e6 610442 418679 748373 1.37e6
-## # ... with 34 more variables: CNS01 &lt;dbl&gt;, CNS02 &lt;dbl&gt;, CNS03 &lt;dbl&gt;,
-## #   CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;,
-## #   CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;,
-## #   CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;,
-## #   CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
-## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;,
+##    year state h_bg    C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  2015 MD    24001~   251    56   126    69    51   103    97     2     2     0
+## 2  2015 MD    24001~   452    90   242   120    91   183   178     3     6     2
+## 3  2015 MD    24001~   341    71   191    79    74   150   117     1     4     1
+## 4  2015 MD    24001~   294    51   157    86    52   124   118     1     2     1
+## 5  2015 MD    24001~   352    66   196    90    78   134   140     1     0     0
+## 6  2015 MD    24001~   550   119   286   145   105   244   201     1     2     0
+## # ... with 31 more variables: CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;,
+## #   CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;,
+## #   CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;,
+## #   CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;,
+## #   CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;,
 ## #   CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">md_rac_tract &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb35-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+## Reading now...</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_tract)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 44
+##    year state h_tract  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  2015 MD    240010~  1044   217   559   268   216   436   392     6    12
+## 2  2015 MD    240010~  1196   236   639   321   235   502   459     3     4
+## 3  2015 MD    240010~   945   206   493   246   225   395   325     3     1
+## 4  2015 MD    240010~  1134   228   598   308   282   466   386     0     5
+## 5  2015 MD    240010~   746   159   371   216   184   337   225     1     2
+## 6  2015 MD    240010~  1091   265   573   253   261   459   371     1     2
+## # ... with 32 more variables: CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;,
+## #   CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;,
+## #   CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;,
+## #   CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;,
+## #   CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
+## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;,
+## #   CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">md_rac_state &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
+<a class="sourceLine" id="cb39-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"state"</span>)</a></code></pre></div>
+<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
+## Reading now...</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_state)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 44
+##    year state h_state   C000   CA01   CA02   CA03   CE01   CE02   CE03 CNS01
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1  2015 MD    24      2.53e6 536277 1.39e6 610456 418694 748393 1.37e6  4819
+## # ... with 33 more variables: CNS02 &lt;dbl&gt;, CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;,
+## #   CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;,
+## #   CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;,
+## #   CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;,
+## #   CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;,
+## #   CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;,
+## #   CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -406,17 +399,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
-  <p>Developed by Jamaal Green W., Liming Wang, Dillon Mahmoudi.</p>
+  <p>Developed by Jamaal Green, Liming Wang, Dillon Mahmoudi.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

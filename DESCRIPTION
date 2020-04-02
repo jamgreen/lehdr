@@ -24,5 +24,5 @@ Suggests:
     rmarkdown,
     devtools
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 URL: https://www.github.com/jamgreen/lehdr
