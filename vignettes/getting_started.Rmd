@@ -9,6 +9,7 @@ package: lehdr
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
+  %\VignetteDepends{devtools}
   %\VignetteIndexEntry{Getting Started with lehdr}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
@@ -22,19 +23,18 @@ This vignette is a brief introduction to the package including its installation 
 
 # Installation
 
-**lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr** and **ggplot2**.
+**lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr**.
 
 ```{r, message=FALSE, warning=FALSE}
 if(!require(pacman)){install.packages("pacman", repos = "http://cran.us.r-project.org"); library(pacman)}
 p_load(ggplot2, stringi, stringr, dplyr, devtools)
 devtools::install_github("jamgreen/lehdr")
-```
+
 
 # Usage
-After loading the library, this first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
-
+This first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
 ```{r usage 1}
-library(lehdr)
+
 or_od <- grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
            segment = "S000", state_part = "main", agg_geo = "tract")
 
@@ -42,17 +42,15 @@ head(or_od)
 ```
 
 The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014 (`year = c(2013, 2014)` or `year = 2013:2014`).
-
 ```{r usage2}           
 or_ri_od <- grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
            segment = "S000", state_part = "main", agg_geo = "tract")     
 
 head(or_ri_od)
 ```
-
 Not all years are available for each state. To see all options for `lodes_type`, `job_type`, and `segment` and the availability for each state/year, please see the most recent LEHD Technical Document at https://lehd.ces.census.gov/data/lodes/LODES7/.
 
-Other common uses might include retrieving Residential or Work Area Characteristics (`lodes_type = "rac"` or `lodes_type = "wac"` respectively), low income jobs (`segment = "SE01"`) or good producing jobs (`segment = "SI01"`). Other common geographies might include retrieving data at the Census Block level (`agg_geo = "block"`, not necessary as it is default).
+Other common uses might include retrieving Residential or Work Area Characteristics (`lodes_type = "rac"` or `lodes_type = "wac"` respectively), low income jobs (`segment = "SE01"`) or good producing jobs (`segment = "SI01"`). Other common geographies might include retrieving data at the Census Block level (`agg_geo = "block"`, not necessary as it is default) -- but see below for other aggregation levels.
 
 # Additional Examples
 ## Adding at County level signifiers
@@ -79,6 +77,7 @@ head(md_rac_county)
 ```
 
 Alternatively, this functionality is also built-in to the package and advisable for origin-destination grabs. Here include an argument to aggregate at the County level (`agg_geo = "county"`):
+
 ```{r example_county_agg2}
 md_rac_county <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
            segment = "S000", agg_geo = "county")
@@ -97,6 +96,7 @@ head(md_od_county)
 
 ## Aggregating at Block Group, Tract, or State level
 Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the `agg_geo` argument. This aggregation works for all three LODES types.
+
 ```{r example_agg_other}
 md_rac_bg <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
            segment = "S000", agg_geo = "bg")

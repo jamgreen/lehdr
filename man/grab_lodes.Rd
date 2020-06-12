@@ -4,12 +4,17 @@
 \alias{grab_lodes}
 \title{Download and load LODES data into a data frame (tibble)}
 \usage{
-grab_lodes(state, year, lodes_type = c("od", "rac", "wac"),
+grab_lodes(
+  state,
+  year,
+  lodes_type = c("od", "rac", "wac"),
   job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"),
-  segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01",
-  "SI02", "SI03"), agg_geo = c("block", "bg", "tract", "county", "state"),
-  state_part = c("", "main", "aux"), download_dir = file.path(getwd(),
-  "lodes_raw"))
+  segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01", "SI02",
+    "SI03"),
+  agg_geo = c("block", "bg", "tract", "county", "state"),
+  state_part = c("", "main", "aux"),
+  download_dir = file.path(getwd(), "lodes_raw")
+)
 }
 \arguments{
 \item{state}{US state abbreviation in lower case, can be a vector of states.}
@@ -51,4 +56,26 @@ a dataframe (tibble) of block or tract level LODES files
 }
 \description{
 Download LODES OD, RAC, and WAC tables
+}
+\examples{
+\dontrun{
+ # download and load 2014 block level O-D data for Oregon
+ blk_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+                         segment = "SA01", state_part = "main")
+                         
+ # download and load 2014 O-D data for Oregon and aggregate 
+ # to the tract level                     
+ trt_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+                         segment = "SA01", state_part = "main", agg_geo = "tract")
+                         
+ # download and load 2014 RAC data for Oregon and aggregate 
+ # to the tract level                                              
+ trt_df_or_rac <- grab_lodes(state = 'or', year = 2014, lodes_type = "rac", job_type = "JT01", 
+                          segment = "SA01", agg_geo = "tract")
+                          
+ # download and load 2014 WAC data for Oregon and aggregate 
+ # to the tract level                        
+ trt_df_or_wac <- grab_lodes(state = 'or', year = 2014, lodes_type = "wac", job_type = "JT01", 
+                          segment = "SA01", agg_geo = "tract")
+}                         
 }

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • lehdr</title>
+<title>Aggregate data to a certain level dictated by inputs. Internal function. — aggregate_lodes_df • lehdr</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Aggregate data to a certain level dictated by inputs. Internal function. — aggregate_lodes_df" />
+<meta property="og:description" content="Helper function for lehdr which aggregates block geographies based on the block id." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -106,17 +108,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Aggregate data to a certain level dictated by inputs. Internal function.</h1>
+    
+    <div class="hidden name"><code>aggregate_lodes_df.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>Getting Started</h3>
-      <p class="section-desc"><p>An introductory vignette covering installation of the package and its basic usage</p></p>
-
-      <ul>
-        <li><a href="getting_started.html">Getting Started with lehdr</a></li>
-      </ul>
+    <div class="ref-description">
+    <p>Helper function for lehdr which aggregates block geographies based on the block id.</p>
     </div>
+
+    <pre class="usage"><span class='fu'>aggregate_lodes_df</span>(<span class='no'>lehdr_df</span>, <span class='no'>geoid_to</span>, <span class='no'>aggname</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>lehdr_df</th>
+      <td><p>Data frame (tibble) to be aggregated</p></td>
+    </tr>
+    <tr>
+      <th>geoid_to</th>
+      <td><p>The number of characters to do the aggregation on from the geoid</p></td>
+    </tr>
+    <tr>
+      <th>aggname</th>
+      <td><p>What the level is called, like "tract" etc</p></td>
+    </tr>
+    </table>
+
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+    </ul>
+
   </div>
 </div>
 
