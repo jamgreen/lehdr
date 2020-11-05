@@ -20,7 +20,7 @@ test_that("test grab lodes rac", {
                  dim, c(834, 44))
   expect_equal(grab_lodes(state = "or", year = "2015", lodes_type = "rac", job_type = "JT01", 
                           segment = "SA01") %>% 
-                 dim, c(60226, 45))
+                 dim, c(60227, 45))
 })
 
 test_that("test grab lodes wac", {
