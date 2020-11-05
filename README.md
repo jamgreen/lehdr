@@ -1,7 +1,9 @@
 ---
 title: "README"
-author: "Jamaal Green"
-date: "September 7, 2017"
+author:
+  - Jamaal Green, University of Pennsylvania
+  - Dillon Mahmoudi, University of Maryland Baltimore County
+  - Liming Wang, Portland State University
 ---
 
 # lehdr
