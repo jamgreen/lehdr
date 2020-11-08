@@ -17,7 +17,8 @@ Imports:
     stringr, 
     glue,
     httr,
-    dplyr
+    dplyr,
+    rappdirs
 Suggests:
     testthat,
     knitr,
