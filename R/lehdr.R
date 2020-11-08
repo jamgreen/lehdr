@@ -31,7 +31,7 @@
 #' @description Download LODES OD, RAC, and WAC tables
 #' @return a dataframe (tibble) of block or tract level LODES files
 #' @import dplyr
-#' @import rappdirs
+#' @importFrom user_cache_dir rappdirs
 #' @importFrom readr read_csv cols col_character
 #' @importFrom httr GET stop_for_status HEAD write_disk
 #' @importFrom glue glue
