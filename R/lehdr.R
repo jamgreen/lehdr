@@ -67,7 +67,7 @@ grab_lodes <- function(state, year,
                                    "SE03", "SI01", "SI02", "SI03"),  
                        agg_geo = c("block", "bg", "tract", "county", "state"),
                        state_part = c("","main","aux"), 
-                       download_dir = file.path(user_cache_dir("lehdr")) {
+                       download_dir = file.path(user_cache_dir("lehdr")) ) {
   
   if (length(state) > 1 | length(year) > 1) {
     ## Handle multiple states x years
