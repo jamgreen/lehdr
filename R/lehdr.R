@@ -136,7 +136,7 @@ grab_lodes <- function(state, year,
   # Set download directory, check for cache
   download_dir <- path.expand(download_dir)
   if (!dir.exists(download_dir))
-    dir.create(download_dir)
+    dir.create(download_dir, recursive=TRUE)
   fil <- file.path(download_dir, basename(url))
   
   # If there is a cache, use it
