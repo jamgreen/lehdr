@@ -17,12 +17,13 @@ Imports:
     stringr, 
     glue,
     httr,
-    dplyr
+    dplyr,
+    rappdirs
 Suggests:
     testthat,
     knitr,
     rmarkdown,
     devtools
 VignetteBuilder: knitr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 URL: https://www.github.com/jamgreen/lehdr

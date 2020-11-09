@@ -29,7 +29,8 @@ This vignette is a brief introduction to the package including its installation 
 if(!require(pacman)){install.packages("pacman", repos = "http://cran.us.r-project.org"); library(pacman)}
 p_load(ggplot2, stringi, stringr, dplyr, devtools)
 devtools::install_github("jamgreen/lehdr")
-
+library(lehdr)
+```
 
 # Usage
 This first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
