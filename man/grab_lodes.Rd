@@ -13,7 +13,7 @@ grab_lodes(
     "SI03"),
   agg_geo = c("block", "bg", "tract", "county", "state"),
   state_part = c("", "main", "aux"),
-  download_dir = file.path(getwd(), "lodes_raw")
+  download_dir = file.path(rappdirs::user_cache_dir(appname = "lehdr"))
 )
 }
 \arguments{
