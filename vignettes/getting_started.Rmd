@@ -9,7 +9,7 @@ package: lehdr
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteDepends{devtools}
+  %\VignetteDepends{devtools,pacman}
   %\VignetteIndexEntry{Getting Started with lehdr}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
@@ -19,7 +19,7 @@ This vignette is a brief introduction to the package including its installation 
 
 # Introduction
 
-**lehdr** is an R package that allows users to draw [Longitudinal and Employer Household Dynamics](https://lehd.ces.census.gov/data/#lodes) Origin-Destination Employment Statistics (LODES) datasets returned as dataframes. The LODES dataset forms the backbone of the US Census's [**OntheMap**](https://onthemap.ces.census.gov/) web app that allows users to track changing spatial employment patterns at a fine geographic scale. While OnTheMap is useful, it is a limited tool that does not easily allow comparisons over time or across geographies. This package exists to make querying the tables that form the OnTheMap easier for urban researchers and practitioners, such as transportation and economic development planners and disaster preparedness professionals.
+**lehdr** is an R package that allows users to draw [Longitudinal and Employer Household Dynamics](https://lehd.ces.census.gov/data/#lodes) Origin-Destination Employment Statistics (LODES) datasets returned as dataframes. The LODES dataset forms the backbone of the US Census's [**OnTheMap**](https://OnTheMap.ces.census.gov/) web app that allows users to track changing spatial employment patterns at a fine geographic scale. While OnTheMap is useful, it is a limited tool that does not easily allow comparisons over time or across geographies. This package exists to make querying the tables that form the OnTheMap easier for urban researchers and practitioners, such as transportation and economic development planners and disaster preparedness professionals.
 
 # Installation
 
