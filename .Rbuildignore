@@ -3,3 +3,6 @@
 .travis.yml
 ^docs$
 ^_pkgdown\.yml$
+^doc$
+^Meta$
+^README\.Rmd$

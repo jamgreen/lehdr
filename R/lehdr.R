@@ -12,7 +12,7 @@
 #'   "JT02" for All Private Jobs, "JT03" for Private Primary jobs, "JT04" for
 #'   All Federal jobs, "JT05" for Federal Primary jobs
 #' @param segment Segment of the workforce: "S000" total number of jobs for
-#'   workers, "SA01" number of jobs forworker aged 29 or younger, "SA02" number
+#'   workers, "SA01" number of jobs for workers aged 29 or younger, "SA02" number
 #'   of jobs for workers aged 30-54,"SA03" number of jobs for workers 55 and
 #'   older, "SE01" number of jobs with earnings $1,250/month or less, "SE02"
 #'   number of jobs with earnings $1,251 to $3,333/month, "SE03" number of jobs
