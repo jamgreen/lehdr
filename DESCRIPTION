@@ -9,7 +9,7 @@ Maintainer: Jamaal Green <jamaal.green@gmail.com>
 Description: Designed to query Longitudinal Employer-Household Dynamics (LEHD) 
     workplace/residential association and origin-destination flat files and 
     optionally aggregate Census block-level data to block group, tract, county, 
-    or state.
+    or state. Data comes from the LODES FTP server <https://lehd.ces.census.gov/data/lodes/LODES7/>.
 Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
