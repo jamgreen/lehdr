@@ -184,18 +184,19 @@ grab_lodes <- function(state, year,
 
 aggregate_lodes_df <- function(lehdr_df, geoid_to, aggname) {
   lehdr_df <- lehdr_df %>% 
-    mutate_at(vars(ends_with("_geocode")),
-              funs(stringr::str_sub(., 1, geoid_to))) %>% 
-    rename_at(vars(ends_with("_geocode")), 
-              funs(stringr::str_replace(., "geocode", aggname)))
+    mutate(across(ends_with("_geocode"),
+              ~stringr::str_sub(., 1, geoid_to))) %>% 
+    rename_with(~stringr::str_replace(., "geocode", aggname), 
+                ends_with("_geocode")
+              )
   
   ## Group by column(s) ending with "_{aggname}" as passed
   geoid_cols <- stringr::str_extract(names(lehdr_df), glue::glue(".*_{aggname}$")) %>% na.omit()
   group_cols <- c("year", "state", geoid_cols)
-  group_syms <- rlang::syms(group_cols)
+  
   lehdr_df <- lehdr_df %>%
-    group_by(!!!group_syms) %>% 
-    summarise_if(is.numeric, funs(sum)) %>% 
+    group_by(across({{group_cols}})) %>% 
+    summarise_if(is.numeric, sum) %>% 
     ungroup()
   return(lehdr_df)
 }

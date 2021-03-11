@@ -9,7 +9,7 @@ package: lehdr
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteDepends{devtools,pacman}
+  %\VignetteDepends{devtools, stringr, dplyr}
   %\VignetteIndexEntry{Getting Started with lehdr}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
@@ -21,15 +21,32 @@ This vignette is a brief introduction to the package including its installation 
 
 **lehdr** is an R package that allows users to draw [Longitudinal and Employer Household Dynamics](https://lehd.ces.census.gov/data/#lodes) Origin-Destination Employment Statistics (LODES) datasets returned as dataframes. The LODES dataset forms the backbone of the US Census's [**OnTheMap**](https://OnTheMap.ces.census.gov/) web app that allows users to track changing spatial employment patterns at a fine geographic scale. While OnTheMap is useful, it is a limited tool that does not easily allow comparisons over time or across geographies. This package exists to make querying the tables that form the OnTheMap easier for urban researchers and practitioners, such as transportation and economic development planners and disaster preparedness professionals.
 
+```{r install, echo=F, message=FALSE, warning=FALSE}
+## Ref: https://vbaliga.github.io/verify-that-r-packages-are-installed-and-loaded/
+## First specify the packages of interest
+packages = c("devtools", "dplyr", "stringr")
+
+## Now load or install&load all
+package.check <- lapply(
+  packages,
+  FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+      install.packages(x, dependencies = TRUE)
+      #library(x, character.only = TRUE)
+    }
+  }
+)
+```
+
 # Installation
 
 **lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr**.
 
 ```{r, message=FALSE, warning=FALSE}
-if(!require(pacman)){install.packages("pacman", repos = "http://cran.us.r-project.org"); library(pacman)}
-p_load(ggplot2, stringi, stringr, dplyr, devtools)
 devtools::install_github("jamgreen/lehdr")
 library(lehdr)
+library(dplyr)
+library(stringr)
 ```
 
 # Usage
