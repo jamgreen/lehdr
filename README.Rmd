@@ -19,8 +19,14 @@ knitr::opts_chunk$set(
 ```
 
 # lehdr
+
+## Build Status
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jamgreen/lehdr/workflows/R-CMD-check/badge.svg)](https://github.com/jamgreen/lehdr/actions)
+<!-- commenting out travis
+[![Build Status](https://travis-ci.org/jamgreen/lehdr.svg?branch=master)](https://travis-ci.org/jamgreen/lehdr)
+-->
 <!-- badges: end -->
 
 **lehdr** (pronounced: _lee dur_ like a metric _litre_) is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is continually in development and can be installed via CRAN.
@@ -74,6 +80,4 @@ Next steps include exploring integration of the package with the [**sf**]( https
 
 This package would not exist in its current format without the inspiration of [Bob Rudis's](https://rud.is/b/) [lodes package](https://github.com/hrbrmstr/lodes)
 
-## Build Status
 
-[![Build Status](https://travis-ci.org/jamgreen/lehdr.svg?branch=master)](https://travis-ci.org/jamgreen/lehdr)
