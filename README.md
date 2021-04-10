@@ -11,12 +11,15 @@ Maryland Baltimore County; Liming Wang, Portland State University
 
 <!-- badges: start -->
 
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/lehdr)](https://cran.r-project.org/package=lehdr)
+
 [![R-CMD-check](https://github.com/jamgreen/lehdr/workflows/R-CMD-check/badge.svg)](https://github.com/jamgreen/lehdr/actions)
 
-[![Build
-Status](https://travis-ci.org/jamgreen/lehdr.svg?branch=master)](https://travis-ci.org/jamgreen/lehdr)
-
-<!-- badges: end -->
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/lehdr)](https://cran.r-project.org/package=lehdr)
+<!-- commenting out travis
+[![Build Status](https://travis-ci.org/jamgreen/lehdr.svg?branch=master)](https://travis-ci.org/jamgreen/lehdr)
+--> <!-- badges: end -->
 
 **lehdr** (pronounced: *lee dur* like a metric *litre*) is an R package
 that allows users to interface with the [Longitudinal and
