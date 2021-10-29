@@ -64,33 +64,7 @@ download_xwalk <- function(url, download_dir){
 
 read_xwalk <- function(filepath){
   
-  
-  col_types <- readr::cols(tabblk2010 = readr::col_character(), 
-                           st = readr::col_character(),
-                           cbsa = readr::col_character(),
-                           zcta = readr::col_character(), 
-                           cty = readr::col_character(),
-                           trct = readr::col_character(),
-                           bgrp = readr::col_character(),
-                           stplc = readr::col_character(),
-                           ctycsub = readr::col_character(),
-                           stcd116 = readr::col_character(),
-                           stsldl = readr::col_character(),
-                           stsldu = readr::col_character(),
-                           stschool = readr::col_character(),
-                           stsecon = readr::col_character(),
-                           trib = readr::col_character(),
-                           tsub = readr::col_character(),
-                           stanrc = readr::col_character(),
-                           necta = readr::col_character(),
-                           mil = readr::col_character(),
-                           milname = readr::col_character(),
-                           stwib = readr::col_character(),
-                           blklatdd = readr::col_double(),
-                           blklondd = readr::col_double(),
-                           createdate = readr::col_character())
-  
-  res <- suppressMessages(readr::read_csv(filepath, col_types = col_types))
+  res <- suppressMessages(readr::read_csv(filepath, col_types = readr::cols(.default = 'c')))
   
   res
 }
