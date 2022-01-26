@@ -27,6 +27,9 @@
 #' @param agg_geo Aggregate to a geography other than Census Block (default). 
 #'   Values can be "bg" for block group, "tract", "county", or "state".
 #' @param download_dir Directory where lodes table will be downloaded.
+#' @param use_cache Boolean indicating whether or not to check whether or not
+#'   the file had already been downloaded. Defaults to FALSE. Setting to TRUE
+#'   will allow lehdr to reuse existing files that were already downloaded.
 #'
 #' @description Download LODES OD, RAC, and WAC tables
 #' @return a dataframe (tibble) of block or tract level LODES files
@@ -67,7 +70,8 @@ grab_lodes <- function(state, year,
                                    "SE03", "SI01", "SI02", "SI03"),  
                        agg_geo = c("block", "bg", "tract", "county", "state"),
                        state_part = c("","main","aux"), 
-                       download_dir = file.path(rappdirs::user_cache_dir(appname="lehdr")) ) {
+                       download_dir = file.path(rappdirs::user_cache_dir(appname="lehdr")),
+                       use_cache = FALSE) { # Thanks Kyle Walker for this
   
   if (length(state) > 1 | length(year) > 1) {
     ## Handle multiple states x years
@@ -93,9 +97,12 @@ grab_lodes <- function(state, year,
   segment <- match.arg(segment, c(NULL, "S000", "SA01", "SA02", "SA03", "SE01", "SE02","SE03", "SI01", "SI02", "SI03"))
   state_part <- match.arg(state_part, c("","main","aux"))
   
+  # Only proceed if use_cache is boolean
+  if(!is.logical(use_cache)) { stop("The use_cache paramater must be either TRUE or FALSE") }
+  
   # If someone uses od, but doesn't set state_part
-  if(lodes_type == "od" && state_part == "") {
-    state_part == "main"
+  if(lodes_type == "od" && !(state_part %in% c("main","aux"))) {
+    state_part <- "main"
     warning("state_part is required when setting lodes_type =\"od\", defaulting to state_part=\"main\"")
   }
   
@@ -139,12 +146,27 @@ grab_lodes <- function(state, year,
     dir.create(download_dir, recursive=TRUE)
   fil <- file.path(download_dir, basename(url))
   
-  # If there is a cache, use it
-  if(file.exists(fil)) {
-    message(glue::glue("Cached version of file found in {fil}\n Reading now..."))
-  } else {
-    message(glue::glue("Downloading {url} to {fil} now..."))
-    res <- httr::GET(url, httr::write_disk(fil))
+  
+  if(use_cache) { # User set use_cache to TRUE
+    # If there is a cache, use it
+    if(file.exists(fil)) {
+      message(glue::glue("Cached version of file found in {fil}\n Reading now..."))
+    } else {
+      message(glue::glue("Downloading {url} to {fil} now..."))
+      res <- httr::GET(url, httr::write_disk(fil))
+    }
+  } else { # User did not allow cache to be used
+    if(file.exists(fil)) {
+      # Existing file found, inform user of use_cache
+      message(glue::glue("Cached version of file found in {fil}."))
+      message(glue::glue("Consider setting use_cache=TRUE use previously downloaded files."))
+      message(glue::glue("Overwriting {url} to {fil} now..."))
+    } else {
+      # No file found, inform user that we're downloading
+      message(glue::glue("Downloading {url} to {fil} now..."))
+    }
+    # Download (and overwite if necessary) data from server
+    res <- httr::GET(url, httr::write_disk(fil, overwrite = TRUE)) 
   }
   
   # Read in the data

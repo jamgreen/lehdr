@@ -13,7 +13,8 @@ grab_lodes(
     "SI03"),
   agg_geo = c("block", "bg", "tract", "county", "state"),
   state_part = c("", "main", "aux"),
-  download_dir = file.path(rappdirs::user_cache_dir(appname = "lehdr"))
+  download_dir = file.path(rappdirs::user_cache_dir(appname = "lehdr")),
+  use_cache = FALSE
 )
 }
 \arguments{
@@ -50,6 +51,10 @@ residence in the state. Using "aux" includes workers with residences out
 of state and workplace in the state of interest}
 
 \item{download_dir}{Directory where lodes table will be downloaded.}
+
+\item{use_cache}{Boolean indicating whether or not to check whether or not
+the file had already been downloaded. Defaults to FALSE. Setting to TRUE
+will allow lehdr to reuse existing files that were already downloaded.}
 }
 \value{
 a dataframe (tibble) of block or tract level LODES files
