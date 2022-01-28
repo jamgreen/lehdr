@@ -31,7 +31,7 @@ package.check <- lapply(
   packages,
   FUN = function(x) {
     if (!require(x, character.only = TRUE)) {
-      install.packages(x, dependencies = TRUE)
+      install.packages(x, dependencies = TRUE, repos = "https://ftp.osuosl.org/pub/cran/")
       #library(x, character.only = TRUE)
     }
   }
