@@ -159,7 +159,7 @@ grab_lodes <- function(state, year,
     if(file.exists(fil)) {
       # Existing file found, inform user of use_cache
       message(glue::glue("Cached version of file found in {fil}."))
-      message(glue::glue("Consider setting use_cache=TRUE use previously downloaded files."))
+      message(glue::glue("Consider setting use_cache=TRUE to use previously downloaded files."))
       message(glue::glue("Overwriting {url} to {fil} now..."))
     } else {
       # No file found, inform user that we're downloading
@@ -171,6 +171,20 @@ grab_lodes <- function(state, year,
   
   # Read in the data
   lehdr_df <- suppressMessages(readr::read_csv(fil, col_types = col_types))
+  
+  # Remove temp files if the user did not set use_cache = TRUE
+  if(!use_cache) {
+    if(unlink(fil)) { # 0 for success, 1 for failure, invisibly. 
+      message(glue::glue("Could not remove temporary file {fil}."))
+    } else {
+      message(glue::glue("Removed {fil}."))
+      # Now check to see if the cache directory is empty, remove it if it is
+      if(length(list.files(download_dir)) == 0) {
+        unlink(download_dir, recursive = TRUE)
+      }
+      
+    }
+  }
 
   # Mutate the data based on year and state
   lehdr_df <- lehdr_df %>% mutate(
