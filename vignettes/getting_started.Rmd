@@ -21,7 +21,7 @@ This vignette is a brief introduction to the package including its installation 
 
 **lehdr** is an R package that allows users to draw [Longitudinal and Employer Household Dynamics](https://lehd.ces.census.gov/data/#lodes) Origin-Destination Employment Statistics (LODES) datasets returned as dataframes. The LODES dataset forms the backbone of the US Census's [**OnTheMap**](https://OnTheMap.ces.census.gov/) web app that allows users to track changing spatial employment patterns at a fine geographic scale. While OnTheMap is useful, it is a limited tool that does not easily allow comparisons over time or across geographies. This package exists to make querying the tables that form the OnTheMap easier for urban researchers and practitioners, such as transportation and economic development planners and disaster preparedness professionals.
 
-```{r install, echo=F, message=FALSE, warning=FALSE}
+```{r install, echo=F, message=FALSE, warning=FALSE, eval=FALSE}
 ## Ref: https://vbaliga.github.io/verify-that-r-packages-are-installed-and-loaded/
 ## First specify the packages of interest
 packages = c("devtools", "dplyr", "stringr")
@@ -42,7 +42,7 @@ package.check <- lapply(
 
 **lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr**.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
 devtools::install_github("jamgreen/lehdr")
 library(lehdr)
 library(dplyr)
@@ -51,7 +51,7 @@ library(stringr)
 
 # Usage
 This first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
-```{r usage 1}
+```{r usage1, eval=FALSE}
 
 or_od <- grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
            segment = "S000", state_part = "main", agg_geo = "tract")
@@ -60,7 +60,7 @@ head(or_od)
 ```
 
 The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014 (`year = c(2013, 2014)` or `year = 2013:2014`).
-```{r usage2}           
+```{r usage2, eval=FALSE}           
 or_ri_od <- grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
            segment = "S000", state_part = "main", agg_geo = "tract")     
 
@@ -73,7 +73,7 @@ Other common uses might include retrieving Residential or Work Area Characterist
 # Additional Examples
 ## Adding at County level signifiers
 The following examples loads work area characteristics (wac), then uses the work area geoid `w_geocode` to create a variable that is just the county `w_county_fips`. Similar transformations can be made on residence area characteristics (rac) by using the `h_geocode` variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a `h_county_fips` and on `w_county_fips`.
-```{r example_county_var}
+```{r example_county_var, eval=FALSE}
 md_rac <- grab_lodes(state = "md", year = 2015, lodes_type = "wac", job_type = "JT01", segment = "S000")
 
 head(md_rac)
@@ -85,7 +85,7 @@ head(md_rac_county)
 
 ## Aggregating at the County level
 To aggregate at the county level, continuing the above example, we must also drop the original lock geoid `w_geocode`, group by our new variable `w_county_fips` and our existing variables `year` and `createdate`, then aggregate the remaining numeric variables.
-```{r example_county_agg}
+```{r example_county_agg, eval=FALSE}
 md_rac_county <- md_rac %>% mutate(w_county_fips = str_sub(w_geocode, 1, 5)) %>% 
   select(-"w_geocode") %>%
   group_by(w_county_fips, state, year, createdate) %>% 
@@ -96,7 +96,7 @@ head(md_rac_county)
 
 Alternatively, this functionality is also built-in to the package and advisable for origin-destination grabs. Here include an argument to aggregate at the County level (`agg_geo = "county"`):
 
-```{r example_county_agg2}
+```{r example_county_agg2, eval=FALSE}
 md_rac_county <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
            segment = "S000", agg_geo = "county")
            
@@ -105,7 +105,7 @@ head(md_rac_county)
 
 ## Aggregating Origin-Destination 
 As mentioned above, aggregating origin-destination is built-in. This takes care of aggregation on both the `h_geocode` and `w_geocode` variables:
-```{r example_county_agg3}
+```{r example_county_agg3, eval=FALSE}
 md_od_county <- grab_lodes(state = "md", year = 2015, lodes_type = "od", job_type = "JT01", 
            segment = "S000", agg_geo = "county", state_part = "main")
            
@@ -115,7 +115,7 @@ head(md_od_county)
 ## Aggregating at Block Group, Tract, or State level
 Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the `agg_geo` argument. This aggregation works for all three LODES types.
 
-```{r example_agg_other}
+```{r example_agg_other, eval=FALSE}
 md_rac_bg <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
            segment = "S000", agg_geo = "bg")
            
