@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 -->
 <!-- badges: end -->
 
-**lehdr** (pronounced: _lee dur_ like a metric _litre_) is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. The package is continually in development and can be installed via CRAN.
+**lehdr** (pronounced: _lee dur_ like a metric _litre_) is an R package that allows users to interface with the [Longitudinal and Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset returned as dataframes. LODES 5, 7, and 8 are currently supported. The package is continually in development and can be installed via CRAN.
 
 ## Installation
 
@@ -51,7 +51,7 @@ devtools::install_github("jamgreen/lehdr")
 
 ## Usage
 
-After loading the library, this first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
+After loading the library, this first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`). The package defaults to LODES8, but LODES5 and LODES7 are also supported with the `lodes_ver` argument (`lodes_ver = "8"`).
 
 ```{r usage1, eval=FALSE}
 library(lehdr)

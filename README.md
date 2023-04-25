@@ -25,8 +25,8 @@ downloads](https://cranlogs.r-pkg.org/badges/lehdr)](https://cran.r-project.org/
 that allows users to interface with the [Longitudinal and
 Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/)
 Origin-Destination Employment Statistics (LODES) dataset returned as
-dataframes. The package is continually in development and can be
-installed via CRAN.
+dataframes. LODES 5, 7, and 8 are currently supported.  The package 
+is continually in development and can be installed via CRAN.
 
 ## Installation
 
@@ -51,7 +51,9 @@ After loading the library, this first example pulls the Oregon
 (`lodes_type = "od"`), all jobs including private primary, secondary,
 and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and
 industry (`segment = "S000"`), aggregated at the Census Tract level
-rather than the default Census Block (`agg_geo = "tract"`).
+rather than the default Census Block (`agg_geo = "tract"`).  The 
+package defaults to LODES8, but LODES5 and LODES7 are also supported 
+with the `lodes_ver` argument (`lodes_ver = "8"`).
 
 ``` r
 library(lehdr)
