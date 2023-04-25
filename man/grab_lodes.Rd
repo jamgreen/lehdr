@@ -7,6 +7,7 @@
 grab_lodes(
   state,
   year,
+  version = c("LODES8", "LODES7", "LODES5"),
   lodes_type = c("od", "rac", "wac"),
   job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"),
   segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01", "SI02",
@@ -21,6 +22,11 @@ grab_lodes(
 \item{state}{US state abbreviation in lower case, can be a vector of states.}
 
 \item{year}{year of the lodes data, can be a vector of years.}
+
+\item{version}{The LODES version to use.
+Version 8 (the default, use "LODES8") is enumerated at 2020 Census blocks. 
+"LODES7" is enumerated at 2010 Census blocks, but ends in 2019; 
+LODES5" is enumerated at 2000 Census blocks, but ends in 2009.}
 
 \item{lodes_type}{table type, values can be origin-destination ("od"), 
 residential association ("rac"), or workplace association ("wac"). od 

@@ -3,6 +3,10 @@
 #'
 #' @param state US state abbreviation in lower case, can be a vector of states.
 #' @param year year of the lodes data, can be a vector of years.
+#' @param version The LODES version to use.  
+#'   Version 8 (the default, use "LODES8") is enumerated at 2020 Census blocks. 
+#'   "LODES7" is enumerated at 2010 Census blocks, but ends in 2019; 
+#'   LODES5" is enumerated at 2000 Census blocks, but ends in 2009.  
 #' @param lodes_type table type, values can be origin-destination ("od"), 
 #'   residential association ("rac"), or workplace association ("wac"). od 
 #'   files give a home and destination census block for workers. Residential 
@@ -64,6 +68,7 @@
 #' }                         
 #' @export
 grab_lodes <- function(state, year, 
+                       version = c("LODES8", "LODES7", "LODES5"),
                        lodes_type = c("od", "rac", "wac"),
                        job_type = c("JT00", "JT01", "JT02", "JT03", "JT04", "JT05"), 
                        segment = c("S000", "SA01", "SA02", "SA03", "SE01", "SE02",
@@ -77,6 +82,7 @@ grab_lodes <- function(state, year,
     ## Handle multiple states x years
     state_year <- expand.grid(state=state, year=year)
     results <- apply(state_year, 1, function(df_row) grab_lodes(df_row[1], df_row[2], 
+                                                           version = version,
                                                            lodes_type = lodes_type,
                                                            job_type = job_type,
                                                            segment = segment,
@@ -91,6 +97,7 @@ grab_lodes <- function(state, year,
   state <- tolower(state)
   
   # Handle errors and set default arguments
+  version <- rlang::arg_match(version)
   lodes_type <- match.arg(tolower(lodes_type), c(NULL, "od", "rac", "wac"))
   agg_geo_to <- match.arg(tolower(agg_geo), c(NULL, "block", "bg", "tract", "county", "state"))
   job_type <- match.arg(job_type, c(NULL, "JT00", "JT01", "JT02", "JT03", "JT04", "JT05"))
@@ -113,14 +120,14 @@ grab_lodes <- function(state, year,
   # Read LODES_types and set col_types
   if (lodes_type == "od") {
     # Set url for od
-    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{state_part}_{job_type}_{year}.csv.gz")
+    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/{version}/{state}/{lodes_type}/{state}_{lodes_type}_{state_part}_{job_type}_{year}.csv.gz")
     # Set column types for od
     col_types <- cols(w_geocode = col_character(), 
                       h_geocode = col_character(),
                       createdate = col_character())
   } else {
     # Set url for rac/wac
-    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{segment}_{job_type}_{year}.csv.gz")    
+    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/{version}/{state}/{lodes_type}/{state}_{lodes_type}_{segment}_{job_type}_{year}.csv.gz")    
 
     # Set column types for rac/wac -- h_ is home, w_ is work (from LODES)
     if (lodes_type == "rac") {
@@ -136,7 +143,7 @@ grab_lodes <- function(state, year,
   httr::stop_for_status(httr::HEAD(url),
     paste("retrieve data for this combination of state and year on LODES.",
           "Please see the most recent LEHD Technical Document for a list of available state/year.",
-          "https://lehd.ces.census.gov/data/lodes/LODES7/"
+          glue::glue("https://lehd.ces.census.gov/data/lodes/{version}/")
     )
   )
   
