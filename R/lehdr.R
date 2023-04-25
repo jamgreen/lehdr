@@ -2,8 +2,8 @@
 #' Download and load LODES data into a data frame (tibble)
 #'
 #' @param state US state abbreviation in lower case, can be a vector of states.
-#' @param year Year of the LODES data, can be a vector of years.
-#' @param lodes_type Table type, values can be origin-destination ("od"), 
+#' @param year year of the lodes data, can be a vector of years.
+#' @param lodes_type table type, values can be origin-destination ("od"), 
 #'   residential association ("rac"), or workplace association ("wac"). od 
 #'   files give a home and destination census block for workers. Residential 
 #'   files give job totals of worker home census blocks and workplace files 
@@ -26,13 +26,10 @@
 #'   of state and workplace in the state of interest
 #' @param agg_geo Aggregate to a geography other than Census Block (default). 
 #'   Values can be "bg" for block group, "tract", "county", or "state".
-#' @param download_dir Directory where LODES table will be downloaded.
+#' @param download_dir Directory where lodes table will be downloaded.
 #' @param use_cache Boolean indicating whether or not to check whether or not
 #'   the file had already been downloaded. Defaults to FALSE. Setting to TRUE
 #'   will allow lehdr to reuse existing files that were already downloaded.
-#' @param lodes_ver Optional LODES version number as a character. Defaults to 
-#'   the most recent version ("8") and accepts values "5", "7", or "8". LODES
-#'   "6" is not available for download.
 #'
 #' @description Download LODES OD, RAC, and WAC tables
 #' @return a dataframe (tibble) of block or tract level LODES files
@@ -74,8 +71,7 @@ grab_lodes <- function(state, year,
                        agg_geo = c("block", "bg", "tract", "county", "state"),
                        state_part = c("","main","aux"), 
                        download_dir = file.path(rappdirs::user_cache_dir(appname="lehdr")),
-                       use_cache = FALSE, # Thanks Kyle Walker for this
-                       lodes_ver = c("8","5","7")) { 
+                       use_cache = FALSE) { # Thanks Kyle Walker for this
   
   if (length(state) > 1 | length(year) > 1) {
     ## Handle multiple states x years
@@ -86,9 +82,7 @@ grab_lodes <- function(state, year,
                                                            segment = segment,
                                                            agg_geo = agg_geo,
                                                            state_part = state_part,
-                                                           download_dir = download_dir,
-                                                           use_cache = use_cache,
-                                                           lodes_ver = lodes_ver) 
+                                                           download_dir = download_dir) 
                      )
     return(dplyr::bind_rows(results))
   }
@@ -102,7 +96,6 @@ grab_lodes <- function(state, year,
   job_type <- match.arg(job_type, c(NULL, "JT00", "JT01", "JT02", "JT03", "JT04", "JT05"))
   segment <- match.arg(segment, c(NULL, "S000", "SA01", "SA02", "SA03", "SE01", "SE02","SE03", "SI01", "SI02", "SI03"))
   state_part <- match.arg(state_part, c("","main","aux"))
-  lodes_ver <- match.arg(lodes_ver, c("8","5","7"))
   
   # Only proceed if use_cache is boolean
   if(!is.logical(use_cache)) { stop("The use_cache paramater must be either TRUE or FALSE") }
@@ -120,14 +113,14 @@ grab_lodes <- function(state, year,
   # Read LODES_types and set col_types
   if (lodes_type == "od") {
     # Set url for od
-    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES{lodes_ver}/{state}/{lodes_type}/{state}_{lodes_type}_{state_part}_{job_type}_{year}.csv.gz")
+    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{state_part}_{job_type}_{year}.csv.gz")
     # Set column types for od
     col_types <- cols(w_geocode = col_character(), 
                       h_geocode = col_character(),
                       createdate = col_character())
   } else {
     # Set url for rac/wac
-    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES{lodes_ver}/{state}/{lodes_type}/{state}_{lodes_type}_{segment}_{job_type}_{year}.csv.gz")    
+    url <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{state}/{lodes_type}/{state}_{lodes_type}_{segment}_{job_type}_{year}.csv.gz")    
 
     # Set column types for rac/wac -- h_ is home, w_ is work (from LODES)
     if (lodes_type == "rac") {
@@ -142,8 +135,8 @@ grab_lodes <- function(state, year,
   # On URL error, the likely culprit is the lack of state/year combination ...
   httr::stop_for_status(httr::HEAD(url),
     paste("retrieve data for this combination of state and year on LODES.",
-          "Please see the LEHD Technical Document for a list of available state/year.",
-          glue::glue("https://lehd.ces.census.gov/data/lodes/LODES{lodes_ver}/")
+          "Please see the most recent LEHD Technical Document for a list of available state/year.",
+          "https://lehd.ces.census.gov/data/lodes/LODES7/"
     )
   )
   

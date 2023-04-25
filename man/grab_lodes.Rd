@@ -14,16 +14,15 @@ grab_lodes(
   agg_geo = c("block", "bg", "tract", "county", "state"),
   state_part = c("", "main", "aux"),
   download_dir = file.path(rappdirs::user_cache_dir(appname = "lehdr")),
-  use_cache = FALSE,
-  lodes_ver = c("8", "5", "7")
+  use_cache = FALSE
 )
 }
 \arguments{
 \item{state}{US state abbreviation in lower case, can be a vector of states.}
 
-\item{year}{Year of the LODES data, can be a vector of years.}
+\item{year}{year of the lodes data, can be a vector of years.}
 
-\item{lodes_type}{Table type, values can be origin-destination ("od"), 
+\item{lodes_type}{table type, values can be origin-destination ("od"), 
 residential association ("rac"), or workplace association ("wac"). od 
 files give a home and destination census block for workers. Residential 
 files give job totals of worker home census blocks and workplace files 
@@ -51,15 +50,11 @@ in OD files. Using "main" includes workers with their workplace and
 residence in the state. Using "aux" includes workers with residences out 
 of state and workplace in the state of interest}
 
-\item{download_dir}{Directory where LODES table will be downloaded.}
+\item{download_dir}{Directory where lodes table will be downloaded.}
 
 \item{use_cache}{Boolean indicating whether or not to check whether or not
 the file had already been downloaded. Defaults to FALSE. Setting to TRUE
 will allow lehdr to reuse existing files that were already downloaded.}
-
-\item{lodes_ver}{Optional LODES version number as a character. Defaults to 
-the most recent version ("8") and accepts values "5", "7", or "8". LODES
-"6" is not available for download.}
 }
 \value{
 a dataframe (tibble) of block or tract level LODES files
