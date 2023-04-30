@@ -1,7 +1,8 @@
 README
 ================
-Jamaal Green, University of Pennsylvania; Dillon Mahmoudi, University of
-Maryland Baltimore County; Liming Wang, Portland State University
+Jamaal Green, University of Pennsylvania; 
+Dillon Mahmoudi, University of Maryland Baltimore County; 
+Liming Wang, Portland State University
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 

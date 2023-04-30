@@ -50,19 +50,32 @@ library(stringr)
 ```
 
 # Usage
-This first example pulls the Oregon (`state = "or"`) 2014 (`year = 2014`), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and industry (`segment = "S000"`), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
+This first example pulls the Oregon (`state = "or"`) 2020 (`year = 2020`) from LODES version 8 (`version="LODES8"`, default), origin-destination (`lodes_type = "od"`), all jobs including private primary, secondary, and Federal (`job_type = "JT01"`, default), all jobs across ages, earnings, and industry (`segment = "S000"`, default), aggregated at the Census Tract level rather than the default Census Block (`agg_geo = "tract"`).
+
 ```{r usage1, eval=FALSE}
 
-or_od <- grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
-           segment = "S000", state_part = "main", agg_geo = "tract")
+or_od <- grab_lodes(state = "or", 
+                    year = 2020, 
+                    version = "LODES8", 
+                    lodes_type = "od", 
+                    job_type = "JT01",
+                    segment = "S000", 
+                    state_part = "main", 
+                    agg_geo = "tract")
 
 head(or_od)
 ```
 
 The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014 (`year = c(2013, 2014)` or `year = 2013:2014`).
+
 ```{r usage2, eval=FALSE}           
-or_ri_od <- grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
-           segment = "S000", state_part = "main", agg_geo = "tract")     
+or_ri_od <- grab_lodes(state = c("or", "ri"), 
+                       year = c(2013, 2014), 
+                       lodes_type = "od", 
+                       job_type = "JT01",
+                       segment = "S000", 
+                       state_part = "main", 
+                       agg_geo = "tract")     
 
 head(or_ri_od)
 ```
@@ -73,6 +86,7 @@ Other common uses might include retrieving Residential or Work Area Characterist
 # Additional Examples
 ## Adding at County level signifiers
 The following examples loads work area characteristics (wac), then uses the work area geoid `w_geocode` to create a variable that is just the county `w_county_fips`. Similar transformations can be made on residence area characteristics (rac) by using the `h_geocode` variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a `h_county_fips` and on `w_county_fips`.
+
 ```{r example_county_var, eval=FALSE}
 md_rac <- grab_lodes(state = "md", year = 2015, lodes_type = "wac", job_type = "JT01", segment = "S000")
 
@@ -85,6 +99,7 @@ head(md_rac_county)
 
 ## Aggregating at the County level
 To aggregate at the county level, continuing the above example, we must also drop the original lock geoid `w_geocode`, group by our new variable `w_county_fips` and our existing variables `year` and `createdate`, then aggregate the remaining numeric variables.
+
 ```{r example_county_agg, eval=FALSE}
 md_rac_county <- md_rac %>% mutate(w_county_fips = str_sub(w_geocode, 1, 5)) %>% 
   select(-"w_geocode") %>%
@@ -97,37 +112,60 @@ head(md_rac_county)
 Alternatively, this functionality is also built-in to the package and advisable for origin-destination grabs. Here include an argument to aggregate at the County level (`agg_geo = "county"`):
 
 ```{r example_county_agg2, eval=FALSE}
-md_rac_county <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
-           segment = "S000", agg_geo = "county")
+md_rac_county <- grab_lodes(state = "md", 
+                            year = 2015, 
+                            lodes_type = "rac", 
+                            job_type = "JT01",
+                            segment = "S000", 
+                            agg_geo = "county")
            
 head(md_rac_county)
 ```
 
 ## Aggregating Origin-Destination 
 As mentioned above, aggregating origin-destination is built-in. This takes care of aggregation on both the `h_geocode` and `w_geocode` variables:
+
 ```{r example_county_agg3, eval=FALSE}
-md_od_county <- grab_lodes(state = "md", year = 2015, lodes_type = "od", job_type = "JT01", 
-           segment = "S000", agg_geo = "county", state_part = "main")
+md_od_county <- grab_lodes(state = "md", 
+                           year = 2015, 
+                           version="LODES7", 
+                           lodes_type = "od", 
+                           job_type = "JT01",
+                           segment = "S000", 
+                           agg_geo = "county", 
+                           state_part = "main")
            
 head(md_od_county)
 ```
 
 ## Aggregating at Block Group, Tract, or State level
-Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the `agg_geo` argument. This aggregation works for all three LODES types.
+Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the `agg_geo` argument. This aggregation works for all three LODES types and all LODES versions.
 
 ```{r example_agg_other, eval=FALSE}
-md_rac_bg <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
-           segment = "S000", agg_geo = "bg")
+md_rac_bg <- grab_lodes(state = "md", 
+                        year = 2015, 
+                        lodes_type = "rac", 
+                        job_type = "JT01",
+                        segment = "S000", 
+                        agg_geo = "bg")
            
 head(md_rac_bg)
 
-md_rac_tract <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
-           segment = "S000", agg_geo = "tract")
+md_rac_tract <- grab_lodes(state = "md", 
+                           year = 2015, 
+                           lodes_type = "rac", 
+                           job_type = "JT01",
+                           segment = "S000", 
+                           agg_geo = "tract")
            
 head(md_rac_tract)
 
-md_rac_state <- grab_lodes(state = "md", year = 2015, lodes_type = "rac", job_type = "JT01", 
-           segment = "S000", agg_geo = "state")
+md_rac_state <- grab_lodes(state = "md", 
+                           year = 2015, 
+                           lodes_type = "rac", 
+                           job_type = "JT01",
+                           segment = "S000", 
+                           agg_geo = "state")
            
 head(md_rac_state)
 ```
