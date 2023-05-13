@@ -1,8 +1,7 @@
 README
 ================
-Jamaal Green, University of Pennsylvania; 
-Dillon Mahmoudi, University of Maryland Baltimore County; 
-Liming Wang, Portland State University
+Jamaal Green, University of Pennsylvania; Dillon Mahmoudi, University of
+Maryland Baltimore County; Liming Wang, Portland State University
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -12,7 +11,7 @@ Liming Wang, Portland State University
 
 <!-- badges: start -->
 
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/lehdr)](https://cran.r-project.org/package=lehdr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lehdr)](https://cran.r-project.org/package=lehdr)
 
 [![R-CMD-check](https://github.com/jamgreen/lehdr/workflows/R-CMD-check/badge.svg)](https://github.com/jamgreen/lehdr/actions)
 
@@ -47,17 +46,26 @@ devtools::install_github("jamgreen/lehdr")
 
 ## Usage
 
-After loading the library, this first example pulls the Oregon
-(`state = "or"`) 2014 (`year = 2014`), origin-destination
-(`lodes_type = "od"`), all jobs including private primary, secondary,
-and Federal (`job_type = "JT01"`), all jobs across ages, earnings, and
-industry (`segment = "S000"`), aggregated at the Census Tract level
-rather than the default Census Block (`agg_geo = "tract"`).
+This first example pulls the Oregon (`state = "or"`) 2020
+(`year = 2020`) from LODES version 8 (`version="LODES8"`, default),
+origin-destination (`lodes_type = "od"`), all jobs including private
+primary, secondary, and Federal (`job_type = "JT01"`, default), all jobs
+across ages, earnings, and industry (`segment = "S000"`, default),
+aggregated at the Census Tract level rather than the default Census
+Block (`agg_geo = "tract"`).
 
 ``` r
 library(lehdr)
-grab_lodes(state = "or", year = 2014, lodes_type = "od", job_type = "JT01", 
-           segment = "S000", state_part = "main", agg_geo = "tract")
+or_od <- grab_lodes(state = "or", 
+                    year = 2020, 
+                    version = "LODES8", 
+                    lodes_type = "od", 
+                    job_type = "JT01",
+                    segment = "S000", 
+                    state_part = "main", 
+                    agg_geo = "tract")
+
+head(or_od)
 ```
 
 The package can be used to retrieve multiple states and years at the
@@ -66,14 +74,25 @@ Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014
 (`year = c(2013, 2014)` or `year = 2013:2014`).
 
 ``` r
-grab_lodes(state = c("or", "ri"), year = c(2013, 2014), lodes_type = "od", job_type = "JT01", 
-           segment = "S000", state_part = "main", agg_geo = "tract")           
+grab_lodes(state = c("or", "ri"), 
+           year = c(2013, 2014), 
+           lodes_type = "od", 
+           job_type = "JT01", 
+           segment = "S000", 
+           state_part = "main", 
+           agg_geo = "tract")           
 ```
 
 Not all years are available for each state. To see all options for
 `lodes_type`, `job_type`, and `segment` and the availability for each
 state/year, please see the most recent LEHD Technical Document at
-<https://lehd.ces.census.gov/data/lodes/LODES7/>.
+<https://lehd.ces.census.gov/data/lodes/LODES8/>.
+
+Using the optional `version` paramater, users can specify which LODES
+version to use. Version 8 is default (`version="LODES8"`) is enumerated
+at 2020 Census blocks. LODES7 (`version="LODES7"`) is enumerated at 2010
+Census blocks, but ends in 2019. LODES5 (`version="LODES5"`) is
+enumerated at 2000 Census blocks, but ends in 2009.
 
 Other common uses might include retrieving Residential or Work Area
 Characteristics (`lodes_type = "rac"` or `lodes_type = "wac"`
