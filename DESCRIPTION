@@ -1,7 +1,7 @@
 Package: lehdr
 Type: Package
 Title: Grab Longitudinal Employer-Household Dynamics (LEHD) Flat Files
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: c(person(given="Jamaal", family="Green", role = c("cre","aut"), email="jamaal.green@gmail.com"), 
     person(given="Liming", family="Wang", role =c("aut"), email="lmwang@pdx.edu"), 
     person(given="Dillon", family="Mahmoudi", role =c("aut"), email="dillonm@umbc.edu"),
@@ -12,7 +12,7 @@ Description: Designed to query Longitudinal Employer-Household Dynamics (LEHD)
     workplace/residential association and origin-destination flat files and 
     optionally aggregate Census block-level data to block group, tract, county, 
     or state. Data comes from the LODES FTP server <https://lehd.ces.census.gov/data/lodes/LODES7/>.
-Depends: R (>= 3.3.0)
+Depends: R (>= 4.0.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:
@@ -21,8 +21,7 @@ Imports:
     stringr, 
     glue,
     httr,
-    dplyr,
-    rappdirs
+    dplyr
 Suggests:
     testthat (>= 3.0.0),
     knitr,

@@ -6,7 +6,7 @@
 \usage{
 grab_crosswalk(
   state,
-  download_dir = file.path(rappdirs::user_cache_dir(appname = "lehdr"))
+  download_dir = file.path(tools::R_user_dir("lehdr", which = "cache"))
 )
 }
 \arguments{

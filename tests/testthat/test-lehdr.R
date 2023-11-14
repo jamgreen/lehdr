@@ -157,7 +157,7 @@ test_that("test grab lodes wac for multiple states and years", {
                  dim, c(86037, 55))
   expect_equal(grab_lodes(state = c("or", "ri"), 
                           year = c(2017, 2018, 2019, 2020), 
-                          # version = "LODES8",
+                          version = "LODES8",
                           lodes_type = "wac", 
                           job_type = "JT01", 
                           segment = "S000") %>%

@@ -14,7 +14,7 @@ grab_lodes(
     "SI03"),
   agg_geo = c("block", "bg", "tract", "county", "state"),
   state_part = c("", "main", "aux"),
-  download_dir = file.path(rappdirs::user_cache_dir(appname = "lehdr")),
+  download_dir = file.path(tools::R_user_dir("lehdr", which = "cache")),
   use_cache = FALSE
 )
 }

@@ -11,7 +11,6 @@
 #' @importFrom glue glue
 #' @importFrom httr GET write_disk HEAD stop_for_status
 #' @importFrom dplyr bind_rows `%>%`
-#' @importFrom rappdirs user_cache_dir
 #' @importFrom readr read_csv cols col_character
 #' 
 #' @examples
@@ -26,7 +25,7 @@
 #' }
 
 grab_crosswalk <- function(state, 
-                           download_dir = file.path(rappdirs::user_cache_dir(appname="lehdr"))){
+                           download_dir = file.path(tools::R_user_dir("lehdr", which="cache"))){
   
   states <- tolower(state)
   

@@ -43,7 +43,6 @@
 #' @description Download LODES OD, RAC, and WAC tables
 #' @return a dataframe (tibble) of block or tract level LODES files
 #' @import dplyr
-#' @importFrom rappdirs user_cache_dir
 #' @importFrom readr read_csv cols col_character
 #' @importFrom httr GET stop_for_status HEAD write_disk
 #' @importFrom glue glue
@@ -80,7 +79,7 @@ grab_lodes <- function(state, year,
                                    "SE03", "SI01", "SI02", "SI03"),  
                        agg_geo = c("block", "bg", "tract", "county", "state"),
                        state_part = c("","main","aux"), 
-                       download_dir = file.path(rappdirs::user_cache_dir(appname="lehdr")),
+                       download_dir = file.path(tools::R_user_dir("lehdr", which="cache")),
                        use_cache = FALSE) { # Thanks Kyle Walker for this
   
   if (length(state) > 1 | length(year) > 1) {
