@@ -40,7 +40,7 @@ package.check <- lapply(
 
 # Installation
 
-**lehdr** has not yet been submitted to CRAN so installing using **devtools** is required. Additionally, we'll be using **dplyr**.
+To find the most up-to-date copy of **lehdr** one can use **devtools**. Otherwise you can install the packge through CRAN. Additionally, we'll be using **dplyr**.
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 devtools::install_github("jamgreen/lehdr")
