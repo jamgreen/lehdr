@@ -50,7 +50,7 @@
 #' @importFrom stringr str_sub str_extract
 #'  
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'  # download and load 2014 block level O-D data for Oregon
 #'  blk_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
 #'                          segment = "SA01", state_part = "main")
@@ -161,23 +161,24 @@ grab_lodes <- function(state, year,
   if(use_cache) { # User set use_cache to TRUE
     # If there is a cache, use it
     if(file.exists(fil)) {
-      message(glue::glue("Cached version of file found in {fil}\n Reading now..."))
+      message(glue::glue("Cached version of file found in: {fil}"))
     } else {
-      message(glue::glue("Downloading {url} to {fil} now..."))
+      message(glue::glue("Downloading {url} to cache folder: {fil}"))
       res <- httr::GET(url, httr::write_disk(fil))
+      message(glue::glue("Download complete."))
     }
   } else { # User did not allow cache to be used
     if(file.exists(fil)) {
       # Existing file found, inform user of use_cache
-      message(glue::glue("Cached version of file found in {fil}."))
+      message(glue::glue("Cached version of file found in: {fil}"))
       message(glue::glue("Consider setting use_cache=TRUE to use previously downloaded files."))
-      message(glue::glue("Overwriting {url} to {fil} now..."))
     } else {
       # No file found, inform user that we're downloading
-      message(glue::glue("Downloading {url} to {fil} now..."))
     }
     # Download (and overwite if necessary) data from server
+    message(glue::glue("Overwriting {url} to {fil} now..."))
     res <- httr::GET(url, httr::write_disk(fil, overwrite = TRUE)) 
+    message(glue::glue("Overwrite complete."))
   }
   
   # Read in the data
