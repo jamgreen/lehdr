@@ -14,7 +14,7 @@
 #' @importFrom readr read_csv cols col_character
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Download and load current geographic crosswalk for Alaska
 #' alaska_xwalk <- grab_crosswalk('AK')
 #' 
