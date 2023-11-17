@@ -14,7 +14,7 @@
 #' @importFrom readr read_csv cols col_character
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Download and load current geographic crosswalk for Alaska
 #' alaska_xwalk <- grab_crosswalk('AK')
 #' 
@@ -29,7 +29,7 @@ grab_crosswalk <- function(state,
   
   states <- tolower(state)
   
-  urls <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES7/{states}/{states}_xwalk.csv.gz")
+  urls <- glue::glue("https://lehd.ces.census.gov/data/lodes/LODES8/{states}/{states}_xwalk.csv.gz")
   
   for (url in urls){
     httr::stop_for_status(httr::HEAD(url),

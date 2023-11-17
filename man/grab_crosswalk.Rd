@@ -21,7 +21,7 @@ a dataframe (tibble) geographic crosswalk at the block level
 Download LODES geographic crosswalk
 }
 \examples{
-\dontrun{
+\donttest{
 # Download and load current geographic crosswalk for Alaska
 alaska_xwalk <- grab_crosswalk('AK')
 
