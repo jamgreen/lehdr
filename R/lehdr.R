@@ -79,8 +79,9 @@ grab_lodes <- function(state, year,
                                    "SE03", "SI01", "SI02", "SI03"),  
                        agg_geo = c("block", "bg", "tract", "county", "state"),
                        state_part = c("","main","aux"), 
-                       download_dir = file.path(tools::R_user_dir("lehdr", which="cache")),
-                       use_cache = FALSE) { # Thanks Kyle Walker for this
+                       download_dir = normalizePath(file.path(tools::R_user_dir("lehdr", which="cache")), 
+                                                    mustWork = FALSE),
+                       use_cache = FALSE) { # Thanks to Kyle Walker for this
   
   if (length(state) > 1 | length(year) > 1) {
     ## Handle multiple states x years
@@ -114,7 +115,7 @@ grab_lodes <- function(state, year,
   # If someone uses od, but doesn't set state_part
   if(lodes_type == "od" && !(state_part %in% c("main","aux"))) {
     state_part <- "main"
-    warning("state_part is required when setting lodes_type =\"od\", defaulting to state_part=\"main\"")
+    warning("'state_part' is required when setting lodes_type =\"od\", defaulting to state_part=\"main\"")
   }
   
   # Setup col_types and url variables, used in the if statement
