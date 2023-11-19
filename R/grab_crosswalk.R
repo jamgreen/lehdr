@@ -18,7 +18,7 @@
 #' # Download and load current geographic crosswalk for Alaska
 #' alaska_xwalk <- grab_crosswalk('AK')
 #' 
-#' # Download and load current geographic crosswalk for New England#' 
+#' # Download and load current geographic crosswalk for New England 
 #' new_england_xwalk <- grab_crosswalk(c('CT', 'RI', 'MA', 'VT', 'NH', 'ME'))
 #' 
 #' }
