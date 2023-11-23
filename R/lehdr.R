@@ -43,31 +43,32 @@
 #' @description Download LODES OD, RAC, and WAC tables
 #' @return a dataframe (tibble) of block or tract level LODES files
 #' @import dplyr
+#' @import magrittr
+#' @import httr2
 #' @importFrom readr read_csv cols col_character
-#' @importFrom httr GET stop_for_status HEAD write_disk
 #' @importFrom glue glue
 #' @importFrom stats na.omit
 #' @importFrom stringr str_sub str_extract
 #'  
 #' @examples
 #' \donttest{
-#'  # download and load 2014 block level O-D data for Oregon
-#'  blk_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+#'  # download and load 2014 block level O-D data for Vermont
+#'  blk_df_or_od <- grab_lodes(state = 'vt', year = 2014, lodes_type = "od", job_type = "JT01", 
 #'                          segment = "SA01", state_part = "main")
 #'                          
-#'  # download and load 2014 O-D data for Oregon and aggregate 
+#'  # download and load 2014 O-D data for Vermont and aggregate 
 #'  # to the tract level                     
-#'  trt_df_or_od <- grab_lodes(state = 'or', year = 2014, lodes_type = "od", job_type = "JT01", 
+#'  trt_df_or_od <- grab_lodes(state = 'vt', year = 2014, lodes_type = "od", job_type = "JT01", 
 #'                          segment = "SA01", state_part = "main", agg_geo = "tract")
 #'                          
-#'  # download and load 2014 RAC data for Oregon and aggregate 
+#'  # download and load 2020 RAC data for Vermont and aggregate 
 #'  # to the tract level                                              
-#'  trt_df_or_rac <- grab_lodes(state = 'or', year = 2014, lodes_type = "rac", job_type = "JT01", 
+#'  trt_df_or_rac <- grab_lodes(state = 'vt', year = 2014, lodes_type = "rac", job_type = "JT01", 
 #'                           segment = "SA01", agg_geo = "tract")
 #'                           
-#'  # download and load 2014 WAC data for Oregon and aggregate 
+#'  # download and load 2020 WAC data for Vermont and aggregate 
 #'  # to the tract level                        
-#'  trt_df_or_wac <- grab_lodes(state = 'or', year = 2014, lodes_type = "wac", job_type = "JT01", 
+#'  trt_df_or_wac <- grab_lodes(state = 'vt', year = 2014, lodes_type = "wac", job_type = "JT01", 
 #'                           segment = "SA01", agg_geo = "tract")
 #' }                         
 #' @export
@@ -144,42 +145,72 @@ grab_lodes <- function(state, year,
     }
   }
   
-  # On URL error, the likely culprit is the lack of state/year combination ...
-  httr::stop_for_status(httr::HEAD(url),
-    paste("retrieve data for this combination of state and year on LODES.",
-          "Please see the most recent LEHD Technical Document for a list of available state/year.",
-          glue::glue("https://lehd.ces.census.gov/data/lodes/{version}/")
-    )
-  )
-  
-  # Set download directory, check for cache
-  download_dir <- path.expand(download_dir)
-  if (!dir.exists(download_dir))
+  # Set download directory and file name
+  if (!dir.exists(download_dir)) {
     dir.create(download_dir, recursive=TRUE)
-  fil <- file.path(download_dir, basename(url))
+  }
+  fil <- normalizePath(file.path(download_dir, basename(url)), mustWork = FALSE)
   
+  # Create httr2 request from url
+  lodes_req <- request(url)
   
+  # Check for cache
   if(use_cache) { # User set use_cache to TRUE
-    # If there is a cache, use it
-    if(file.exists(fil)) {
-      message(glue::glue("Cached version of file found in: {fil}"))
-    } else {
-      message(glue::glue("Downloading {url} to cache folder: {fil}"))
-      res <- httr::GET(url, httr::write_disk(fil))
-      message(glue::glue("Download complete."))
+    if(file.exists(fil)) { # If there is a cached file, use it
+      rlang::inform(glue::glue("Using cached version of file found in: {fil}"))
+    } else { # No cached file
+      # Perform request and handle connection errors, writing response to disk
+      withCallingHandlers(
+        lodes_resp <- lodes_req |>
+          req_error(is_error = \(lodes_resp) FALSE) |>
+          req_perform(path = fil),
+        httr2_failure = function(cnd) {
+          rlang::abort(c("lehdr: Could not establish connection to LODES FTP server.", 
+                         "i" = "Please check internet connection."))
+        }
+      )
+      if(lodes_resp$status_code >= 400) {
+        rlang::abort(c(glue::glue("lehdr: Server error while downloading: {lodes_req$url}"),
+                       "i" = glue::glue("{lodes_resp$status_code} status returned."),
+                       "i" = "Please consult the most recent LEHD Technical Document to verify state/year combination availability.",
+                       "i" = "https://lehd.ces.census.gov/data/lodes/8/"))
+      } else if(length(lodes_resp$body) < 1) {
+        rlang::abort(c(glue::glue("lehdr: Connection error while downloading: {lodes_req$url}"),
+                       "i" = "Empty response."))
+      } else {
+        rlang::inform(glue::glue("Download complete for {fil}"))
+      }
     }
   } else { # User did not allow cache to be used
-    if(file.exists(fil)) {
+    if(file.exists(fil)) { # But there is a cached file
       # Existing file found, inform user of use_cache
-      message(glue::glue("Cached version of file found in: {fil}"))
-      message(glue::glue("Consider setting use_cache=TRUE to use previously downloaded files."))
-    } else {
-      # No file found, inform user that we're downloading
+      rlang::inform(glue::glue("Cached version of file found in: {fil}"))
+      rlang::inform(glue::glue("Consider setting use_cache=TRUE to use previously downloaded files."))
     }
     # Download (and overwite if necessary) data from server
-    message(glue::glue("Overwriting {url} to {fil} now..."))
-    res <- httr::GET(url, httr::write_disk(fil, overwrite = TRUE)) 
-    message(glue::glue("Overwrite complete."))
+    rlang::inform(glue::glue("Downloading {url} to {fil} now..."))
+    
+    # Perform request and handle connection errors, writing response to disk
+    withCallingHandlers(
+      lodes_resp <- lodes_req |>
+        req_error(is_error = \(lodes_resp) FALSE) |>
+        req_perform(path = fil),
+      httr2_failure = function(cnd) {
+        rlang::abort(c("lehdr: Could not establish connection to LODES FTP server.", 
+                     "i" = "Please check internet connection."))
+      }
+    )
+    if(lodes_resp$status_code >= 400) {
+      rlang::abort(c(glue::glue("lehdr: Server error while downloading: {lodes_req$url}"),
+                     "i" = glue::glue("{lodes_resp$status_code} status returned."),
+                     "i" = "Please consult the most recent LEHD Technical Document to verify state/year combination availability.",
+                     "i" = "https://lehd.ces.census.gov/data/lodes/8/"))
+    } else if(length(lodes_resp$body) < 1) {
+      rlang::abort(c(glue::glue("lehdr: Connection error while downloading: {lodes_req$url}"),
+                     "i" = "Empty response."))
+    } else {
+      rlang::inform(glue::glue("Download complete for {fil}"))
+    }
   }
   
   # Read in the data
@@ -188,14 +219,13 @@ grab_lodes <- function(state, year,
   # Remove temp files if the user did not set use_cache = TRUE
   if(!use_cache) {
     if(unlink(fil)) { # 0 for success, 1 for failure, invisibly. 
-      message(glue::glue("Could not remove temporary file {fil}."))
+      rlang::inform(glue::glue("Could not clear {fil} from cache."))
     } else {
-      message(glue::glue("Removed {fil}."))
+      rlang::inform(glue::glue("{fil} cleared from cache."))
       # Now check to see if the cache directory is empty, remove it if it is
       if(length(list.files(download_dir)) == 0) {
         unlink(download_dir, recursive = TRUE)
       }
-      
     }
   }
 

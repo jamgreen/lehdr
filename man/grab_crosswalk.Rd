@@ -6,7 +6,8 @@
 \usage{
 grab_crosswalk(
   state,
-  download_dir = file.path(tools::R_user_dir("lehdr", which = "cache"))
+  download_dir = normalizePath(file.path(tools::R_user_dir("lehdr", which = "cache")),
+    mustWork = FALSE)
 )
 }
 \arguments{
@@ -23,10 +24,10 @@ Download LODES geographic crosswalk
 \examples{
 \donttest{
 # Download and load current geographic crosswalk for Alaska
-alaska_xwalk <- grab_crosswalk('AK')
+alaska_xwalk <- grab_crosswalk("VT")
 
-# Download and load current geographic crosswalk for New England 
-new_england_xwalk <- grab_crosswalk(c('CT', 'RI', 'MA', 'VT', 'NH', 'ME'))
-
+# Download and load current geographic crosswalk for small states
+small_states_xwalk <- grab_crosswalk(c("wy", 'ND', 'SD'))
 }
+
 }
