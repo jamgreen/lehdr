@@ -48,8 +48,8 @@ devtools::install_github("jamgreen/lehdr")
 
 This first example pulls the Oregon (`state = "or"`) 2020
 (`year = 2020`) from LODES version 8 (`version="LODES8"`, default),
-origin-destination (`lodes_type = "od"`), all jobs including private
-primary, secondary, and Federal (`job_type = "JT01"`, default), all jobs
+origin-destination (`lodes_type = "od"`), primary jobs including private
+primary, secondary, and Federal (`job_type = "JT01"`, default), as well as, primary jobs
 across ages, earnings, and industry (`segment = "S000"`, default),
 aggregated at the Census Tract level rather than the default Census
 Block (`agg_geo = "tract"`).
