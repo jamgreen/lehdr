@@ -129,7 +129,7 @@ test_that("test grab lodes wac for multiple states and years", {
 
 test_that("test grab crosswalk", {
   expect_equal(grab_crosswalk('vt') %>% 
-                 dim, c(24611, 43))
+                 dim, c(24611, 41))
   expect_equal(grab_crosswalk(c("wy", "ND")) %>% 
-                 dim, c(138335, 43))
+                 dim, c(138335, 41))
 })
