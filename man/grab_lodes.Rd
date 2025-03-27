@@ -22,65 +22,65 @@ grab_lodes(
 )
 }
 \arguments{
-\item{state}{US state abbreviation in lower case, as character. 
-Can be a vector of states, like c("or","md","tx") for Oregon, Maryland, 
+\item{state}{US state abbreviation in lower case, as character.
+Can be a vector of states, like c("or","md","tx") for Oregon, Maryland,
 and Texas.}
 
 \item{year}{Year of the lodes data, as numerical.
 Can be a vector of years, like c(2014, 2020) for 2014 and 2020.}
 
 \item{version}{The LODES version to use.
-Version 8 (the default, use "LODES8") is enumerated at 2020 Census blocks. 
-"LODES7" is enumerated at 2010 Census blocks, but ends in 2019; 
+Version 8 (the default, use "LODES8") is enumerated at 2020 Census blocks.
+"LODES7" is enumerated at 2010 Census blocks, but ends in 2019;
 LODES5" is enumerated at 2000 Census blocks, but ends in 2009.}
 
 \item{lodes_type}{The LODES table type.
 Values can be the default origin-destination ("od"),residential association
-("rac"), or workplace association ("wac"). 
-od files give a home and destination census block for workers. Residential 
-files give job totals of worker home census blocks and workplace files 
+("rac"), or workplace association ("wac").
+od files give a home and destination census block for workers. Residential
+files give job totals of worker home census blocks and workplace files
 give job totals of worker job census blocks}
 
-\item{job_type}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs, 
+\item{job_type}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs,
 "JT02" for All Private Jobs, "JT03" for Private Primary jobs, "JT04" for
 All Federal jobs, "JT05" for Federal Primary jobs}
 
 \item{segment}{Segment of the workforce.
-"S000" total number of jobs for workers, "SA01" number of jobs for workers 
-aged 29 or younger, "SA02" number of jobs for workers aged 30-54,"SA03" 
-number of jobs for workers 55 and older, "SE01" number of jobs with 
-earnings $1,250/month or less, "SE02" number of jobs with earnings $1,251 
-to $3,333/month, "SE03" number of jobs with earnings greater than 
-$3,333/month, "SI01" number of jobs in Goods Producing industry sectors, 
-"SI02" number of jobs in Trade, Transportation, & Utilities industry 
+"S000" total number of jobs for workers, "SA01" number of jobs for workers
+aged 29 or younger, "SA02" number of jobs for workers aged 30-54,"SA03"
+number of jobs for workers 55 and older, "SE01" number of jobs with
+earnings $1,250/month or less, "SE02" number of jobs with earnings $1,251
+to $3,333/month, "SE03" number of jobs with earnings greater than
+$3,333/month, "SI01" number of jobs in Goods Producing industry sectors,
+"SI02" number of jobs in Trade, Transportation, & Utilities industry
 sectors, "SI03" number of jobs in All Other Services industry sectors.}
 
-\item{agg_geo}{Aggregate to a geography other than Census Block (default). 
+\item{agg_geo}{Aggregate to a geography other than Census Block (default).
 Values can be "bg" for block group, "tract", "county", or "state".}
 
 \item{state_part}{Part of the state file, required for "od" lodes_type.
-Can have values of "main" or "aux" in OD files. Using "main" includes 
-workers with their workplace and residence in the state. Using "aux" 
-includes workers with residences out of state and workplace in the state 
+Can have values of "main" or "aux" in OD files. Using "main" includes
+workers with their workplace and residence in the state. Using "aux"
+includes workers with residences out of state and workplace in the state
 of interest}
 
 \item{download_dir}{Directory where lodes table will be downloaded.}
 
-\item{geometry}{If `TRUE`, use the tigris package to download spatial data
-from the U.S. Census Bureau for the specified `year` and `geometry_state`
-at the level specified by `agg_geo`.}
+\item{geometry}{If \code{TRUE}, use the tigris package to download spatial data
+from the U.S. Census Bureau for the specified \code{year} and \code{geometry_state}
+at the level specified by \code{agg_geo}.}
 
 \item{use_cache}{Boolean indicating whether or not to check whether or not
 the file had already been downloaded. Defaults to FALSE. Setting to TRUE or
-setting the `lehdr_use_cache` option to TRUE will allow lehdr to reuse
+setting the \code{lehdr_use_cache} option to TRUE will allow lehdr to reuse
 existing files that were already downloaded.}
 
 \item{...}{Additional arguments passed to tigris functions for data access.}
 }
 \value{
 A dataframe (tibble) of LODES data aggregated to a block, block
-  group, tract, county, or state level. If `geometry = TRUE` and `lodes_type`
-  is "rac" or "wac" return a sf object.
+group, tract, county, or state level. If \code{geometry = TRUE} and \code{lodes_type}
+is "rac" or "wac" return a sf object.
 }
 \description{
 Download LODES OD, RAC, and WAC tables
