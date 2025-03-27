@@ -449,6 +449,4 @@ aggregate_lodes_df <- function(lehdr_df, agg_geo) {
 
 ## quiets concerns of R CMD check re: non-standard evaluation via tidyverse
 ## per suggestion of Hadley Wickham (https://stackoverflow.com/a/12429344/688693)
-if (getRversion() >= "2.15.1") {
-  utils::globalVariables(c(".", "COUNTYFP", "GEOID", "STATEFP"))
-}
+utils::globalVariables(c(".", "COUNTYFP", "GEOID", "STATEFP"))
