@@ -1,4 +1,6 @@
 test_that("test grab lodes od", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
   expect_equal(grab_lodes(state = "de", 
                           year = 2020,
                           version = "LODES8",
@@ -32,6 +34,8 @@ test_that("test grab lodes od", {
 })
 
 test_that("test grab lodes rac", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
   expect_equal(grab_lodes(state = "de", 
                           year = 2014,
                           version = "LODES7",
@@ -53,6 +57,8 @@ test_that("test grab lodes rac", {
 })
 
 test_that("test grab lodes wac", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
   expect_equal(grab_lodes(state = "de", 
                           year = 2009,
                           version = "LODES5",
@@ -73,6 +79,8 @@ test_that("test grab lodes wac", {
 })
 
 test_that("test grab lodes od for multiple states and years", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
   expect_equal(grab_lodes(state = c("nd", "vt"), 
                           year = c(2007, 2008),
                           version = "LODES5",
@@ -101,6 +109,8 @@ test_that("test grab lodes od for multiple states and years", {
 })
 
 test_that("test grab lodes wac for multiple states and years", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
   expect_equal(grab_lodes(state = c("de", "vt"), 
                           year = c(2013, 2014),
                           version = "LODES7",
@@ -128,8 +138,49 @@ test_that("test grab lodes wac for multiple states and years", {
 })
 
 test_that("test grab crosswalk", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
   expect_equal(grab_crosswalk('vt') %>% 
                  dim, c(24611, 41))
   expect_equal(grab_crosswalk(c("wy", "ND")) %>% 
                  dim, c(138335, 41))
+})
+
+test_that("test join_lodes_geometry", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+  
+  rac_data <- grab_lodes(state = "vt", 
+             year = 2008,
+             version = "LODES5",
+             lodes_type = "rac", 
+             job_type = "JT01", 
+             segment = "SA01", 
+             state_part = "main", 
+             agg_geo = "county",
+             geometry = TRUE)
+  
+  wac_data <- grab_lodes(state = "vt", 
+                         year = 2008,
+                         version = "LODES5",
+                         lodes_type = "wac", 
+                         job_type = "JT01", 
+                         segment = "SA01", 
+                         state_part = "main", 
+                         agg_geo = "county",
+                         geometry = TRUE)
+  
+  expect_s3_class(rac_data, "sf")
+  expect_s3_class(wac_data, "sf")
+  
+  expect_message(
+    grab_lodes(state = "vt", 
+               year = 2008,
+               version = "LODES5",
+               lodes_type = "wac", 
+               job_type = "JT01", 
+               segment = "SA01", 
+               state_part = "main", 
+               agg_geo = "county",
+               geometry = TRUE)
+  )
 })

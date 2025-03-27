@@ -16,7 +16,9 @@ grab_lodes(
   state_part = c("", "main", "aux"),
   download_dir = normalizePath(file.path(tools::R_user_dir("lehdr", which = "cache")),
     mustWork = FALSE),
-  use_cache = FALSE
+  geometry = FALSE,
+  use_cache = getOption("lehdr_use_cache", FALSE),
+  ...
 )
 }
 \arguments{
@@ -64,12 +66,21 @@ of interest}
 
 \item{download_dir}{Directory where lodes table will be downloaded.}
 
+\item{geometry}{If `TRUE`, use the tigris package to download spatial data
+from the U.S. Census Bureau for the specified `year` and `geometry_state`
+at the level specified by `agg_geo`.}
+
 \item{use_cache}{Boolean indicating whether or not to check whether or not
-the file had already been downloaded. Defaults to FALSE. Setting to TRUE
-will allow lehdr to reuse existing files that were already downloaded.}
+the file had already been downloaded. Defaults to FALSE. Setting to TRUE or
+setting the `lehdr_use_cache` option to TRUE will allow lehdr to reuse
+existing files that were already downloaded.}
+
+\item{...}{Additional arguments passed to tigris functions for data access.}
 }
 \value{
-a dataframe (tibble) of block or tract level LODES files
+A dataframe (tibble) of LODES data aggregated to a block, block
+  group, tract, county, or state level. If `geometry = TRUE` and `lodes_type`
+  is "rac" or "wac" return a sf object.
 }
 \description{
 Download LODES OD, RAC, and WAC tables

@@ -36,12 +36,18 @@
 #' @param agg_geo Aggregate to a geography other than Census Block (default). 
 #'   Values can be "bg" for block group, "tract", "county", or "state".
 #' @param download_dir Directory where lodes table will be downloaded.
+#' @param geometry If `TRUE`, use the tigris package to download spatial data
+#'   from the U.S. Census Bureau for the specified `year` and `geometry_state`
+#'   at the level specified by `agg_geo`.
 #' @param use_cache Boolean indicating whether or not to check whether or not
-#'   the file had already been downloaded. Defaults to FALSE. Setting to TRUE
-#'   will allow lehdr to reuse existing files that were already downloaded.
-#'
+#'   the file had already been downloaded. Defaults to FALSE. Setting to TRUE or
+#'   setting the `lehdr_use_cache` option to TRUE will allow lehdr to reuse
+#'   existing files that were already downloaded.
+#' @param ... Additional arguments passed to tigris functions for data access.
 #' @description Download LODES OD, RAC, and WAC tables
-#' @return a dataframe (tibble) of block or tract level LODES files
+#' @return A dataframe (tibble) of LODES data aggregated to a block, block
+#'   group, tract, county, or state level. If `geometry = TRUE` and `lodes_type`
+#'   is "rac" or "wac" return a sf object.
 #' @import dplyr
 #' @import magrittr
 #' @import httr2
@@ -82,9 +88,11 @@ grab_lodes <- function(state, year,
                        state_part = c("","main","aux"), 
                        download_dir = normalizePath(file.path(tools::R_user_dir("lehdr", which="cache")), 
                                                     mustWork = FALSE),
-                       use_cache = FALSE) { # Thanks to Kyle Walker for this
+                       geometry = FALSE,
+                       use_cache = getOption("lehdr_use_cache", FALSE),
+                       ...) {
   
-  if (length(state) > 1 | length(year) > 1) {
+  if (length(state) > 1 || length(year) > 1) {
     ## Handle multiple states x years
     state_year <- expand.grid(state=state, year=year)
     results <- apply(state_year, 1, function(df_row) grab_lodes(df_row[1], df_row[2], 
@@ -101,6 +109,7 @@ grab_lodes <- function(state, year,
   
   # Format inputs
   state <- tolower(state)
+  version <- toupper(version)
   
   # Handle errors and set default arguments
   version <- rlang::arg_match(version)
@@ -238,39 +247,197 @@ grab_lodes <- function(state, year,
   # If the agg_geo_to variable is "block" or NULL (not passed via args), 
   # then skip this step as the data is already in block format
   if(agg_geo_to != "block" && !is.null(agg_geo_to)) { 
-    id_len <- switch(agg_geo_to, 
-                     "bg" = 12, 
-                     "tract" = 11, 
-                     "county" = 5,
-                     "state" = 2)
-    lehdr_df <- aggregate_lodes_df(lehdr_df, id_len, agg_geo_to)
+    lehdr_df <- aggregate_lodes_df(lehdr_df, agg_geo_to)
+  }
+  
+  if (geometry) {
+    lehdr_df <- join_lodes_geometry(
+      lehdr_df,
+      version,
+      agg_geo = agg_geo_to,
+      lodes_type = lodes_type,
+      ...
+    )
   }
 
   return(lehdr_df)
 }
 
-#' 
+#' Subset GEOID string based on geo aggregation level
+#' @noRd
+st_sub_agg_geo <- function(string, agg_geo) {
+  end <- switch(agg_geo,
+                "bg" = 12, 
+                "tract" = 11,
+                "county" = 5,
+                "state" = 2)
+  stringr::str_sub(string, start = 1, end = end)
+}
+
+#' Internal function to download and join spatial data to LEHDR data frame
+#' @noRd
+join_lodes_geometry <- function(
+    lehdr_df,
+    version,
+    agg_geo,
+    lodes_type,
+    ...) {
+  rlang::check_installed("sf")
+
+  # Download 
+  lehdr_sf <- grab_lodes_geometry(
+    lehdr_df = lehdr_df,
+    version = version,
+    agg_geo = agg_geo,
+    ...
+  )
+  
+  if (lodes_type %in% c("od", "wac")) {
+    w_geoid_col <- glue::glue("w_{agg_geo}")
+    sf_column_name <- "w_geometry"
+    lehdr_sf <- sf::st_set_geometry(lehdr_sf, sf_column_name)
+    by <- rlang::set_names("GEOID", w_geoid_col)
+    lehdr_df <- dplyr::left_join(
+      lehdr_df,
+      dplyr::as_tibble(lehdr_sf),
+      by = by
+    )
+  }
+  
+  if (lodes_type %in% c("od", "rac")) {
+    h_geoid_col <- glue::glue("h_{agg_geo}")
+    sf_column_name <- "h_geometry"
+    lehdr_sf <- sf::st_set_geometry(lehdr_sf, sf_column_name)
+    by <- rlang::set_names("GEOID", h_geoid_col)
+    lehdr_df <- dplyr::left_join(
+      lehdr_df,
+      dplyr::as_tibble(lehdr_sf),
+      by = by
+    )
+  }
+  
+  if (lodes_type != "od") {
+    lehdr_df <- sf::st_as_sf(lehdr_df, sf_column_name = sf_column_name)
+  } else {
+    rlang::inform(
+      c(
+        '`get_lodes()` returns a non-sf object when `geometry = TRUE` and `lodes_type = "od"`.',
+        "*" = "Use `sf::st_as_sf` with sf_column_name set to `w_geometry` or `h_geometry` to convert data to an sf object."
+      )
+    )
+  }
+  
+  lehdr_df
+}
+
+
+#' Get year from LODES version
+#' @noRd
+get_lodes_version_year <- function(version) {
+  switch (version,
+          LODES8 = 2020,
+          LODES7 = 2010,
+          LODES5 = 2000
+  )
+}
+
+#' Grab spatial data to LEHDR data frame
+#' @noRd
+grab_lodes_geometry <- function(lehdr_df = NULL,
+                                state = NULL,
+                                version = NULL,
+                                agg_geo = NULL,
+                                ...) {
+  rlang::check_installed("tigris")
+  
+  # TODO: Validate state and convert to FIPS code if non-FIPS code input is provided
+  if (is.null(state)) {
+    # Get states FIPS codes from input LODES data
+    state <- c(
+      st_sub_agg_geo(unique(lehdr_df[[glue::glue("w_{agg_geo}")]]), "state"),
+      st_sub_agg_geo(unique(lehdr_df[[glue::glue("h_{agg_geo}")]]), "state")
+    )
+  }
+  
+  state <- unique(state)
+  
+  # Set tigris function based on agg_geo
+  tigris_fn <- switch (agg_geo,
+    block = tigris::blocks,
+    bg = tigris::block_groups,
+    tract = tigris::tracts,
+    county = tigris::counties,
+    state = function(state = NULL, year = NULL, ...) {
+      tigris_geo <- tigris::states(year = year, ...)
+      
+      dplyr::filter(
+        tigris_geo,
+        STATEFP %in% state
+      )
+    } 
+  )
+  
+  # Get year for version
+  year <- get_lodes_version_year(version)
+  
+  # Download data from tigris for each state
+  # TODO: Pass counties where possible to avoid downloading unused data
+  lehdr_sf_list <- lapply(
+    state,
+    function(st) {
+      tigris_fn(
+        state = st,
+        year = year,
+        ...
+      )
+    })
+  
+ lehdr_sf <- dplyr::bind_rows(lehdr_sf_list)
+ 
+ cols <- "GEOID"
+ 
+ # Handle variant GEOID column names for block-level data
+ if (agg_geo == "block") {
+   cols <- switch (year,
+     "2020" = "GEOID20",
+     "2010" = "GEOID10",
+     "2000" = "GEOID00"
+   )
+   
+   cols <- rlang::set_names(cols, "GEOID")
+ }
+ 
+ # Handle missing GEOID column for county-level data
+ if (agg_geo == "county" && !rlang::has_name(lehdr_sf, "GEOID")) {
+   lehdr_sf <- dplyr::mutate(
+     lehdr_sf,
+     GEOID = paste0(STATEFP, COUNTYFP)
+   )
+ }
+ 
+ dplyr::select(lehdr_sf, dplyr::all_of(cols))
+}
+
 #' Aggregate data to a certain level dictated by inputs. Internal function.
 #' 
 #' @param lehdr_df Data frame (tibble) to be aggregated
-#' @param geoid_to The number of characters to do the aggregation on from the geoid
-#' @param aggname What the level is called, like "tract" etc
+#' @param agg_geo What the level is called, like "tract" etc
 #' @description Helper function for lehdr which aggregates block geographies based on the block id.
 #' @import dplyr
 #' @importFrom glue glue
 #' @importFrom stats na.omit
 #' @importFrom stringr str_sub str_extract
 
-aggregate_lodes_df <- function(lehdr_df, geoid_to, aggname) {
+aggregate_lodes_df <- function(lehdr_df, agg_geo) {
   lehdr_df <- lehdr_df %>% 
     mutate(across(ends_with("_geocode"),
-              ~stringr::str_sub(., 1, geoid_to))) %>% 
-    rename_with(~stringr::str_replace(., "geocode", aggname), 
+              ~st_sub_agg_geo(., agg_geo = agg_geo))) %>% 
+    rename_with(~stringr::str_replace(., "geocode", agg_geo), 
                 ends_with("_geocode")
               )
   
-  ## Group by column(s) ending with "_{aggname}" as passed
-  geoid_cols <- stringr::str_extract(names(lehdr_df), glue::glue(".*_{aggname}$")) %>% na.omit()
+  ## Group by column(s) ending with "_{agg_geo}" as passed
+  geoid_cols <- stringr::str_extract(names(lehdr_df), glue::glue(".*_{agg_geo}$")) %>% na.omit()
   group_cols <- c("year", "state", geoid_cols)
   
   lehdr_df <- lehdr_df %>%
@@ -282,4 +449,6 @@ aggregate_lodes_df <- function(lehdr_df, geoid_to, aggname) {
 
 ## quiets concerns of R CMD check re: non-standard evaluation via tidyverse
 ## per suggestion of Hadley Wickham (https://stackoverflow.com/a/12429344/688693)
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
+if (getRversion() >= "2.15.1") {
+  utils::globalVariables(c(".", "COUNTYFP", "GEOID", "STATEFP"))
+}
