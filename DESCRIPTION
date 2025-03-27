@@ -1,37 +1,46 @@
-Package: lehdr
 Type: Package
+Package: lehdr
 Title: Grab Longitudinal Employer-Household Dynamics (LEHD) Flat Files
 Version: 1.1.4
-Authors@R: c(person(given="Jamaal", family="Green", role = c("cre","aut"), email="jamaal.green@gmail.com"), 
-    person(given="Liming", family="Wang", role =c("aut"), email="lmwang@pdx.edu"), 
-    person(given="Dillon", family="Mahmoudi", role =c("aut"), email="dillonm@umbc.edu"),
-    person(given="Matthew",family="Rogers", role=c("ctb"), email = "matthew.rogers09@gmail.com"),
-    person(given="Kyle", family="Walker", role=c("ctb"), email="kyle@walker-data.com"))
+Authors@R: c(
+    person("Jamaal", "Green", , "jamaal.green@gmail.com", role = c("cre", "aut")),
+    person("Liming", "Wang", , "lmwang@pdx.edu", role = "aut"),
+    person("Dillon", "Mahmoudi", , "dillonm@umbc.edu", role = "aut"),
+    person("Matthew", "Rogers", , "matthew.rogers09@gmail.com", role = "ctb"),
+    person("Kyle", "Walker", , "kyle@walker-data.com", role = "ctb"),
+    person("Eli", "Pousson", , "eli.pousson@gmail.com", role = "ctb",
+           comment = c(ORCID = "0000-0001-8280-1706"))
+  )
 Maintainer: Jamaal Green <jamaal.green@gmail.com>
-Description: Designed to query Longitudinal Employer-Household Dynamics (LEHD) 
-    workplace/residential association and origin-destination flat files and 
-    optionally aggregate Census block-level data to block group, tract, county, 
-    or state. Data comes from the LODES FTP server <https://lehd.ces.census.gov/data/lodes/LODES8/>.
-Depends: R (>= 4.0.0)
+Description: Designed to query Longitudinal Employer-Household Dynamics
+    (LEHD) workplace/residential association and origin-destination flat
+    files and optionally aggregate Census block-level data to block group,
+    tract, county, or state. Data comes from the LODES FTP server
+    <https://lehd.ces.census.gov/data/lodes/LODES8/>.
 License: MIT + file LICENSE
-Encoding: UTF-8
+URL: https://github.com/jamgreen/lehdr/
+BugReports: https://github.com/jamgreen/lehdr/issues/
+Depends: 
+    R (>= 4.0.0)
 Imports:
-    readr, 
-    rlang,
-    stringr, 
+    dplyr,
     glue,
     httr2,
-    dplyr,
-    magrittr
+    magrittr,
+    readr,
+    rlang,
+    stringr
 Suggests:
-    testthat (>= 3.0.0),
     knitr,
     rmarkdown,
     sf,
+    testthat (>= 3.0.0),
     tigris,
     withr
-VignetteBuilder: knitr
-RoxygenNote: 7.3.2
-URL: https://github.com/jamgreen/lehdr/
-BugReports: https://github.com/jamgreen/lehdr/issues/
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
