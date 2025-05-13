@@ -252,8 +252,8 @@ grab_lodes <- function(state, year,
   
   if (geometry) {
     lehdr_df <- join_lodes_geometry(
-      lehdr_df,
-      version,
+      lehdr_df = lehdr_df,
+      version = version,
       agg_geo = agg_geo_to,
       lodes_type = lodes_type,
       ...
@@ -267,6 +267,7 @@ grab_lodes <- function(state, year,
 #' @noRd
 st_sub_agg_geo <- function(string, agg_geo) {
   end <- switch(agg_geo,
+                "block" = -1,
                 "bg" = 12, 
                 "tract" = 11,
                 "county" = 5,
@@ -293,26 +294,22 @@ join_lodes_geometry <- function(
   )
   
   if (lodes_type %in% c("od", "wac")) {
-    w_geoid_col <- glue::glue("w_{agg_geo}")
     sf_column_name <- "w_geometry"
-    lehdr_sf <- sf::st_set_geometry(lehdr_sf, sf_column_name)
-    by <- rlang::set_names("GEOID", w_geoid_col)
-    lehdr_df <- dplyr::left_join(
+    lehdr_df <- join_lehdr_sf_obj(
       lehdr_df,
-      dplyr::as_tibble(lehdr_sf),
-      by = by
+      lehdr_sf,
+      geoid_col = agg_geo_col(agg_geo, "w"),
+      sf_column_name = sf_column_name
     )
   }
   
   if (lodes_type %in% c("od", "rac")) {
-    h_geoid_col <- glue::glue("h_{agg_geo}")
     sf_column_name <- "h_geometry"
-    lehdr_sf <- sf::st_set_geometry(lehdr_sf, sf_column_name)
-    by <- rlang::set_names("GEOID", h_geoid_col)
-    lehdr_df <- dplyr::left_join(
+    lehdr_df <- join_lehdr_sf_obj(
       lehdr_df,
-      dplyr::as_tibble(lehdr_sf),
-      by = by
+      lehdr_sf,
+      geoid_col = agg_geo_col(agg_geo, "h"),
+      sf_column_name = sf_column_name
     )
   }
   
@@ -329,6 +326,20 @@ join_lodes_geometry <- function(
   
   lehdr_df
 }
+
+#' Join sf object to a data frame using geoid column as `by`
+#' @noRd
+join_lehdr_sf_obj <- function(
+    df_obj,
+    sf_obj,
+    geoid_col,
+    sf_column_name = "w_geometry",
+    .f = dplyr::left_join) {
+  sf_obj <- sf::st_set_geometry(sf_obj, value = sf_column_name)
+  by <- rlang::set_names("GEOID", nm = geoid_col)
+  .f(df_obj, dplyr::as_tibble(sf_obj), by = by)
+}
+
 
 
 #' Get year from LODES version
@@ -354,8 +365,8 @@ grab_lodes_geometry <- function(lehdr_df = NULL,
   if (is.null(state)) {
     # Get states FIPS codes from input LODES data
     state <- c(
-      st_sub_agg_geo(unique(lehdr_df[[glue::glue("w_{agg_geo}")]]), "state"),
-      st_sub_agg_geo(unique(lehdr_df[[glue::glue("h_{agg_geo}")]]), "state")
+      st_sub_agg_geo(unique(lehdr_df[[agg_geo_col(agg_geo, "w")]]), "state"),
+      st_sub_agg_geo(unique(lehdr_df[[agg_geo_col(agg_geo, "h")]]), "state")
     )
   }
   
@@ -398,7 +409,7 @@ grab_lodes_geometry <- function(lehdr_df = NULL,
  
  # Handle variant GEOID column names for block-level data
  if (agg_geo == "block") {
-   cols <- switch (year,
+   cols <- switch (as.character(year),
      "2020" = "GEOID20",
      "2010" = "GEOID10",
      "2000" = "GEOID00"
@@ -416,6 +427,16 @@ grab_lodes_geometry <- function(lehdr_df = NULL,
  }
  
  dplyr::select(lehdr_sf, dplyr::all_of(cols))
+}
+
+#' @noRd
+agg_geo_col <- function(agg_geo, before = "w") {
+  col_suffix <- agg_geo
+  if (agg_geo == "block") {
+    col_suffix <- "geocode"
+  }
+  
+  glue::glue("{before}_{col_suffix}")
 }
 
 #' Aggregate data to a certain level dictated by inputs. Internal function.
