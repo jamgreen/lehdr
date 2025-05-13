@@ -252,8 +252,8 @@ grab_lodes <- function(state, year,
   
   if (geometry) {
     lehdr_df <- join_lodes_geometry(
-      lehdr_df,
-      version,
+      lehdr_df = lehdr_df,
+      version = version,
       agg_geo = agg_geo_to,
       lodes_type = lodes_type,
       ...
@@ -267,6 +267,7 @@ grab_lodes <- function(state, year,
 #' @noRd
 st_sub_agg_geo <- function(string, agg_geo) {
   end <- switch(agg_geo,
+                "block" = -1,
                 "bg" = 12, 
                 "tract" = 11,
                 "county" = 5,
@@ -293,7 +294,7 @@ join_lodes_geometry <- function(
   )
   
   if (lodes_type %in% c("od", "wac")) {
-    w_geoid_col <- glue::glue("w_{agg_geo}")
+    w_geoid_col <- agg_geo_col(agg_geo, "w")
     sf_column_name <- "w_geometry"
     lehdr_sf <- sf::st_set_geometry(lehdr_sf, sf_column_name)
     by <- rlang::set_names("GEOID", w_geoid_col)
@@ -305,7 +306,7 @@ join_lodes_geometry <- function(
   }
   
   if (lodes_type %in% c("od", "rac")) {
-    h_geoid_col <- glue::glue("h_{agg_geo}")
+    h_geoid_col <- agg_geo_col(agg_geo, "h")
     sf_column_name <- "h_geometry"
     lehdr_sf <- sf::st_set_geometry(lehdr_sf, sf_column_name)
     by <- rlang::set_names("GEOID", h_geoid_col)
@@ -354,8 +355,8 @@ grab_lodes_geometry <- function(lehdr_df = NULL,
   if (is.null(state)) {
     # Get states FIPS codes from input LODES data
     state <- c(
-      st_sub_agg_geo(unique(lehdr_df[[glue::glue("w_{agg_geo}")]]), "state"),
-      st_sub_agg_geo(unique(lehdr_df[[glue::glue("h_{agg_geo}")]]), "state")
+      st_sub_agg_geo(unique(lehdr_df[[agg_geo_col(agg_geo, "w")]]), "state"),
+      st_sub_agg_geo(unique(lehdr_df[[agg_geo_col(agg_geo, "h")]]), "state")
     )
   }
   
@@ -416,6 +417,16 @@ grab_lodes_geometry <- function(lehdr_df = NULL,
  }
  
  dplyr::select(lehdr_sf, dplyr::all_of(cols))
+}
+
+#' @noRd
+agg_geo_col <- function(agg_geo, before = "w") {
+  col_suffix <- agg_geo
+  if (agg_geo == "block") {
+    col_suffix <- "geocode"
+  }
+  
+  glue::glue("{before}_{col_suffix}")
 }
 
 #' Aggregate data to a certain level dictated by inputs. Internal function.
