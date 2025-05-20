@@ -265,14 +265,16 @@ grab_lodes <- function(state, year,
 
 #' Subset GEOID string based on geo aggregation level
 #' @noRd
-st_sub_agg_geo <- function(string, agg_geo) {
-  end <- switch(agg_geo,
-                "block" = -1,
-                "bg" = 12, 
-                "tract" = 11,
-                "county" = 5,
-                "state" = 2)
-  stringr::str_sub(string, start = 1, end = end)
+st_sub_agg_geo <- function(string, agg_geo, start = 1) {
+  end <- switch(
+    agg_geo,
+    "block" = -1,
+    "bg" = 12,
+    "tract" = 11,
+    "county" = 5,
+    "state" = 2
+  )
+  stringr::str_sub(string, start = start, end = end)
 }
 
 #' Internal function to download and join spatial data to LEHDR data frame
@@ -354,29 +356,50 @@ get_lodes_version_year <- function(version) {
 
 #' Grab spatial data to LEHDR data frame
 #' @noRd
-grab_lodes_geometry <- function(lehdr_df = NULL,
-                                state = NULL,
-                                version = NULL,
-                                agg_geo = NULL,
-                                ...) {
+grab_lodes_geometry <- function(
+  lehdr_df = NULL,
+  version = NULL,
+  agg_geo = NULL,
+  state = NULL,
+  county = NULL,
+  ...
+) {
   rlang::check_installed("tigris")
-  
-  # TODO: Validate state and convert to FIPS code if non-FIPS code input is provided
-  if (is.null(state)) {
+
+  # Get year for version
+  year <- get_lodes_version_year(version)
+
+  # Get GeoID values
+  geoid_values <- unique(c(
+    lehdr_df[[agg_geo_col(agg_geo, "w")]],
+    lehdr_df[[agg_geo_col(agg_geo, "h")]]
+  ))
+
+  # TODO: Validate state and convert to FIPS code if non-FIPS code input is
+  # provided
+
+  if (agg_geo %in% c("block", "bg", "tract") && is.null(county)) {
+    geoid_values <- unique(st_sub_agg_geo(geoid_values, "county"))
+    state <- st_sub_agg_geo(geoid_values, "state")
+    county <- st_sub_agg_geo(geoid_values, "county", start = 3)
+  } else if (is.null(state)) {
     # Get states FIPS codes from input LODES data
-    state <- c(
-      st_sub_agg_geo(unique(lehdr_df[[agg_geo_col(agg_geo, "w")]]), "state"),
-      st_sub_agg_geo(unique(lehdr_df[[agg_geo_col(agg_geo, "h")]]), "state")
-    )
+    state <- st_sub_agg_geo(geoid_values, "state")
+    state <- unique(state)
   }
-  
-  state <- unique(state)
-  
+
   # Set tigris function based on agg_geo
-  tigris_fn <- switch (agg_geo,
-    block = tigris::blocks,
-    bg = tigris::block_groups,
-    tract = tigris::tracts,
+  tigris_fn <- switch(
+    agg_geo,
+    block = function(state = NULL, county = NULL, year = NULL, ...) {
+      tigris::blocks(state = state, county = county, year = year, ...)
+    },
+    bg = function(state = NULL, county = NULL, year = NULL, ...) {
+      tigris::block_groups(state = state, county = county, year = year, ...)
+    },
+    tract = function(state = NULL, county = NULL, year = NULL, ...) {
+      tigris::tracts(state = state, county = county, year = year, ...)
+    },
     county = tigris::counties,
     state = function(state = NULL, year = NULL, ...) {
       tigris_geo <- tigris::states(year = year, ...)
@@ -387,46 +410,57 @@ grab_lodes_geometry <- function(lehdr_df = NULL,
       )
     } 
   )
-  
-  # Get year for version
-  year <- get_lodes_version_year(version)
-  
-  # Download data from tigris for each state
-  # TODO: Pass counties where possible to avoid downloading unused data
-  lehdr_sf_list <- lapply(
-    state,
-    function(st) {
-      tigris_fn(
-        state = st,
-        year = year,
-        ...
-      )
-    })
-  
- lehdr_sf <- dplyr::bind_rows(lehdr_sf_list)
- 
- cols <- "GEOID"
- 
- # Handle variant GEOID column names for block-level data
- if (agg_geo == "block") {
-   cols <- switch (as.character(year),
-     "2020" = "GEOID20",
-     "2010" = "GEOID10",
-     "2000" = "GEOID00"
-   )
-   
-   cols <- rlang::set_names(cols, "GEOID")
- }
- 
- # Handle missing GEOID column for county-level data
- if (agg_geo == "county" && !rlang::has_name(lehdr_sf, "GEOID")) {
-   lehdr_sf <- dplyr::mutate(
-     lehdr_sf,
-     GEOID = paste0(STATEFP, COUNTYFP)
-   )
- }
- 
- dplyr::select(lehdr_sf, dplyr::all_of(cols))
+
+  if (agg_geo == "state") {
+    # Download all states
+    lehdr_sf_list <- list(tigris_fn(state = state, year = year, ...))
+  } else if (agg_geo %in% c("block", "bg", "tract")) {
+    # Download block, block group, and tract data for all counties
+    lehdr_sf_list <- mapply(
+      tigris_fn,
+      state,
+      county,
+      year,
+      ...,
+      SIMPLIFY = FALSE
+    )
+  } else {
+    # Download county data from tigris for each state
+    lehdr_sf_list <- lapply(
+      state,
+      function(st) {
+        tigris_fn(
+          state = st,
+          year = year,
+          ...
+        )
+      }
+    )
+  }
+
+  lehdr_sf <- dplyr::bind_rows(lehdr_sf_list)
+  cols <- "GEOID"
+
+  if (agg_geo == "block") {
+    # Handle variant GEOID column names for block-level data
+    cols <- switch(
+      as.character(year),
+      "2020" = "GEOID20",
+      "2010" = "GEOID10",
+      "2000" = "BLKIDFP00"
+    )
+
+    cols <- rlang::set_names(cols, "GEOID")
+    print(lehdr_sf)
+  } else if (agg_geo == "county" && !rlang::has_name(lehdr_sf, "GEOID")) {
+    # Handle missing GEOID column for county-level data
+    lehdr_sf <- dplyr::mutate(
+      lehdr_sf,
+      GEOID = paste0(STATEFP, COUNTYFP)
+    )
+  }
+
+  dplyr::select(lehdr_sf, dplyr::all_of(cols))
 }
 
 #' @noRd
