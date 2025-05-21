@@ -148,39 +148,99 @@ test_that("test grab crosswalk", {
 
 test_that("test join_lodes_geometry", {
   withr::local_options(list(lehdr_use_cache = TRUE))
-  
-  rac_data <- grab_lodes(state = "vt", 
-             year = 2008,
-             version = "LODES5",
-             lodes_type = "rac", 
-             job_type = "JT01", 
-             segment = "SA01", 
-             state_part = "main", 
-             agg_geo = "county",
-             geometry = TRUE)
-  
-  wac_data <- grab_lodes(state = "vt", 
-                         year = 2008,
-                         version = "LODES5",
-                         lodes_type = "wac", 
-                         job_type = "JT01", 
-                         segment = "SA01", 
-                         state_part = "main", 
-                         agg_geo = "county",
-                         geometry = TRUE)
-  
+
+  rac_data <- grab_lodes(
+    state = "vt",
+    year = 2008,
+    version = "LODES5",
+    lodes_type = "rac",
+    job_type = "JT01",
+    segment = "SA01",
+    state_part = "main",
+    agg_geo = "county",
+    geometry = TRUE
+  )
+
+  wac_data <- grab_lodes(
+    state = "vt",
+    year = 2008,
+    version = "LODES5",
+    lodes_type = "wac",
+    job_type = "JT01",
+    segment = "SA01",
+    state_part = "main",
+    agg_geo = "county",
+    geometry = TRUE
+  )
+
   expect_s3_class(rac_data, "sf")
   expect_s3_class(wac_data, "sf")
-  
+
+  rac_data_bg <- grab_lodes(
+    state = "vt",
+    year = 2022,
+    version = "LODES8",
+    lodes_type = "rac",
+    job_type = "JT01",
+    segment = "SA01",
+    state_part = "main",
+    agg_geo = "bg",
+    geometry = TRUE
+  )
+
+  wac_data_bg <- grab_lodes(
+    state = "vt",
+    year = 2022,
+    version = "LODES8",
+    lodes_type = "wac",
+    job_type = "JT01",
+    segment = "SA01",
+    state_part = "main",
+    agg_geo = "bg",
+    geometry = TRUE
+  )
+
+  expect_s3_class(rac_data_bg, "sf")
+  expect_s3_class(wac_data_bg, "sf")
+
+  rac_data_block <- grab_lodes(
+    state = "vt",
+    year = 2008,
+    version = "LODES5",
+    lodes_type = "rac",
+    job_type = "JT01",
+    segment = "SA01",
+    state_part = "main",
+    agg_geo = "block",
+    geometry = TRUE
+  )
+
+  wac_data_block <- grab_lodes(
+    state = "vt",
+    year = 2008,
+    version = "LODES5",
+    lodes_type = "wac",
+    job_type = "JT01",
+    segment = "SA01",
+    state_part = "main",
+    agg_geo = "block",
+    geometry = TRUE
+  )
+
+  expect_s3_class(rac_data_block, "sf")
+  expect_s3_class(wac_data_block, "sf")
+
   expect_message(
-    grab_lodes(state = "vt", 
-               year = 2008,
-               version = "LODES5",
-               lodes_type = "wac", 
-               job_type = "JT01", 
-               segment = "SA01", 
-               state_part = "main", 
-               agg_geo = "county",
-               geometry = TRUE)
+    grab_lodes(
+      state = "vt",
+      year = 2008,
+      version = "LODES5",
+      lodes_type = "wac",
+      job_type = "JT01",
+      segment = "SA01",
+      state_part = "main",
+      agg_geo = "county",
+      geometry = TRUE
+    )
   )
 })
