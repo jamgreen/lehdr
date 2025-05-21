@@ -287,7 +287,7 @@ join_lodes_geometry <- function(
     ...) {
   rlang::check_installed("sf")
 
-  # Download 
+  # Download geometry w/ tigris package
   lehdr_sf <- grab_lodes_geometry(
     lehdr_df = lehdr_df,
     version = version,
@@ -375,18 +375,20 @@ grab_lodes_geometry <- function(
     lehdr_df[[agg_geo_col(agg_geo, "h")]]
   ))
 
+  # Get state and/or county FIPS codes from input LODES data
+  if (is.null(state)) {
+    # Get county level data for smaller geographies
+    if (agg_geo %in% c("block", "bg", "tract") && is.null(county)) {
+      geoid_values <- unique(st_sub_agg_geo(geoid_values, "county"))
+      state <- st_sub_agg_geo(geoid_values, "state")
+      county <- st_sub_agg_geo(geoid_values, "county", start = 3)
+    } else {
+      state <- st_sub_agg_geo(geoid_values, "state")
+      state <- unique(state)
+    }
+  }
   # TODO: Validate state and convert to FIPS code if non-FIPS code input is
   # provided
-
-  if (agg_geo %in% c("block", "bg", "tract") && is.null(county)) {
-    geoid_values <- unique(st_sub_agg_geo(geoid_values, "county"))
-    state <- st_sub_agg_geo(geoid_values, "state")
-    county <- st_sub_agg_geo(geoid_values, "county", start = 3)
-  } else if (is.null(state)) {
-    # Get states FIPS codes from input LODES data
-    state <- st_sub_agg_geo(geoid_values, "state")
-    state <- unique(state)
-  }
 
   # Set tigris function based on agg_geo
   tigris_fn <- switch(
@@ -442,16 +444,21 @@ grab_lodes_geometry <- function(
   cols <- "GEOID"
 
   if (agg_geo == "block") {
-    # Handle variant GEOID column names for block-level data
-    cols <- switch(
-      as.character(year),
-      "2020" = "GEOID20",
-      "2010" = "GEOID10",
-      "2000" = "BLKIDFP00"
-    )
+    # Handle variant GEOID column names for block-level data by just taking the
+    # first available GEOID column
+    cols <- intersect(
+      names(lehdr_sf),
+      c(
+        "BLKIDFP00",
+        "BLKIDFP10",
+        "BLKIDFP20",
+        "GEOID00",
+        "GEOID10",
+        "GEOID20"
+      )
+    )[1]
 
     cols <- rlang::set_names(cols, "GEOID")
-    print(lehdr_sf)
   } else if (agg_geo == "county" && !rlang::has_name(lehdr_sf, "GEOID")) {
     # Handle missing GEOID column for county-level data
     lehdr_sf <- dplyr::mutate(
