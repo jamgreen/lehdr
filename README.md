@@ -8,19 +8,25 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lehdr)](https://cran.r-project.org/package=lehdr)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/lehdr)](https://cran.r-project.org/package=lehdr)
-[![R-CMD-check](https://github.com/jamgreen/lehdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamgreen/lehdr/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/dillonma/lehdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dillonma/lehdr/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/dillonma/lehdr/actions/workflows/pkgdown.yaml/badge.svg)](https://dillonma.github.io/lehdr/)
 <!-- badges: end -->
 
 **lehdr** (pronounced: *lee dur* like a metric *litre*) is an R package
-that allows users to interface with the [Longitudinal and
-Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/)
-Origin-Destination Employment Statistics (LODES) dataset returned as
-dataframes.
+that allows users to interface with the [Longitudinal Employer-Household
+Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination
+Employment Statistics (LODES) dataset, returned as tidy data frames. The
+package is designed to download LODES flat files (origin-destination,
+workplace area characteristics, and residential area characteristics),
+aggregate them to common Census geographies, and now includes built-in
+analytical functions for commute flow statistics, longitudinal job
+change, and earnings tier shares.
 
-The **lehdr** package is designed to grab the LODES flat files
-(origin-destination, workplace, and residential association files) and
-includes an option to aggregate results to the Census tract level for
-analysts who find the fuzzing at the block level too great.
+Full documentation and the Getting Started vignette are available at the
+**[lehdr pkgdown site](https://dillonma.github.io/lehdr/)**. For a
+detailed walkthrough of all analytical functions and maps, see the
+**[Getting Started
+vignette](https://dillonma.github.io/lehdr/articles/getting_started.html)**.
 
 ## Installation
 
@@ -41,7 +47,7 @@ pak::pak("jamgreen/lehdr")
 ## Usage
 
 Load the library and optionally set the `lehdr_use_cache` option to save
-downloaded files for reuse:
+downloaded files for reuse across sessions:
 
 ``` r
 library(lehdr)
@@ -49,85 +55,79 @@ library(lehdr)
 options(lehdr_use_cache = TRUE)
 ```
 
-The `grab_lodes()` function can be used to download data for a specific
-state, year, and LODES version. The LODES table type can be set to the
-default origin-destination (“od”),residential association (“rac”), or
-workplace association (“wac”).
+The `grab_lodes()` function downloads data for a specific state, year,
+and LODES version. The table type is set with `lodes_type`:
+origin-destination (`"od"`), residential area characteristics (`"rac"`),
+or workplace area characteristics (`"wac"`).
 
-For example, Oregon (`state = "or"`) 2020 (`year = 2020`) from LODES
-version 8 (`version="LODES8"`, default), origin-destination
-(`lodes_type = "od"`), primary jobs including private primary,
-secondary, and Federal (`job_type = "JT01"`, default), as well as,
-primary jobs across ages, earnings, and industry (`segment = "S000"`,
-default), aggregated at the Census Tract level rather than the default
-Census Block (`agg_geo = "tract"`).
+For example, Oregon (`state = "or"`) for 2020 (`year = 2020`) from LODES
+version 8 (`version = "LODES8"`, the default), origin-destination
+(`lodes_type = "od"`), primary jobs (`job_type = "JT01"`, the default),
+all worker segments (`segment = "S000"`, the default), aggregated to the
+Census tract level (`agg_geo = "tract"`):
 
 ``` r
 or_od <- grab_lodes(
-  state = "or",
-  year = 2020,
-  version = "LODES8",
+  state      = "or",
+  year       = 2020,
+  version    = "LODES8",
   lodes_type = "od",
-  job_type = "JT01",
-  segment = "S000",
+  job_type   = "JT01",
+  segment    = "S000",
   state_part = "main",
-  agg_geo = "tract"
+  agg_geo    = "tract"
 )
 
 head(or_od)
 ```
 
-The package can be used to retrieve multiple states and years at the
-same time by creating a vector or list. This second example pulls the
-Oregon AND Rhode Island (`state = c("or", "ri")`) for 2013 and 2014
-(`year = c(2013, 2014)` or `year = 2013:2014`).
+Pass character vectors to `state` and numeric vectors to `year` to
+retrieve multiple states and years in a single call:
 
 ``` r
 or_ri_od <- grab_lodes(
-  state = c("or", "ri"),
-  year = c(2013, 2014),
+  state      = c("or", "ri"),
+  year       = c(2013, 2014),
   lodes_type = "od",
-  job_type = "JT01",
-  segment = "S000",
+  job_type   = "JT01",
+  segment    = "S000",
   state_part = "main",
-  agg_geo = "tract"
+  agg_geo    = "tract"
 )
 
 head(or_ri_od)
 ```
 
-Not all years are available for each state. To see all options for
-`lodes_type`, `job_type`, and `segment` and the availability for each
-state/year, please see the most recent LEHD Technical Document at
+Not all years are available for each state. For the full availability
+matrix, see the LEHD Technical Document at
 <https://lehd.ces.census.gov/data/lodes/LODES8>.
 
-Set `geometry = TRUE` to download spatial data using the `{tigris}`
-package and join to your output data. When `lodes_type = "rac"` or
-`lodes_type = "wac"`, `grab_lodes()` now returns an `sf` data frame.
+Set `geometry = TRUE` to join Census geometries via the `tigris`
+package. When `lodes_type = "rac"` or `"wac"`, `grab_lodes()` returns an
+`sf` data frame directly:
 
 ``` r
 ri_rac_geo <- grab_lodes(
-  state = "ri",
-  year = 2020,
+  state      = "ri",
+  year       = 2020,
   lodes_type = "rac",
-  agg_geo = "county",
-  geometry = TRUE
+  agg_geo    = "county",
+  geometry   = TRUE
 )
 
 plot(ri_rac_geo["C000"])
 ```
 
-If `lodes_type = "od"` the returned data frame contains the geometry for
-both the origin and destination in `sfc` class columns. These features
-can be combined together as the following example shows:
+For `lodes_type = "od"`, separate `h_geometry` and `w_geometry` columns
+are returned. These can be combined into flow lines:
 
 ``` r
 or_od_geo <- grab_lodes(
-  state = "or",
-  year = 2020,
+  state      = "or",
+  year       = 2020,
   lodes_type = "od",
-  agg_geo = "county",
-  geometry = TRUE,
+  agg_geo    = "county",
+  geometry   = TRUE,
   state_part = "main"
 )
 
@@ -150,49 +150,188 @@ or_od_lines <- sf::st_set_geometry(
   h_to_w_lines
 )
 
-multnomah_od_lines <- dplyr::filter(
-  or_od_lines,
-  w_county == "41051"
-)
+multnomah_od_lines <- dplyr::filter(or_od_lines, w_county == "41051")
 
 plot(multnomah_od_lines["S000"], reset = FALSE)
 plot(or_od_geo["h_geometry"], lwd = 0.25, add = TRUE)
 ```
 
-Using the optional `version` paramater, users can specify which LODES
-version to use. Version 8 is default (`version="LODES8"`) is enumerated
-at 2020 Census blocks. LODES7 (`version="LODES7"`) is enumerated at 2010
-Census blocks, but ends in 2019. LODES5 (`version="LODES5"`) is
-enumerated at 2000 Census blocks, but ends in 2009.
+The optional `version` parameter selects the LODES vintage. LODES8
+(default) uses 2020 Census blocks. LODES7 uses 2010 Census blocks and
+ends in 2019. LODES5 uses 2000 Census blocks and ends in 2009.
 
-Other common uses might include retrieving Residential or Work Area
-Characteristics (`lodes_type = "rac"` or `lodes_type = "wac"`
-respectively), low income jobs (`segment = "SE01"`) or good producing
-jobs (`segment = "SI01"`). Other common geographies might include
-retrieving data at the Census Block level (`agg_geo = "block"`, not
-necessary as it is default).
+## Analytical Functions
+
+lehdr includes three functions for common LODES analyses.
+
+### Commute flow statistics
+
+`compute_commute_stats()` takes an OD data frame and returns
+per-geography inflow, outflow, internal flow, net flow, and
+self-containment ratio. Self-containment is the share of employed
+residents who also work within the same geographic unit.
+
+``` r
+od_md <- grab_lodes(
+  state      = "md",
+  year       = 2019,
+  lodes_type = "od",
+  job_type   = "JT00",
+  segment    = "S000",
+  state_part = "main",
+  agg_geo    = "county"
+)
+
+commute_md <- compute_commute_stats(od_md, agg_geo = "county")
+
+commute_md |>
+  dplyr::arrange(dplyr::desc(self_containment)) |>
+  dplyr::select(county, workers_in, workers_out, net_flow, self_containment) |>
+  head(10)
+```
+
+The map below shows self-containment at the Census tract level for
+Baltimore City, Maryland (FIPS 24510):
+
+<img src="vignettes/figures/fig1_balt_self_containment.png" alt="" width="100%" />
+
+### Longitudinal change
+
+`compute_lodes_change()` computes absolute and percentage change in any
+LODES variable between two years. Output can be wide (one row per
+geography) or long (suitable for `ggplot2`).
+
+``` r
+wac_md_panel <- grab_lodes(
+  state      = "md",
+  year       = c(2010, 2019),
+  lodes_type = "wac",
+  job_type   = "JT00",
+  segment    = "S000",
+  agg_geo    = "county"
+)
+
+change_md <- compute_lodes_change(
+  wac_md_panel,
+  geo_col      = "w_county",
+  base_year    = 2010,
+  compare_year = 2019,
+  variables    = c("C000", "CE01", "CE02", "CE03")
+)
+
+change_md |>
+  dplyr::arrange(dplyr::desc(C000_change)) |>
+  dplyr::select(w_county, C000_base, C000_compare, C000_change, C000_pct_change) |>
+  head(10)
+```
+
+The map below shows percent change in total jobs across Maryland
+counties from 2010 to 2019:
+
+<img src="vignettes/figures/fig2_md_job_change.png" alt="" width="100%" />
+
+### Earnings tier shares
+
+`compute_earnings_share()` computes the distribution of jobs across
+LODES earnings tiers: low (up to \$1,250/month), mid
+(\$1,251-\$3,333/month), and high (above \$3,333/month). Use
+`output = "long"` for a `ggplot2`-ready format.
+
+``` r
+wac_md <- grab_lodes(
+  state      = "md",
+  year       = 2019,
+  lodes_type = "wac",
+  job_type   = "JT00",
+  segment    = "S000",
+  agg_geo    = "county"
+)
+
+earn_shares <- compute_earnings_share(wac_md, type = "wac", geo_col = "w_county")
+
+earn_shares |>
+  dplyr::arrange(dplyr::desc(share_low)) |>
+  dplyr::select(w_county, share_low, share_mid, share_high) |>
+  head(10)
+```
+
+<img src="vignettes/figures/fig3_md_earnings_shares.png" alt="" width="100%" />
+
+## Mapping LODES Data
+
+The figures above were produced with `ggplot2` and `tigris`. The general
+pattern is: download with `grab_lodes()`, compute a derived variable,
+fetch geometries with `tigris::tracts()` or `tigris::counties()`, join
+on GEOID, and plot with `geom_sf()`. See `vignette("getting_started")`
+for full figure code.
+
+The map below shows a flow-weighted job accessibility index for
+Baltimore City tracts, computed directly from LODES OD data:
+
+<img src="vignettes/figures/fig4_balt_accessibility.png" alt="" width="100%" />
+
+## Maps
+
+All figures can be reproduced by running
+`source("data-raw/render_vignette_figures.R")` locally. The map below
+shows self-containment at the Census tract level for Baltimore City,
+Maryland — a simple but powerful use of LODES OD data to understand
+which neighborhoods have strong local job access versus heavy
+out-commuting:
+
+<img src="vignettes/figures/fig1_balt_self_containment.png" alt="" width="100%" />
+
+See `vignette("getting_started")` for the full figure code and
+additional maps of Maryland county job change, earnings tier
+composition, and tract-level job accessibility.
+
+## Caching
+
+Downloaded files are deleted after reading by default. Set
+`use_cache = TRUE` in `grab_lodes()` or
+`options(lehdr_use_cache = TRUE)` globally to retain files in the user
+cache directory (`tools::R_user_dir("lehdr", "cache")`). Cache filenames
+include the LODES version (e.g., `lodes8_md_wac_S000_JT00_2019.csv.gz`),
+so switching between versions will not serve stale data from a different
+vintage.
+
+**Upgrading from lehdr \< 1.2.0?** Earlier versions cached files without
+a version prefix (e.g., `md_wac_S000_JT00_2019.csv.gz`). Those files
+will never be matched by the new naming scheme and can be safely
+deleted. To clear the entire cache:
+
+``` r
+cache_dir <- tools::R_user_dir("lehdr", "cache")
+list.files(cache_dir)          # inspect before deleting
+unlink(cache_dir, recursive = TRUE)
+```
 
 ## Why lehdr?
 
 The LODES dataset is frequently used by transportation and economic
-development planners, regional economists, disaster managers and other
-public servants in order to have a fine grained understanding of the
-distribution of employment.
+development planners, regional economists, disaster managers, and other
+public servants who need fine-grained understanding of the spatial
+distribution of employment. Such data underpins regional travel demand
+models, workforce and industrial policy analysis, and, as a Census
+product, can be joined to Decennial or American Community Survey data to
+illuminate the relationship between population and employment geography.
 
-Such data is integral for regional travel demand models that help to
-dictate transportation policy options, regional economists and economic
-development planners interested in the spatial distribution of
-particular kinds of work use the data to weigh different industrial or
-workforce policy options.
+LODES is the only source of detailed geographic information on
+employment for the entire country, and **lehdr** is designed to make it
+more accessible for researchers and analysts working on regional
+development issues.
 
-Finally, as a Census product, the LODES data can be joined to Census
-Decennial or American Community Survey data to help visualize the
-interactions between different population groups and work.
+## Citation
 
-In short, the LODES dataset is the only source of detailed geographic
-information on employment for the country and should be more widely
-available for researchers and analysts who work on regional development
-issues.
+If you use **lehdr** in published work, please cite it:
+
+``` r
+citation("lehdr")
+```
+
+Green, Jamaal, Liming Wang, and Dillon Mahmoudi. 2025. “lehdr: Grab
+Longitudinal Employer-Household Dynamics (LEHD) Flat Files.” R package
+version 1.2.0. <https://github.com/jamgreen/lehdr/>
 
 ## Acknowledgements
 
@@ -202,4 +341,4 @@ Wang, Portland State University.
 
 This package would not exist in its current format without the
 inspiration of [Bob Rudis’s](https://rud.is/b/) [lodes
-package](https://github.com/hrbrmstr/lodes)
+package](https://github.com/hrbrmstr/lodes).

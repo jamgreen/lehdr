@@ -23,87 +23,101 @@ grab_lodes(
 }
 \arguments{
 \item{state}{US state abbreviation in lower case, as character.
-Can be a vector of states, like c("or","md","tx") for Oregon, Maryland,
-and Texas.}
+Can be a vector of states, like \code{c("or", "md", "tx")} for Oregon,
+Maryland, and Texas. Two-letter FIPS abbreviations only.}
 
-\item{year}{Year of the lodes data, as numerical.
-Can be a vector of years, like c(2014, 2020) for 2014 and 2020.}
+\item{year}{Year of the LODES data, as a numeric integer.
+Can be a vector of years, like \code{c(2014, 2020)} for 2014 and 2020.
+Must be between 2002 and 2023.}
 
-\item{version}{The LODES version to use.
-Version 8 (the default, use "LODES8") is enumerated at 2020 Census blocks.
-"LODES7" is enumerated at 2010 Census blocks, but ends in 2019;
-LODES5" is enumerated at 2000 Census blocks, but ends in 2009.}
+\item{version}{The LODES version to use. \code{"LODES8"} (the default) is
+enumerated at 2020 Census blocks and covers 2002-2022. \code{"LODES7"} is
+enumerated at 2010 Census blocks and covers 2002-2019. \code{"LODES5"} is
+enumerated at 2000 Census blocks and covers 2002-2009.}
 
-\item{lodes_type}{The LODES table type.
-Values can be the default origin-destination ("od"),residential association
-("rac"), or workplace association ("wac").
-od files give a home and destination census block for workers. Residential
-files give job totals of worker home census blocks and workplace files
-give job totals of worker job census blocks}
+\item{lodes_type}{The LODES table type. Values can be the default
+origin-destination (\code{"od"}), residential area characteristics (\code{"rac"}),
+or workplace area characteristics (\code{"wac"}). OD files give a home and
+workplace census block for each worker flow. RAC files give job totals
+at worker home blocks; WAC files give job totals at worker job blocks.}
 
-\item{job_type}{Jobtype: "JT00" for all jobs, "JT01" for Primary Jobs,
-"JT02" for All Private Jobs, "JT03" for Private Primary jobs, "JT04" for
-All Federal jobs, "JT05" for Federal Primary jobs}
+\item{job_type}{Job type segment: \code{"JT00"} for all jobs (default),
+\code{"JT01"} for Primary Jobs, \code{"JT02"} for All Private Jobs,
+\code{"JT03"} for Private Primary jobs, \code{"JT04"} for All Federal jobs,
+\code{"JT05"} for Federal Primary jobs.}
 
-\item{segment}{Segment of the workforce.
-"S000" total number of jobs for workers, "SA01" number of jobs for workers
-aged 29 or younger, "SA02" number of jobs for workers aged 30-54,"SA03"
-number of jobs for workers 55 and older, "SE01" number of jobs with
-earnings $1,250/month or less, "SE02" number of jobs with earnings $1,251
-to $3,333/month, "SE03" number of jobs with earnings greater than
-$3,333/month, "SI01" number of jobs in Goods Producing industry sectors,
-"SI02" number of jobs in Trade, Transportation, & Utilities industry
-sectors, "SI03" number of jobs in All Other Services industry sectors.}
+\item{segment}{Workforce segment. \code{"S000"} total jobs (default);
+\code{"SA01"} workers aged 29 or younger; \code{"SA02"} workers aged 30-54;
+\code{"SA03"} workers 55 and older; \code{"SE01"} earnings $1,250/month or less;
+\code{"SE02"} earnings $1,251-$3,333/month; \code{"SE03"} earnings above
+$3,333/month; \code{"SI01"} Goods Producing industries; \code{"SI02"} Trade,
+Transportation, & Utilities industries; \code{"SI03"} All Other Services.}
 
 \item{agg_geo}{Aggregate to a geography other than Census Block (default).
-Values can be "bg" for block group, "tract", "county", or "state".}
+Values can be \code{"bg"} (block group), \code{"tract"}, \code{"county"}, or
+\code{"state"}. The string \code{"block group"} is also accepted as an alias for
+\code{"bg"}.}
 
-\item{state_part}{Part of the state file, required for "od" lodes_type.
-Can have values of "main" or "aux" in OD files. Using "main" includes
-workers with their workplace and residence in the state. Using "aux"
-includes workers with residences out of state and workplace in the state
-of interest}
+\item{state_part}{Part of the state file; required when
+\code{lodes_type = "od"}. \code{"main"} includes workers whose home and workplace
+are both in-state. \code{"aux"} includes workers who live out-of-state but
+work in the state of interest. Defaults to \code{"main"} with a warning when
+\code{lodes_type = "od"} and \code{state_part} is not explicitly supplied.}
 
-\item{download_dir}{Directory where lodes table will be downloaded.}
+\item{download_dir}{Directory where the LODES file will be downloaded.
+Defaults to the user-level cache directory for \code{lehdr}.}
 
-\item{geometry}{If \code{TRUE}, use the tigris package to download spatial data
-from the U.S. Census Bureau for the specified \code{year} and \code{geometry_state}
-at the level specified by \code{agg_geo}.}
+\item{geometry}{If \code{TRUE}, use the \code{tigris} package to download and attach
+spatial geometries from the U.S. Census Bureau for the specified \code{year}
+at the level specified by \code{agg_geo}. Returns an \code{sf} object when
+\code{lodes_type} is \code{"rac"} or \code{"wac"}.}
 
-\item{use_cache}{Boolean indicating whether or not to check whether or not
-the file had already been downloaded. Defaults to FALSE. Setting to TRUE or
-setting the \code{lehdr_use_cache} option to TRUE will allow lehdr to reuse
-existing files that were already downloaded.}
+\item{use_cache}{Boolean. If \code{TRUE}, reuse previously downloaded files
+rather than re-downloading. Defaults to \code{FALSE}. You can also set the
+\code{lehdr_use_cache} global option to \code{TRUE} to make caching the default
+for a session.}
 
-\item{...}{Additional arguments passed to tigris functions for data access.}
+\item{...}{Additional arguments passed to \code{tigris} functions when
+\code{geometry = TRUE}.}
 }
 \value{
-A dataframe (tibble) of LODES data aggregated to a block, block
-group, tract, county, or state level. If \code{geometry = TRUE} and \code{lodes_type}
-is "rac" or "wac" return a sf object.
+A tibble of LODES data aggregated to block, block group, tract,
+county, or state level. If \code{geometry = TRUE} and \code{lodes_type} is
+\code{"rac"} or \code{"wac"}, returns an \code{sf} object.
 }
 \description{
-Download LODES OD, RAC, and WAC tables
+Download LODES OD, RAC, and WAC tables from the LEHD FTP
+server and return a tidy data frame.
 }
 \examples{
 \donttest{
- # download and load 2014 block level O-D data for Vermont
- blk_df_or_od <- grab_lodes(state = 'vt', year = 2014, lodes_type = "od", job_type = "JT01",
-                         segment = "SA01", state_part = "main")
+  # Download 2014 block-level OD data for Vermont
+  blk_od <- grab_lodes(
+    state = "vt", year = 2014,
+    lodes_type = "od", job_type = "JT01",
+    segment = "SA01", state_part = "main"
+  )
 
- # download and load 2014 O-D data for Vermont and aggregate
- # to the tract level
- trt_df_or_od <- grab_lodes(state = 'vt', year = 2014, lodes_type = "od", job_type = "JT01",
-                         segment = "SA01", state_part = "main", agg_geo = "tract")
+  # Download 2014 OD data for Vermont aggregated to tract level
+  trt_od <- grab_lodes(
+    state = "vt", year = 2014,
+    lodes_type = "od", job_type = "JT01",
+    segment = "SA01", state_part = "main",
+    agg_geo = "tract"
+  )
 
- # download and load 2020 RAC data for Vermont and aggregate
- # to the tract level
- trt_df_or_rac <- grab_lodes(state = 'vt', year = 2014, lodes_type = "rac", job_type = "JT01",
-                          segment = "SA01", agg_geo = "tract")
+  # Download 2020 RAC data for Vermont aggregated to tract level
+  trt_rac <- grab_lodes(
+    state = "vt", year = 2020,
+    lodes_type = "rac", job_type = "JT01",
+    segment = "SA01", agg_geo = "tract"
+  )
 
- # download and load 2020 WAC data for Vermont and aggregate
- # to the tract level
- trt_df_or_wac <- grab_lodes(state = 'vt', year = 2014, lodes_type = "wac", job_type = "JT01",
-                          segment = "SA01", agg_geo = "tract")
+  # Download 2020 WAC data for Vermont aggregated to tract level
+  trt_wac <- grab_lodes(
+    state = "vt", year = 2020,
+    lodes_type = "wac", job_type = "JT01",
+    segment = "SA01", agg_geo = "tract"
+  )
 }
 }

@@ -1,0 +1,12 @@
+bibentry(
+  bibtype  = "Manual",
+  title    = "lehdr: Grab Longitudinal Employer-Household Dynamics (LEHD) Flat Files",
+  author   = c(
+    person("Jamaal", "Green"),
+    person("Liming", "Wang"),
+    person("Dillon", "Mahmoudi")
+  ),
+  year     = "2026",
+  note     = "R package version 1.2.0",
+  url      = "https://github.com/jamgreen/lehdr/"
+)

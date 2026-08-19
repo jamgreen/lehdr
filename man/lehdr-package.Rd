@@ -6,23 +6,25 @@
 \alias{lehdr-package}
 \title{lehdr: Grab Longitudinal Employer-Household Dynamics (LEHD) Flat Files}
 \description{
-Designed to query Longitudinal Employer-Household Dynamics (LEHD) workplace/residential association and origin-destination flat files and optionally aggregate Census block-level data to block group, tract, county, or state. Data comes from the LODES FTP server \url{https://lehd.ces.census.gov/data/lodes/LODES8/}.
+Designed to query Longitudinal Employer-Household Dynamics (LEHD) workplace/residential association and origin-destination flat files and optionally aggregate Census block-level data to block group, tract, county, or state. Also provides analytical functions for commute flow statistics, longitudinal change, and earnings tier distributions. Data comes from the LODES FTP server \url{https://lehd.ces.census.gov/data/lodes/LODES8/}.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jamgreen/lehdr/}
-  \item Report bugs at \url{https://github.com/jamgreen/lehdr/issues/}
+  \item \url{https://dillonma.github.io/lehdr/}
+  \item \url{https://github.com/dillonma/lehdr/}
+  \item Report bugs at \url{https://github.com/dillonma/lehdr/issues/}
 }
 
 }
 \author{
-\strong{Maintainer}: Jamaal Green \email{jamaal.green@gmail.com}
+\strong{Maintainer}: Jamaal Green \email{jamaal.green@gmail.com} (\href{https://orcid.org/0000-0002-8322-8654}{ORCID})
 
 Authors:
 \itemize{
+  \item Jamaal Green \email{jamaal.green@gmail.com} (\href{https://orcid.org/0000-0002-8322-8654}{ORCID})
   \item Liming Wang \email{lmwang@pdx.edu}
-  \item Dillon Mahmoudi \email{dillonm@umbc.edu}
+  \item Dillon Mahmoudi \email{dillonm@umbc.edu} (\href{https://orcid.org/0000-0002-8816-1639}{ORCID})
 }
 
 Other contributors:

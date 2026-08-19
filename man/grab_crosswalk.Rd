@@ -6,28 +6,42 @@
 \usage{
 grab_crosswalk(
   state,
+  version = c("LODES8", "LODES7", "LODES5"),
   download_dir = normalizePath(file.path(tools::R_user_dir("lehdr", which = "cache")),
     mustWork = FALSE)
 )
 }
 \arguments{
-\item{state}{US state abbreviation in lower case, can be a vector of states.}
+\item{state}{US state abbreviation in lower case. Can be a vector of
+state abbreviations, e.g. \code{c("wy", "nd", "sd")}.}
 
-\item{download_dir}{Directory where lodes table will be downloaded.}
+\item{version}{The LODES version whose crosswalk to download. Must be
+one of \code{"LODES8"} (default), \code{"LODES7"}, or \code{"LODES5"}. The crosswalk
+maps Census blocks to higher-level geographies for that vintage.}
+
+\item{download_dir}{Directory where the crosswalk file will be downloaded.
+Defaults to the user-level cache directory for \code{lehdr}.}
 }
 \value{
-a dataframe (tibble) geographic crosswalk at the block level
+A tibble containing the geographic crosswalk at the Census block
+level, with columns linking blocks to block groups, tracts, counties,
+and states.
 }
 \description{
-Download LODES geographic crosswalk
+Download the LODES geographic crosswalk for one or more
+states. The crosswalk maps Census block GEOIDs to higher-level
+geographies and is useful for custom aggregations outside the built-in
+\code{agg_geo} argument in \code{\link[=grab_lodes]{grab_lodes()}}.
 }
 \examples{
 \donttest{
-# Download and load current geographic crosswalk for Alaska
-alaska_xwalk <- grab_crosswalk("VT")
+  # Download crosswalk for Vermont
+  vt_xwalk <- grab_crosswalk("vt")
 
-# Download and load current geographic crosswalk for small states
-small_states_xwalk <- grab_crosswalk(c("wy", 'ND', 'SD'))
+  # Download crosswalk for several small states
+  small_xwalk <- grab_crosswalk(c("wy", "nd", "sd"))
+
+  # Download a LODES7 crosswalk (2010 Census block vintage)
+  vt_xwalk_7 <- grab_crosswalk("vt", version = "LODES7")
 }
-
 }

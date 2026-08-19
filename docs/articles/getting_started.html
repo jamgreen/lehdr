@@ -4,414 +4,522 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Getting Started with lehdr • lehdr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with lehdr">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with lehdr">
 </head>
 <body>
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">lehdr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
-      </span>
-    </div>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/index.html">Vignettes</a>
-</li>
-<li>
-  <a href="../reference/index.html">Functions</a>
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">lehdr</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/getting_started.html">Getting Started with lehdr</a></li>
+  </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://twitter.com/surlyurbanist">
-    <span class="fa fa-twitter"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/jamgreen/lehdr">
-    <span class="fa fa-github"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/dillonma/lehdr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
       <h1>Getting Started with lehdr</h1>
-            <h3 class="subtitle"><u>Common uses of lehdr</u></h3>
-                        <h4 class="author">Jamaal Green</h4>
-                                    <h4 class="author">Dillon Mahmoudi</h4>
-                                    <h4 class="author">Liming Wang</h4>
+            <h3 data-toc-skip class="subtitle">Accessing and Analyzing
+LODES Data in R</h3>
+                        <h4 data-toc-skip class="author">Jamaal
+Green</h4>
+                                    <h4 data-toc-skip class="author">Dillon
+Mahmoudi</h4>
+                                    <h4 data-toc-skip class="author">Liming
+Wang</h4>
                         
-            <h4 class="date">22 January 2020</h4>
+            <h4 data-toc-skip class="date">29 June 2026</h4>
       
-      
-      <div class="hidden name"><code>getting_started.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/dillonma/lehdr/blob/HEAD/vignettes/getting_started.Rmd" class="external-link"><code>vignettes/getting_started.Rmd</code></a></small>
+      <div class="d-none name"><code>getting_started.Rmd</code></div>
     </div>
 
     
     
-<p>This vignette is a brief introduction to the package including its installation and making some basic queries.</p>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p><strong>lehdr</strong> is an R package that allows users to draw <a href="https://lehd.ces.census.gov/data/#lodes">Longitudinal and Employer Household Dynamics</a> Origin-Destination Employment Statistics (LODES) datasets returned as dataframes. The LODES dataset forms the backbone of the US Census’s <a href="https://onthemap.ces.census.gov/"><strong>OntheMap</strong></a> web app that allows users to track changing spatial employment patterns at a fine geographic scale. While OnTheMap is useful, it is a limited tool that does not easily allow comparisons over time or across geographies. This package exists to make querying the tables that form the OnTheMap easier for urban researchers and practitioners, such as transportation and economic development planners and disaster preparedness professionals.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p><strong>lehdr</strong> is an R package that provides programmatic
+access to the <a href="https://lehd.ces.census.gov/data/#lodes" class="external-link">Longitudinal
+Employer-Household Dynamics (LEHD)</a> Origin-Destination Employment
+Statistics (LODES) dataset. LODES forms the backbone of the U.S. Census
+Bureau’s <a href="https://OnTheMap.ces.census.gov/" class="external-link">OnTheMap</a> web
+application, which maps commuting patterns at fine geographic scales.
+While OnTheMap is a useful exploratory tool, it does not support
+systematic comparisons over time or across geographies.
+<strong>lehdr</strong> fills that gap by exposing LODES downloads as
+tidy data frames and providing built-in functions for common
+analyses.</p>
+<p>LODES contains three file types:</p>
+<ul>
+<li>
+<strong>OD</strong> (<code>lodes_type = "od"</code>):
+Origin-destination flows, giving the number of workers by home-workplace
+Census block pair.</li>
+<li>
+<strong>RAC</strong> (<code>lodes_type = "rac"</code>): Residential
+area characteristics, giving job totals at workers’ home blocks.</li>
+<li>
+<strong>WAC</strong> (<code>lodes_type = "wac"</code>): Workplace
+area characteristics, giving job totals at workers’ job blocks.</li>
+</ul>
 </div>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
-<p><strong>lehdr</strong> has not yet been submitted to CRAN so installing using <strong>devtools</strong> is required. Additionally, we’ll be using <strong>dplyr</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#install.packages(setdiff(c("ggplot2", "stringr", "dplyr", "devtools"), rownames(installed.packages())),</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co">#                 repos="http://cran.rstudio.com")</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(stringr)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"jamgreen/lehdr"</span>)</a></code></pre></div>
-<pre><code>## stringi (1.4.4 -&gt; 1.4.5) [CRAN]
-## 
-##   There is a binary version available but the source version is later:
-##         binary source needs_compilation
-## stringi  1.4.4  1.4.5              TRUE
-## 
-##   
-  
-  
-   checking for file 'C:\Users\elmue\AppData\Local\Temp\RtmpSaJWbs\remotes490828207bac\jamgreen-lehdr-a350639/DESCRIPTION' ...
-  
-v  checking for file 'C:\Users\elmue\AppData\Local\Temp\RtmpSaJWbs\remotes490828207bac\jamgreen-lehdr-a350639/DESCRIPTION' (366ms)
-## 
-  
-  
-  
--  preparing 'lehdr':
-##    checking DESCRIPTION meta-information ...
-  
-   checking DESCRIPTION meta-information ... 
-  
-v  checking DESCRIPTION meta-information
-## 
-  
-  
-  
--  checking for LF line-endings in source and make files and shell scripts
-## 
-  
--  checking for empty or unneeded directories
-## 
-  
-  
-  
--  building 'lehdr_0.2.3.tar.gz'
-## 
-  
-   
-## </code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lehdr)</a></code></pre></div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># From CRAN</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"lehdr"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Development version from GitHub</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jamgreen/lehdr"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dillonma.github.io/lehdr/">lehdr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="usage" class="section level1">
-<h1 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h1>
-<p>This first example pulls the Oregon (<code>state = "or"</code>) 2014 (<code>year = 2014</code>), origin-destination (<code>lodes_type = "od"</code>), all jobs including private primary, secondary, and Federal (<code>job_type = "JT01"</code>), all jobs across ages, earnings, and industry (<code>segment = "S000"</code>), aggregated at the Census Tract level rather than the default Census Block (<code>agg_geo = "tract"</code>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">or_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"or"</span>, <span class="dt">year =</span> <span class="dv">2014</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb4-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(or_od)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 14
-##    year state w_tract h_tract  S000  SA01  SA02  SA03  SE01  SE02  SE03  SI01
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2014 OR    410019~ 410019~    89     6    37    46    35    30    24    21
-## 2  2014 OR    410019~ 410019~    35     2    25     8     6    13    16     1
-## 3  2014 OR    410019~ 410019~    23     6    12     5     5    12     6     7
-## 4  2014 OR    410019~ 410019~    20     0    17     3     4     4    12     4
-## 5  2014 OR    410019~ 410019~    24     8    10     6     3    12     9     6
-## 6  2014 OR    410019~ 410019~    10     3     5     2     4     5     1     2
-## # ... with 2 more variables: SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
-<p>The package can be used to retrieve multiple states and years at the same time by creating a vector or list. This second example pulls the Oregon AND Rhode Island (<code>state = c("or", "ri")</code>) for 2013 and 2014 (<code>year = c(2013, 2014)</code> or <code>year = 2013:2014</code>).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">or_ri_od &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"or"</span>, <span class="st">"ri"</span>), <span class="dt">year =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">2013</span>, <span class="dv">2014</span>), <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb8-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)     </a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/or_od_main_JT01_2013.csv.gz
-## Reading now...</code></pre>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2013.csv.gz
-## Reading now...</code></pre>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/or_od_main_JT01_2014.csv.gz
-## Reading now...</code></pre>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/ri_od_main_JT01_2014.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(or_ri_od)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 14
-##   year  state w_tract h_tract  S000  SA01  SA02  SA03  SE01  SE02  SE03  SI01
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 2013  OR    410019~ 410019~    80     4    39    37    25    30    25    25
-## 2 2013  OR    410019~ 410019~    27     4    15     8     8    11     8     3
-## 3 2013  OR    410019~ 410019~    11     1     5     5     6     3     2     1
-## 4 2013  OR    410019~ 410019~    21     3    14     4     5     8     8     4
-## 5 2013  OR    410019~ 410019~    27    12     8     7     4    15     8     8
-## 6 2013  OR    410019~ 410019~     4     1     2     1     2     0     2     0
-## # ... with 2 more variables: SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
-<p>Not all years are available for each state. To see all options for <code>lodes_type</code>, <code>job_type</code>, and <code>segment</code> and the availability for each state/year, please see the most recent LEHD Technical Document at <a href="https://lehd.ces.census.gov/data/lodes/LODES7/" class="uri">https://lehd.ces.census.gov/data/lodes/LODES7/</a>.</p>
-<p>Other common uses might include retrieving Residential or Work Area Characteristics (<code>lodes_type = "rac"</code> or <code>lodes_type = "wac"</code> respectively), low income jobs (<code>segment = "SE01"</code>) or good producing jobs (<code>segment = "SI01"</code>). Other common geographies might include retrieving data at the Census Block level (<code>agg_geo = "block"</code>, not necessary as it is default) – but see below for other aggregation levels.</p>
+<div class="section level2">
+<h2 id="basic-usage">Basic Usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h2>
+<div class="section level3">
+<h3 id="downloading-a-single-state-and-year">Downloading a single state and year<a class="anchor" aria-label="anchor" href="#downloading-a-single-state-and-year"></a>
+</h3>
+<p>The following example retrieves 2020 Oregon OD data aggregated to the
+Census tract level. Only primary jobs (<code>job_type = "JT01"</code>)
+across all worker segments (<code>segment = "S000"</code>) are
+included.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">or_od</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"or"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"od"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT01"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  state_part <span class="op">=</span> <span class="st">"main"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"tract"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">or_od</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="additional-examples" class="section level1">
-<h1 class="hasAnchor">
-<a href="#additional-examples" class="anchor"></a>Additional Examples</h1>
-<div id="using-county-level-signifiers" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-county-level-signifiers" class="anchor"></a>Using County level signifiers</h2>
-<p>The following examples loads work area characteristics (wac), then uses the work area geoid <code>w_geocode</code> to create a variable that is just the county <code>w_county_fips</code>. Similar transformations can be made on residence area characteristics (rac) by using the <code>h_geocode</code> variable. Both variables are available in origin-destination (od) datasets and with od, one would need to set a <code>h_county_fips</code> and on <code>w_county_fips</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">md_wac &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"wac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, <span class="dt">segment =</span> <span class="st">"S000"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_wac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_wac)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 55
-##   w_geocode  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03 CNS04
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 24001000~     7     3     3     1     4     3     0     0     0     0     0
-## 2 24001000~     1     0     1     0     0     1     0     0     0     0     0
-## 3 24001000~    10     2     3     5     7     3     0     0     0     0     0
-## 4 24001000~     2     0     2     0     0     1     1     0     0     0     0
-## 5 24001000~     8     4     4     0     7     1     0     0     0     0     0
-## 6 24001000~     2     0     2     0     0     2     0     0     0     0     0
-## # ... with 43 more variables: CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;,
-## #   CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;,
-## #   CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;,
-## #   CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
-## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
-## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;,
-## #   CFA02 &lt;dbl&gt;, CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;,
-## #   CFS02 &lt;dbl&gt;, CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;, createdate &lt;chr&gt;,
-## #   year &lt;dbl&gt;, state &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">md_wac_county &lt;-<span class="st"> </span>md_wac <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb19-2" title="2"></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_wac_county)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 56
-##   w_geocode  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03 CNS04
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 24001000~     7     3     3     1     4     3     0     0     0     0     0
-## 2 24001000~     1     0     1     0     0     1     0     0     0     0     0
-## 3 24001000~    10     2     3     5     7     3     0     0     0     0     0
-## 4 24001000~     2     0     2     0     0     1     1     0     0     0     0
-## 5 24001000~     8     4     4     0     7     1     0     0     0     0     0
-## 6 24001000~     2     0     2     0     0     2     0     0     0     0     0
-## # ... with 44 more variables: CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;,
-## #   CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;,
-## #   CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;,
-## #   CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
-## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
-## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;,
-## #   CFA02 &lt;dbl&gt;, CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;,
-## #   CFS02 &lt;dbl&gt;, CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;, createdate &lt;chr&gt;,
-## #   year &lt;dbl&gt;, state &lt;chr&gt;, w_county_fips &lt;chr&gt;</code></pre>
+<div class="section level3">
+<h3 id="multiple-states-and-years">Multiple states and years<a class="anchor" aria-label="anchor" href="#multiple-states-and-years"></a>
+</h3>
+<p>Pass character vectors to <code>state</code> and/or numeric vectors
+to <code>year</code>. The function returns a single bound tibble across
+all combinations.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">or_ri_od</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"or"</span>, <span class="st">"ri"</span><span class="op">)</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="fl">2020</span><span class="op">)</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"od"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT01"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  state_part <span class="op">=</span> <span class="st">"main"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"tract"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">or_ri_od</span><span class="op">)</span></span></code></pre></div>
+<p>Not all state-year combinations are available for every LODES
+version. Consult the <a href="https://lehd.ces.census.gov/data/lodes/LODES8/" class="external-link">LEHD Technical
+Document</a> for availability.</p>
 </div>
-<div id="two-ways-to-aggregate-at-the-county-level" class="section level2">
-<h2 class="hasAnchor">
-<a href="#two-ways-to-aggregate-at-the-county-level" class="anchor"></a>Two ways to aggregate at the County level</h2>
-<p>To aggregate at the county level, continuing the above example, we must also drop the original lock geoid <code>w_geocode</code>, group by our new variable <code>w_county_fips</code> and our existing variables <code>year</code> and <code>createdate</code>, then aggregate the remaining numeric variables. This method only works for wac and rac LODES types.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">md_wac_county &lt;-<span class="st"> </span>md_wac <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">w_county_fips =</span> <span class="kw">str_sub</span>(w_geocode, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="st">"w_geocode"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(w_county_fips, state, year, createdate) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, sum)</a>
-<a class="sourceLine" id="cb21-5" title="5"></a>
-<a class="sourceLine" id="cb21-6" title="6"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_wac_county)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 55
-## # Groups:   w_county_fips, state, year [6]
-##   w_county_fips state  year createdate   C000  CA01   CA02  CA03  CE01   CE02
-##   &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1 24001         MD     2015 20190826    25887  5653  13801  6433  5938  11081
-## 2 24003         MD     2015 20190826   237881 57186 125917 54778 44280  72498
-## 3 24005         MD     2015 20190826   345823 82049 180737 83037 68082 112227
-## 4 24009         MD     2015 20190826    20063  5119  10381  4563  4539   6775
-## 5 24011         MD     2015 20190826     7939  1567   4179  2193  1346   3293
-## 6 24013         MD     2015 20190826    52618 13124  26078 13416 11985  18843
-## # ... with 45 more variables: CE03 &lt;dbl&gt;, CNS01 &lt;dbl&gt;, CNS02 &lt;dbl&gt;,
-## #   CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;,
-## #   CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;,
-## #   CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;,
-## #   CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;,
-## #   CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;,
-## #   CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;, CFA01 &lt;dbl&gt;,
-## #   CFA02 &lt;dbl&gt;, CFA03 &lt;dbl&gt;, CFA04 &lt;dbl&gt;, CFA05 &lt;dbl&gt;, CFS01 &lt;dbl&gt;,
-## #   CFS02 &lt;dbl&gt;, CFS03 &lt;dbl&gt;, CFS04 &lt;dbl&gt;, CFS05 &lt;dbl&gt;</code></pre>
-<p>Alternatively, this functionality is also built-in to the package and advisable for origin-destination grabs (see below). Here, we aggregate rac data and include an argument to aggregate at the County level (<code>agg_geo = "county"</code>):</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">md_rac_county &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb23-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_county)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 44
-##    year state h_county   C000  CA01   CA02  CA03  CE01   CE02   CE03 CNS01 CNS02
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001     24683  5488  13029  6166  5598  10294   8791    51   140
-## 2  2015 MD    24003    239454 51186 131373 56895 38476  63599 137379   214    84
-## 3  2015 MD    24005    371927 79756 198239 93932 62678 112647 196602   426    99
-## 4  2015 MD    24009     32868  7565  17830  7473  5643   9029  18196    48    11
-## 5  2015 MD    24011     14935  3285   7827  3823  2800   5829   6306   238    13
-## 6  2015 MD    24013     80257 17028  42594 20635 13427  21671  45159   347    31
-## # ... with 32 more variables: CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;,
-## #   CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;,
-## #   CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;,
-## #   CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;,
-## #   CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
-## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;,
-## #   CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
+<div class="section level3">
+<h3 id="aggregation-levels">Aggregation levels<a class="anchor" aria-label="anchor" href="#aggregation-levels"></a>
+</h3>
+<p><code>agg_geo</code> controls the output geography. Valid values are
+<code>"block"</code> (default), <code>"bg"</code> (block group),
+<code>"tract"</code>, <code>"county"</code>, and <code>"state"</code>.
+Aggregation truncates GEOID strings and sums all numeric columns.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">md_rac_county</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"rac"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT01"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"county"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">md_rac_county</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="aggregating-origin-destination" class="section level2">
-<h2 class="hasAnchor">
-<a href="#aggregating-origin-destination" class="anchor"></a>Aggregating Origin-Destination</h2>
-<p>As mentioned above, aggregating origin-destination is built-in. This takes care of aggregation on both the <code>h_geocode</code> and <code>w_geocode</code> variables:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">md_od_county &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"od"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb27-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"county"</span>, <span class="dt">state_part =</span> <span class="st">"main"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_od_main_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_od_county)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 14
-##    year state w_county h_county  S000  SA01  SA02  SA03  SE01  SE02  SE03  SI01
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001    24001    16347  3533  8570  4244  3911  7249  5187  1908
-## 2  2015 MD    24001    24003      171    48    78    45    53    51    67    10
-## 3  2015 MD    24001    24005      272    68   140    64    73    92   107     7
-## 4  2015 MD    24001    24009       29    13     8     8    15     7     7     1
-## 5  2015 MD    24001    24011        9     1     7     1     2     3     4     0
-## 6  2015 MD    24001    24013       74    22    41    11    24    22    28     2
-## # ... with 2 more variables: SI02 &lt;dbl&gt;, SI03 &lt;dbl&gt;</code></pre>
+<div class="section level3">
+<h3 id="attaching-spatial-geometries">Attaching spatial geometries<a class="anchor" aria-label="anchor" href="#attaching-spatial-geometries"></a>
+</h3>
+<p>Set <code>geometry = TRUE</code> to retrieve Census geometries via
+the <code>tigris</code> package and attach them to the result. For
+<code>lodes_type = "rac"</code> or <code>"wac"</code>, the return value
+is an <code>sf</code> object. For <code>lodes_type = "od"</code>, two
+geometry columns (<code>h_geometry</code>, <code>w_geometry</code>) are
+added but the object remains a tibble — use <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">sf::st_as_sf()</a></code>
+to promote it.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">md_wac_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"wac"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT01"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"county"</span>,</span>
+<span>  geometry   <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">md_wac_sf</span><span class="op">[</span><span class="st">"C000"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="aggregating-at-block-group-tract-or-state-level" class="section level2">
-<h2 class="hasAnchor">
-<a href="#aggregating-at-block-group-tract-or-state-level" class="anchor"></a>Aggregating at Block Group, Tract, or State level</h2>
-<p>Similarly, built-in functions exist to group at Block Group, Tract, County, and State levels. County was demonstrated above. All require setting the <code>agg_geo</code> argument. This aggregation works for all three LODES types, including origin-destination.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">md_rac_bg &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb31-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"bg"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_bg)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 44
-##    year state h_bg    C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02 CNS03
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24001~   251    56   126    69    51   103    97     2     2     0
-## 2  2015 MD    24001~   452    90   242   120    91   183   178     3     6     2
-## 3  2015 MD    24001~   341    71   191    79    74   150   117     1     4     1
-## 4  2015 MD    24001~   294    51   157    86    52   124   118     1     2     1
-## 5  2015 MD    24001~   352    66   196    90    78   134   140     1     0     0
-## 6  2015 MD    24001~   550   119   286   145   105   244   201     1     2     0
-## # ... with 31 more variables: CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;,
-## #   CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;,
-## #   CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;,
-## #   CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;,
-## #   CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;,
-## #   CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">md_rac_tract &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb35-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"tract"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_tract)</a></code></pre></div>
-<pre><code>## # A tibble: 6 x 44
-##    year state h_tract  C000  CA01  CA02  CA03  CE01  CE02  CE03 CNS01 CNS02
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    240010~  1044   217   559   268   216   436   392     6    12
-## 2  2015 MD    240010~  1196   236   639   321   235   502   459     3     4
-## 3  2015 MD    240010~   945   206   493   246   225   395   325     3     1
-## 4  2015 MD    240010~  1134   228   598   308   282   466   386     0     5
-## 5  2015 MD    240010~   746   159   371   216   184   337   225     1     2
-## 6  2015 MD    240010~  1091   265   573   253   261   459   371     1     2
-## # ... with 32 more variables: CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;, CNS05 &lt;dbl&gt;,
-## #   CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;, CNS10 &lt;dbl&gt;,
-## #   CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;, CNS15 &lt;dbl&gt;,
-## #   CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;, CNS20 &lt;dbl&gt;,
-## #   CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;, CR07 &lt;dbl&gt;,
-## #   CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;, CD04 &lt;dbl&gt;,
-## #   CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">md_rac_state &lt;-<span class="st"> </span><span class="kw"><a href="../reference/grab_lodes.html">grab_lodes</a></span>(<span class="dt">state =</span> <span class="st">"md"</span>, <span class="dt">year =</span> <span class="dv">2015</span>, <span class="dt">lodes_type =</span> <span class="st">"rac"</span>, <span class="dt">job_type =</span> <span class="st">"JT01"</span>, </a>
-<a class="sourceLine" id="cb39-2" title="2">           <span class="dt">segment =</span> <span class="st">"S000"</span>, <span class="dt">agg_geo =</span> <span class="st">"state"</span>)</a></code></pre></div>
-<pre><code>## Cached version of file found in C:/Users/elmue/Documents/package_dev/lehdr/vignettes/lodes_raw/md_rac_S000_JT01_2015.csv.gz
-## Reading now...</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(md_rac_state)</a></code></pre></div>
-<pre><code>## # A tibble: 1 x 44
-##    year state h_state   C000   CA01   CA02   CA03   CE01   CE02   CE03 CNS01
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1  2015 MD    24      2.53e6 536277 1.39e6 610456 418694 748393 1.37e6  4819
-## # ... with 33 more variables: CNS02 &lt;dbl&gt;, CNS03 &lt;dbl&gt;, CNS04 &lt;dbl&gt;,
-## #   CNS05 &lt;dbl&gt;, CNS06 &lt;dbl&gt;, CNS07 &lt;dbl&gt;, CNS08 &lt;dbl&gt;, CNS09 &lt;dbl&gt;,
-## #   CNS10 &lt;dbl&gt;, CNS11 &lt;dbl&gt;, CNS12 &lt;dbl&gt;, CNS13 &lt;dbl&gt;, CNS14 &lt;dbl&gt;,
-## #   CNS15 &lt;dbl&gt;, CNS16 &lt;dbl&gt;, CNS17 &lt;dbl&gt;, CNS18 &lt;dbl&gt;, CNS19 &lt;dbl&gt;,
-## #   CNS20 &lt;dbl&gt;, CR01 &lt;dbl&gt;, CR02 &lt;dbl&gt;, CR03 &lt;dbl&gt;, CR04 &lt;dbl&gt;, CR05 &lt;dbl&gt;,
-## #   CR07 &lt;dbl&gt;, CT01 &lt;dbl&gt;, CT02 &lt;dbl&gt;, CD01 &lt;dbl&gt;, CD02 &lt;dbl&gt;, CD03 &lt;dbl&gt;,
-## #   CD04 &lt;dbl&gt;, CS01 &lt;dbl&gt;, CS02 &lt;dbl&gt;</code></pre>
+<div class="section level3">
+<h3 id="geographic-crosswalk">Geographic crosswalk<a class="anchor" aria-label="anchor" href="#geographic-crosswalk"></a>
+</h3>
+<p><code><a href="../reference/grab_crosswalk.html">grab_crosswalk()</a></code> downloads the LODES geographic
+crosswalk, which maps Census blocks to all higher-level geographies.
+Useful when you need custom aggregations not covered by
+<code>agg_geo</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vt_xwalk</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_crosswalk.html">grab_crosswalk</a></span><span class="op">(</span><span class="st">"vt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># LODES7 vintage crosswalk (2010 Census blocks)</span></span>
+<span><span class="va">vt_xwalk_7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_crosswalk.html">grab_crosswalk</a></span><span class="op">(</span><span class="st">"vt"</span>, version <span class="op">=</span> <span class="st">"LODES7"</span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 </div>
-  </div>
+<div class="section level2">
+<h2 id="analytical-functions">Analytical Functions<a class="anchor" aria-label="anchor" href="#analytical-functions"></a>
+</h2>
+<p>lehdr includes three functions for common LODES analyses. All
+examples below use Maryland, which has a rich and varied labor market
+geography: a large central city (Baltimore), dense inner suburbs,
+agricultural Eastern Shore counties, and strong federal-sector
+employment in the Washington suburbs.</p>
+<div class="section level3">
+<h3 id="commute-flow-statistics">Commute flow statistics<a class="anchor" aria-label="anchor" href="#commute-flow-statistics"></a>
+</h3>
+<p><code><a href="../reference/compute_commute_stats.html">compute_commute_stats()</a></code> summarizes commute flows from an
+OD dataset into per-geography metrics: workers arriving (inflow),
+workers departing (outflow), internal flows, net flow, and the
+self-containment ratio. Self-containment is the share of employed
+residents who also work within the same geographic unit — a value close
+to 1 indicates a largely self-sufficient labor market, while values near
+0 indicate heavy out-commuting.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">od_md</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"od"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT00"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  state_part <span class="op">=</span> <span class="st">"main"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"county"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">commute_md</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_commute_stats.html">compute_commute_stats</a></span><span class="op">(</span><span class="va">od_md</span>, agg_geo <span class="op">=</span> <span class="st">"county"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Most self-contained counties</span></span>
+<span><span class="va">commute_md</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">self_containment</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">county</span>, <span class="va">workers_in</span>, <span class="va">workers_out</span>, <span class="va">net_flow</span>, <span class="va">self_containment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>Net flow identifies counties that are net job importers (positive)
+versus net exporters (negative), a key indicator of job/housing
+imbalance. The map below shows self-containment at the Census tract
+level for Baltimore City, where the pattern reflects the city’s mix of
+dense employment centers and residential neighborhoods with limited
+local job access.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See data-raw/render_vignette_figures.R for the full figure code.</span></span>
+<span><span class="co"># Requires: ggplot2, sf, tigris, scales</span></span></code></pre></div>
+<p><img src="figures/fig1_balt_self_containment.png"><!-- --></p>
+</div>
+<div class="section level3">
+<h3 id="longitudinal-change">Longitudinal change<a class="anchor" aria-label="anchor" href="#longitudinal-change"></a>
+</h3>
+<p><code><a href="../reference/compute_lodes_change.html">compute_lodes_change()</a></code> computes absolute and percentage
+change in any LODES variable between two years. The output can be wide
+(one row per geography, with columns for each variable’s change) or long
+(one row per geography-variable combination, suitable for
+<code>ggplot2</code>).</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wac_md_panel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2010</span>, <span class="fl">2019</span><span class="op">)</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"wac"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT00"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"county"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">change_md</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_lodes_change.html">compute_lodes_change</a></span><span class="op">(</span></span>
+<span>  <span class="va">wac_md_panel</span>,</span>
+<span>  geo_col      <span class="op">=</span> <span class="st">"w_county"</span>,</span>
+<span>  base_year    <span class="op">=</span> <span class="fl">2010</span>,</span>
+<span>  compare_year <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>  variables    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C000"</span>, <span class="st">"CE01"</span>, <span class="st">"CE02"</span>, <span class="st">"CE03"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Counties with the largest absolute job growth</span></span>
+<span><span class="va">change_md</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">C000_change</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">w_county</span>, <span class="va">C000_base</span>, <span class="va">C000_compare</span>, <span class="va">C000_change</span>, <span class="va">C000_pct_change</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>The map below shows the percent change in total jobs
+(<code>C000</code>) across Maryland counties from 2010 to 2019. The
+diverging palette highlights counties that gained jobs (blue) versus
+those that lost jobs (red) over the period.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See data-raw/render_vignette_figures.R for the full figure code.</span></span>
+<span><span class="co"># Requires: ggplot2, sf, tigris, scales</span></span></code></pre></div>
+<p><img src="figures/fig2_md_job_change.png"><!-- --></p>
+<p>Long format is useful for visualizing change across multiple
+variables at once:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">change_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_lodes_change.html">compute_lodes_change</a></span><span class="op">(</span></span>
+<span>  <span class="va">wac_md_panel</span>,</span>
+<span>  geo_col   <span class="op">=</span> <span class="st">"w_county"</span>,</span>
+<span>  output    <span class="op">=</span> <span class="st">"long"</span>,</span>
+<span>  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CE01"</span>, <span class="st">"CE02"</span>, <span class="st">"CE03"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Suitable for use with ggplot2 facets or grouped geom_col()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">change_long</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="earnings-tier-shares">Earnings tier shares<a class="anchor" aria-label="anchor" href="#earnings-tier-shares"></a>
+</h3>
+<p><code><a href="../reference/compute_earnings_share.html">compute_earnings_share()</a></code> computes the distribution of
+jobs (or resident workers) across three monthly earnings tiers defined
+by LODES:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Column</th>
+<th>Tier</th>
+<th>Monthly earnings</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>CE01</code></td>
+<td>Low</td>
+<td>Up to $1,250</td>
+</tr>
+<tr class="even">
+<td><code>CE02</code></td>
+<td>Mid</td>
+<td>$1,251 to $3,333</td>
+</tr>
+<tr class="odd">
+<td><code>CE03</code></td>
+<td>High</td>
+<td>Above $3,333</td>
+</tr>
+</tbody>
+</table>
+<p>Both WAC and RAC files include these columns; <code>type</code>
+controls only the geography prefix used for auto-detection
+(<code>w_</code> for WAC, <code>h_</code> for RAC).</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wac_md</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"wac"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT00"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"county"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">earn_shares</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_earnings_share.html">compute_earnings_share</a></span><span class="op">(</span><span class="va">wac_md</span>, type <span class="op">=</span> <span class="st">"wac"</span>, geo_col <span class="op">=</span> <span class="st">"w_county"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Counties with the highest share of low-wage jobs</span></span>
+<span><span class="va">earn_shares</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">share_low</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">w_county</span>, <span class="va">share_low</span>, <span class="va">share_mid</span>, <span class="va">share_high</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>Use <code>output = "long"</code> to get a format ready for stacked
+bar charts:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">earn_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_earnings_share.html">compute_earnings_share</a></span><span class="op">(</span></span>
+<span>  <span class="va">wac_md</span>,</span>
+<span>  type    <span class="op">=</span> <span class="st">"wac"</span>,</span>
+<span>  geo_col <span class="op">=</span> <span class="st">"w_county"</span>,</span>
+<span>  output  <span class="op">=</span> <span class="st">"long"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">earn_long</span><span class="op">)</span></span></code></pre></div>
+<p>The chart below shows the earnings tier composition for all Maryland
+counties in 2019, sorted by the share of low-wage jobs. Counties with a
+larger low-wage share tend to be more rural or tourism-dependent, while
+suburban counties closer to Washington, D.C. show higher shares of
+well-paid jobs.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See data-raw/render_vignette_figures.R for the full figure code.</span></span>
+<span><span class="co"># Requires: ggplot2, tigris, scales</span></span></code></pre></div>
+<p><img src="figures/fig3_md_earnings_shares.png"><!-- --></p>
+<p>Combining <code><a href="../reference/compute_earnings_share.html">compute_earnings_share()</a></code> and
+<code><a href="../reference/compute_lodes_change.html">compute_lodes_change()</a></code> supports longitudinal tracking of
+wage polarization. Compute shares for each year separately, then join
+and difference:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wac_panel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2010</span>, <span class="fl">2019</span><span class="op">)</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"wac"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT00"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"county"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">share_2010</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_earnings_share.html">compute_earnings_share</a></span><span class="op">(</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">wac_panel</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2010</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"wac"</span>, geo_col <span class="op">=</span> <span class="st">"w_county"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">share_2019</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compute_earnings_share.html">compute_earnings_share</a></span><span class="op">(</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">wac_panel</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2019</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"wac"</span>, geo_col <span class="op">=</span> <span class="st">"w_county"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="mapping-lodes-data">Mapping LODES Data<a class="anchor" aria-label="anchor" href="#mapping-lodes-data"></a>
+</h2>
+<p>The figures in this vignette were produced with <code>ggplot2</code>
+and Census geometries from the <code>tigris</code> package. The general
+pattern is:</p>
+<ol style="list-style-type: decimal">
+<li>Download LODES data with <code><a href="../reference/grab_lodes.html">grab_lodes()</a></code>.</li>
+<li>Compute a derived variable with one of the analytical functions
+above.</li>
+<li>Fetch geometries with <code><a href="https://rdrr.io/pkg/tigris/man/tracts.html" class="external-link">tigris::tracts()</a></code>,
+<code><a href="https://rdrr.io/pkg/tigris/man/counties.html" class="external-link">tigris::counties()</a></code>, etc.</li>
+<li>Join on the GEOID column and plot with <code>geom_sf()</code>.</li>
+</ol>
+<p>The following example shows a simple flow-weighted job accessibility
+index for Baltimore City tracts. For each home tract, the metric sums
+the total number of workers flowing to all reachable work tracts — a
+proxy for labor market connectivity that can be computed entirely from
+LODES OD data.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">od_md</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/grab_lodes.html">grab_lodes</a></span><span class="op">(</span></span>
+<span>  state      <span class="op">=</span> <span class="st">"md"</span>,</span>
+<span>  year       <span class="op">=</span> <span class="fl">2019</span>,</span>
+<span>  lodes_type <span class="op">=</span> <span class="st">"od"</span>,</span>
+<span>  job_type   <span class="op">=</span> <span class="st">"JT00"</span>,</span>
+<span>  segment    <span class="op">=</span> <span class="st">"S000"</span>,</span>
+<span>  state_part <span class="op">=</span> <span class="st">"main"</span>,</span>
+<span>  agg_geo    <span class="op">=</span> <span class="st">"tract"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">accessibility</span> <span class="op">&lt;-</span> <span class="va">od_md</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/startsWith.html" class="external-link">startsWith</a></span><span class="op">(</span><span class="va">h_tract</span>, <span class="st">"24510"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">h_tract</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
+<span>    n_dest          <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">w_tract</span><span class="op">)</span>,</span>
+<span>    total_reachable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">S000</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>    .groups         <span class="op">=</span> <span class="st">"drop"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">accessibility</span><span class="op">)</span></span></code></pre></div>
+<p><code>n_dest</code> captures the breadth of access (number of
+distinct job destinations a tract sends workers to), while
+<code>total_reachable</code> is a flow-weighted measure of aggregate
+connectivity. A full accessibility analysis typically incorporates
+travel times or distances (see packages such as <code>r5r</code> or
+<code>accessibility</code>); the LODES-only measure here is a useful
+starting point when network data are unavailable.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See data-raw/render_vignette_figures.R for the full figure code.</span></span>
+<span><span class="co"># Requires: ggplot2, sf, tigris, scales</span></span></code></pre></div>
+<p><img src="figures/fig4_balt_accessibility.png"><!-- --></p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="caching">Caching<a class="anchor" aria-label="anchor" href="#caching"></a>
+</h2>
+<p>By default, downloaded files are deleted after reading. Setting
+<code>use_cache = TRUE</code> retains files in the user-level cache
+directory (<code>tools::R_user_dir("lehdr", "cache")</code>), which
+avoids re-downloading when you call <code><a href="../reference/grab_lodes.html">grab_lodes()</a></code> repeatedly
+with the same parameters. You can also set this option globally for a
+session:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>lehdr_use_cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>The cache filename includes the LODES version (e.g.,
+<code>lodes8_md_wac_S000_JT00_2019.csv.gz</code>), so switching between
+LODES versions will not serve stale data from a different vintage.</p>
+<p><strong>Upgrading from lehdr &lt; 1.2.0?</strong> Earlier versions
+cached files without a version prefix (e.g.,
+<code>md_wac_S000_JT00_2019.csv.gz</code>). Those files will never be
+matched by the new naming scheme and can be safely deleted. To clear the
+entire cache:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">cache_dir</span> <span class="op">&lt;-</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/userdir.html" class="external-link">R_user_dir</a></span><span class="op">(</span><span class="st">"lehdr"</span>, <span class="st">"cache"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">cache_dir</span><span class="op">)</span>          <span class="co"># inspect before deleting</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">cache_dir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use <strong>lehdr</strong> in published work, please cite it.
+Running <code>citation("lehdr")</code> will return a BibTeX entry. In
+Chicago author-date style:</p>
+<blockquote>
+<p>Green, Jamaal, Liming Wang, and Dillon Mahmoudi. 2025. “lehdr: Grab
+Longitudinal Employer-Household Dynamics (LEHD) Flat Files.” R package
+version 1.2.0. <a href="https://github.com/jamgreen/lehdr/" class="external-link uri">https://github.com/jamgreen/lehdr/</a></p>
+</blockquote>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
+</div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
-      <li><a href="#installation">Installation</a></li>
-      <li><a href="#usage">Usage</a></li>
-      <li>
-<a href="#additional-examples">Additional Examples</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#using-county-level-signifiers">Using County level signifiers</a></li>
-      <li><a href="#two-ways-to-aggregate-at-the-county-level">Two ways to aggregate at the County level</a></li>
-      <li><a href="#aggregating-origin-destination">Aggregating Origin-Destination</a></li>
-      <li><a href="#aggregating-at-block-group-tract-or-state-level">Aggregating at Block Group, Tract, or State level</a></li>
-      </ul>
-</li>
-      </ul>
-</div>
-      </div>
-
-</div>
 
 
-
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p>Developed by Jamaal Green, Liming Wang, Dillon Mahmoudi.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
+
+
 
 
   </body>

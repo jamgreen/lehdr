@@ -7,3 +7,6 @@
 ^Meta$
 ^README\.Rmd$
 ^\.github$
+^data-raw$
+^pkgdown$
+^README_files$
