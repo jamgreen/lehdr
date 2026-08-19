@@ -131,7 +131,7 @@ plot(md_wac_sf["C000"])
 
 ### Geographic crosswalk
 
-[`grab_crosswalk()`](https://dillonma.github.io/lehdr/reference/grab_crosswalk.md)
+[`grab_crosswalk()`](https://jamgreen.github.io/lehdr/reference/grab_crosswalk.md)
 downloads the LODES geographic crosswalk, which maps Census blocks to
 all higher-level geographies. Useful when you need custom aggregations
 not covered by `agg_geo`.
@@ -156,7 +156,7 @@ Washington suburbs.
 
 ### Commute flow statistics
 
-[`compute_commute_stats()`](https://dillonma.github.io/lehdr/reference/compute_commute_stats.md)
+[`compute_commute_stats()`](https://jamgreen.github.io/lehdr/reference/compute_commute_stats.md)
 summarizes commute flows from an OD dataset into per-geography metrics:
 workers arriving (inflow), workers departing (outflow), internal flows,
 net flow, and the self-containment ratio. Self-containment is the share
@@ -202,7 +202,7 @@ local job access.
 
 ### Longitudinal change
 
-[`compute_lodes_change()`](https://dillonma.github.io/lehdr/reference/compute_lodes_change.md)
+[`compute_lodes_change()`](https://jamgreen.github.io/lehdr/reference/compute_lodes_change.md)
 computes absolute and percentage change in any LODES variable between
 two years. The output can be wide (one row per geography, with columns
 for each variable’s change) or long (one row per geography-variable
@@ -265,7 +265,7 @@ head(change_long)
 
 ### Earnings tier shares
 
-[`compute_earnings_share()`](https://dillonma.github.io/lehdr/reference/compute_earnings_share.md)
+[`compute_earnings_share()`](https://jamgreen.github.io/lehdr/reference/compute_earnings_share.md)
 computes the distribution of jobs (or resident workers) across three
 monthly earnings tiers defined by LODES:
 
@@ -327,9 +327,9 @@ well-paid jobs.
 ![](figures/fig3_md_earnings_shares.png)
 
 Combining
-[`compute_earnings_share()`](https://dillonma.github.io/lehdr/reference/compute_earnings_share.md)
+[`compute_earnings_share()`](https://jamgreen.github.io/lehdr/reference/compute_earnings_share.md)
 and
-[`compute_lodes_change()`](https://dillonma.github.io/lehdr/reference/compute_lodes_change.md)
+[`compute_lodes_change()`](https://jamgreen.github.io/lehdr/reference/compute_lodes_change.md)
 supports longitudinal tracking of wage polarization. Compute shares for
 each year separately, then join and difference:
 
@@ -363,7 +363,7 @@ The figures in this vignette were produced with `ggplot2` and Census
 geometries from the `tigris` package. The general pattern is:
 
 1.  Download LODES data with
-    [`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md).
+    [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md).
 2.  Compute a derived variable with one of the analytical functions
     above.
 3.  Fetch geometries with
@@ -425,7 +425,7 @@ By default, downloaded files are deleted after reading. Setting
 `use_cache = TRUE` retains files in the user-level cache directory
 (`tools::R_user_dir("lehdr", "cache")`), which avoids re-downloading
 when you call
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
 repeatedly with the same parameters. You can also set this option
 globally for a session:
 

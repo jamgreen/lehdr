@@ -11,10 +11,10 @@ analytical functions for commute flow statistics, longitudinal job
 change, and earnings tier shares.
 
 Full documentation and the Getting Started vignette are available at the
-**[lehdr pkgdown site](https://dillonma.github.io/lehdr/)**. For a
+**[lehdr pkgdown site](https://jamgreen.github.io/lehdr/)**. For a
 detailed walkthrough of all analytical functions and maps, see the
 **[Getting Started
-vignette](https://dillonma.github.io/lehdr/articles/getting_started.html)**.
+vignette](https://jamgreen.github.io/lehdr/articles/getting_started.html)**.
 
 ## Installation
 
@@ -47,7 +47,7 @@ options(lehdr_use_cache = TRUE)
 ```
 
 The
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
 function downloads data for a specific state, year, and LODES version.
 The table type is set with `lodes_type`: origin-destination (`"od"`),
 residential area characteristics (`"rac"`), or workplace area
@@ -99,7 +99,7 @@ matrix, see the LEHD Technical Document at
 
 Set `geometry = TRUE` to join Census geometries via the `tigris`
 package. When `lodes_type = "rac"` or `"wac"`,
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
 returns an `sf` data frame directly:
 
 ``` r
@@ -164,7 +164,7 @@ lehdr includes three functions for common LODES analyses.
 
 ### Commute flow statistics
 
-[`compute_commute_stats()`](https://dillonma.github.io/lehdr/reference/compute_commute_stats.md)
+[`compute_commute_stats()`](https://jamgreen.github.io/lehdr/reference/compute_commute_stats.md)
 takes an OD data frame and returns per-geography inflow, outflow,
 internal flow, net flow, and self-containment ratio. Self-containment is
 the share of employed residents who also work within the same geographic
@@ -197,7 +197,7 @@ Baltimore City, Maryland (FIPS 24510):
 
 ### Longitudinal change
 
-[`compute_lodes_change()`](https://dillonma.github.io/lehdr/reference/compute_lodes_change.md)
+[`compute_lodes_change()`](https://jamgreen.github.io/lehdr/reference/compute_lodes_change.md)
 computes absolute and percentage change in any LODES variable between
 two years. Output can be wide (one row per geography) or long (suitable
 for `ggplot2`).
@@ -234,7 +234,7 @@ counties from 2010 to 2019:
 
 ### Earnings tier shares
 
-[`compute_earnings_share()`](https://dillonma.github.io/lehdr/reference/compute_earnings_share.md)
+[`compute_earnings_share()`](https://jamgreen.github.io/lehdr/reference/compute_earnings_share.md)
 computes the distribution of jobs across LODES earnings tiers: low (up
 to \$1,250/month), mid (\$1,251-\$3,333/month), and high (above
 \$3,333/month). Use `output = "long"` for a `ggplot2`-ready format.
@@ -264,12 +264,12 @@ earn_shares |>
 
 The figures above were produced with `ggplot2` and `tigris`. The general
 pattern is: download with
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md),
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md),
 compute a derived variable, fetch geometries with
 [`tigris::tracts()`](https://rdrr.io/pkg/tigris/man/tracts.html) or
 [`tigris::counties()`](https://rdrr.io/pkg/tigris/man/counties.html),
 join on GEOID, and plot with `geom_sf()`. See
-[`vignette("getting_started")`](https://dillonma.github.io/lehdr/articles/getting_started.md)
+[`vignette("getting_started")`](https://jamgreen.github.io/lehdr/articles/getting_started.md)
 for full figure code.
 
 The map below shows a flow-weighted job accessibility index for
@@ -289,7 +289,7 @@ out-commuting:
 ![](articles/figures/fig1_balt_self_containment.png)
 
 See
-[`vignette("getting_started")`](https://dillonma.github.io/lehdr/articles/getting_started.md)
+[`vignette("getting_started")`](https://jamgreen.github.io/lehdr/articles/getting_started.md)
 for the full figure code and additional maps of Maryland county job
 change, earnings tier composition, and tract-level job accessibility.
 
@@ -297,7 +297,7 @@ change, earnings tier composition, and tract-level job accessibility.
 
 Downloaded files are deleted after reading by default. Set
 `use_cache = TRUE` in
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
 or `options(lehdr_use_cache = TRUE)` globally to retain files in the
 user cache directory (`tools::R_user_dir("lehdr", "cache")`). Cache
 filenames include the LODES version (e.g.,
@@ -358,16 +358,16 @@ package](https://github.com/hrbrmstr/lodes).
 
 ## All functions
 
-- [`compute_commute_stats()`](https://dillonma.github.io/lehdr/reference/compute_commute_stats.md)
+- [`compute_commute_stats()`](https://jamgreen.github.io/lehdr/reference/compute_commute_stats.md)
   : Compute commute flow statistics from LODES OD data
-- [`compute_earnings_share()`](https://dillonma.github.io/lehdr/reference/compute_earnings_share.md)
+- [`compute_earnings_share()`](https://jamgreen.github.io/lehdr/reference/compute_earnings_share.md)
   : Compute earnings tier shares from LODES RAC or WAC data
-- [`compute_lodes_change()`](https://dillonma.github.io/lehdr/reference/compute_lodes_change.md)
+- [`compute_lodes_change()`](https://jamgreen.github.io/lehdr/reference/compute_lodes_change.md)
   : Compute longitudinal change in LODES data across years
-- [`grab_crosswalk()`](https://dillonma.github.io/lehdr/reference/grab_crosswalk.md)
+- [`grab_crosswalk()`](https://jamgreen.github.io/lehdr/reference/grab_crosswalk.md)
   : Download and load LODES geographic crosswalk into a data frame
   (tibble)
-- [`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+- [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   : Download and load LODES data into a data frame (tibble)
 
 # Articles
@@ -375,4 +375,4 @@ package](https://github.com/hrbrmstr/lodes).
 ### All vignettes
 
 - [Getting Started with
-  lehdr](https://dillonma.github.io/lehdr/articles/getting_started.md):
+  lehdr](https://jamgreen.github.io/lehdr/articles/getting_started.md):

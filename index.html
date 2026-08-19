@@ -43,7 +43,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/dillonma/lehdr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jamgreen/lehdr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -57,7 +57,7 @@
 <!-- badges: start -->
 
 <p><strong>lehdr</strong> (pronounced: <em>lee dur</em> like a metric <em>litre</em>) is an R package that allows users to interface with the <a href="https://lehd.ces.census.gov/" class="external-link">Longitudinal Employer-Household Dynamics (LEHD)</a> Origin-Destination Employment Statistics (LODES) dataset, returned as tidy data frames. The package is designed to download LODES flat files (origin-destination, workplace area characteristics, and residential area characteristics), aggregate them to common Census geographies, and now includes built-in analytical functions for commute flow statistics, longitudinal job change, and earnings tier shares.</p>
-<p>Full documentation and the Getting Started vignette are available at the <strong><a href="https://dillonma.github.io/lehdr/">lehdr pkgdown site</a></strong>. For a detailed walkthrough of all analytical functions and maps, see the <strong><a href="https://dillonma.github.io/lehdr/articles/getting_started.html">Getting Started vignette</a></strong>.</p>
+<p>Full documentation and the Getting Started vignette are available at the <strong><a href="https://jamgreen.github.io/lehdr/">lehdr pkgdown site</a></strong>. For a detailed walkthrough of all analytical functions and maps, see the <strong><a href="https://jamgreen.github.io/lehdr/articles/getting_started.html">Getting Started vignette</a></strong>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -74,7 +74,7 @@
 </h2>
 <p>Load the library and optionally set the <code>lehdr_use_cache</code> option to save downloaded files for reuse across sessions:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dillonma.github.io/lehdr/">lehdr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jamgreen.github.io/lehdr/">lehdr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>lehdr_use_cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>The <code><a href="reference/grab_lodes.html">grab_lodes()</a></code> function downloads data for a specific state, year, and LODES version. The table type is set with <code>lodes_type</code>: origin-destination (<code>"od"</code>), residential area characteristics (<code>"rac"</code>), or workplace area characteristics (<code>"wac"</code>).</p>
@@ -281,7 +281,7 @@
   </main><aside class="col-md-3"><div class="documentation">
 <h2 data-toc-skip>Documentation</h2>
 <ul class="list-unstyled">
-<li><p>Full documentation and the Getting Started vignette are available at the <a href="https://dillonma.github.io/lehdr/">lehdr pkgdown site</a>. For a detailed walkthrough of all analytical functions and maps, see the <a href="https://dillonma.github.io/lehdr/articles/getting_started.html">Getting Started vignette</a>.</p></li>
+<li><p>Full documentation and the Getting Started vignette are available at the <a href="https://jamgreen.github.io/lehdr/">lehdr pkgdown site</a>. For a detailed walkthrough of all analytical functions and maps, see the <a href="https://jamgreen.github.io/lehdr/articles/getting_started.html">Getting Started vignette</a>.</p></li>
 </ul>
 </div>
 
@@ -289,8 +289,8 @@
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=lehdr" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/dillonma/lehdr/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/dillonma/lehdr/issues/" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/jamgreen/lehdr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/jamgreen/lehdr/issues/" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -326,8 +326,8 @@
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=lehdr" class="external-link"><img src="https://www.r-pkg.org/badges/version/lehdr" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://cran.r-project.org/package=lehdr" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/lehdr" alt="metacran downloads"></a></li>
-<li><a href="https://github.com/dillonma/lehdr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/dillonma/lehdr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://dillonma.github.io/lehdr/"><img src="https://github.com/dillonma/lehdr/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://github.com/jamgreen/lehdr/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jamgreen/lehdr/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://jamgreen.github.io/lehdr/"><img src="https://github.com/jamgreen/lehdr/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
 </ul>
 </div>
 

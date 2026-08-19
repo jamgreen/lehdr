@@ -16,7 +16,7 @@ indicator: positive values signal net job importers (more workers arrive
 than leave); negative values signal net exporters.
 
 **Cross-state commuters:** When `state_part = "main"` is used in
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md),
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md),
 only workers who live and work in the same state are included. Workers
 who cross state lines (e.g., Maryland residents working in DC) appear
 only in `state_part = "aux"` files for the *workplace* state. To capture
@@ -35,14 +35,14 @@ compute_commute_stats(od_df, agg_geo = "tract")
 - od_df:
 
   A data frame (tibble) of LODES origin-destination data returned by
-  [`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+  [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   with `lodes_type = "od"`. Must include columns `h_{agg_geo}` (home
   geography), `w_{agg_geo}` (work geography), and `S000` (total job
   count). The data frame may be at any aggregation level supported by
   `agg_geo`.
 
   **Note on row structure:** LODES OD files are a flow matrix. A call to
-  [`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+  [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   with `lodes_type = "od"` returns one row per *origin-destination
   pair*, not one row per geography – even after aggregation via
   `agg_geo`. For example, a county-level OD pull for West Virginia

@@ -28,7 +28,7 @@ compute_lodes_change(
 
   A data frame (tibble) of LODES data covering at least two years, as
   returned by
-  [`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+  [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   with a vector of years. Must contain a `year` column and one or more
   numeric columns to difference.
 

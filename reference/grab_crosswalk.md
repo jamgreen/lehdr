@@ -4,7 +4,7 @@ Download the LODES geographic crosswalk for one or more states. The
 crosswalk maps Census block GEOIDs to higher-level geographies and is
 useful for custom aggregations outside the built-in `agg_geo` argument
 in
-[`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md).
+[`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md).
 
 ## Usage
 

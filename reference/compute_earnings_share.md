@@ -18,7 +18,7 @@ monthly earnings tiers:
 Earnings shares are useful for tracking wage polarization, identifying
 low-wage job concentration, and examining how the earnings structure of
 a labor market has shifted over time, especially when combined with
-[`compute_lodes_change()`](https://dillonma.github.io/lehdr/reference/compute_lodes_change.md).
+[`compute_lodes_change()`](https://jamgreen.github.io/lehdr/reference/compute_lodes_change.md).
 
 The total denominator is the sum of the three tiers, ensuring shares sum
 to 1 within rounding error.
@@ -39,7 +39,7 @@ compute_earnings_share(
 - lodes_df:
 
   A data frame (tibble) of LODES RAC or WAC data returned by
-  [`grab_lodes()`](https://dillonma.github.io/lehdr/reference/grab_lodes.md)
+  [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   with `segment = "S000"` (the total count segment, which includes all
   three earnings columns). Must contain columns `CE01`, `CE02`, and
   `CE03`. Both WAC and RAC files include these earnings tier columns;
