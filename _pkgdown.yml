@@ -1,4 +1,4 @@
-url: https://dillonma.github.io/lehdr/
+url: https://jamgreen.github.io/lehdr/
 template:
   bootstrap: 5
 
@@ -10,6 +10,6 @@ home:
         title: "Documentation"
         text: >
           Full documentation and the Getting Started vignette are available at the
-          [lehdr pkgdown site](https://dillonma.github.io/lehdr/).
+          [lehdr pkgdown site](https://jamgreen.github.io/lehdr/).
           For a detailed walkthrough of all analytical functions and maps, see the
-          [Getting Started vignette](https://dillonma.github.io/lehdr/articles/getting_started.html).
+          [Getting Started vignette](https://jamgreen.github.io/lehdr/articles/getting_started.html).

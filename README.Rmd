@@ -19,13 +19,13 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lehdr)](https://cran.r-project.org/package=lehdr)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/lehdr)](https://cran.r-project.org/package=lehdr)
-[![R-CMD-check](https://github.com/dillonma/lehdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dillonma/lehdr/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/dillonma/lehdr/actions/workflows/pkgdown.yaml/badge.svg)](https://dillonma.github.io/lehdr/)
+[![R-CMD-check](https://github.com/jamgreen/lehdr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamgreen/lehdr/actions/workflows/R-CMD-check.yaml)
+[![pkgdown](https://github.com/jamgreen/lehdr/actions/workflows/pkgdown.yaml/badge.svg)](https://jamgreen.github.io/lehdr/)
 <!-- badges: end -->
 
 **lehdr** (pronounced: _lee dur_ like a metric _litre_) is an R package that allows users to interface with the [Longitudinal Employer-Household Dynamics (LEHD)](https://lehd.ces.census.gov/) Origin-Destination Employment Statistics (LODES) dataset, returned as tidy data frames. The package is designed to download LODES flat files (origin-destination, workplace area characteristics, and residential area characteristics), aggregate them to common Census geographies, and now includes built-in analytical functions for commute flow statistics, longitudinal job change, and earnings tier shares.
 
-Full documentation and the Getting Started vignette are available at the **[lehdr pkgdown site](https://dillonma.github.io/lehdr/)**. For a detailed walkthrough of all analytical functions and maps, see the **[Getting Started vignette](https://dillonma.github.io/lehdr/articles/getting_started.html)**.
+Full documentation and the Getting Started vignette are available at the **[lehdr pkgdown site](https://jamgreen.github.io/lehdr/)**. For a detailed walkthrough of all analytical functions and maps, see the **[Getting Started vignette](https://jamgreen.github.io/lehdr/articles/getting_started.html)**.
 
 ## Installation
 

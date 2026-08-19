@@ -11,9 +11,9 @@ Designed to query Longitudinal Employer-Household Dynamics (LEHD) workplace/resi
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://dillonma.github.io/lehdr/}
-  \item \url{https://github.com/dillonma/lehdr/}
-  \item Report bugs at \url{https://github.com/dillonma/lehdr/issues/}
+  \item \url{https://jamgreen.github.io/lehdr/}
+  \item \url{https://github.com/jamgreen/lehdr/}
+  \item Report bugs at \url{https://github.com/jamgreen/lehdr/issues/}
 }
 
 }
