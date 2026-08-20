@@ -158,16 +158,13 @@ county, or state level. If <code>geometry = TRUE</code> and <code>lodes_type</co
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Download 2014 block-level OD data for Vermont</span></span></span>
 <span class="r-in"><span>  <span class="va">blk_od</span> <span class="op">&lt;-</span> <span class="fu">grab_lodes</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    state <span class="op">=</span> <span class="st">"vt"</span>, year <span class="op">=</span> <span class="fl">2014</span>,</span></span>
 <span class="r-in"><span>    lodes_type <span class="op">=</span> <span class="st">"od"</span>, job_type <span class="op">=</span> <span class="st">"JT01"</span>,</span></span>
 <span class="r-in"><span>    segment <span class="op">=</span> <span class="st">"SA01"</span>, state_part <span class="op">=</span> <span class="st">"main"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/od/vt_od_main_JT01_2014.csv.gz to lodes8_vt_od_main_JT01_2014.csv.gz...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: lodes8_vt_od_main_JT01_2014.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_vt_od_main_JT01_2014.csv.gz cleared from cache.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Download 2014 OD data for Vermont aggregated to tract level</span></span></span>
 <span class="r-in"><span>  <span class="va">trt_od</span> <span class="op">&lt;-</span> <span class="fu">grab_lodes</span><span class="op">(</span></span></span>
@@ -176,9 +173,6 @@ county, or state level. If <code>geometry = TRUE</code> and <code>lodes_type</co
 <span class="r-in"><span>    segment <span class="op">=</span> <span class="st">"SA01"</span>, state_part <span class="op">=</span> <span class="st">"main"</span>,</span></span>
 <span class="r-in"><span>    agg_geo <span class="op">=</span> <span class="st">"tract"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/od/vt_od_main_JT01_2014.csv.gz to lodes8_vt_od_main_JT01_2014.csv.gz...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: lodes8_vt_od_main_JT01_2014.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_vt_od_main_JT01_2014.csv.gz cleared from cache.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Download 2020 RAC data for Vermont aggregated to tract level</span></span></span>
 <span class="r-in"><span>  <span class="va">trt_rac</span> <span class="op">&lt;-</span> <span class="fu">grab_lodes</span><span class="op">(</span></span></span>
@@ -186,9 +180,6 @@ county, or state level. If <code>geometry = TRUE</code> and <code>lodes_type</co
 <span class="r-in"><span>    lodes_type <span class="op">=</span> <span class="st">"rac"</span>, job_type <span class="op">=</span> <span class="st">"JT01"</span>,</span></span>
 <span class="r-in"><span>    segment <span class="op">=</span> <span class="st">"SA01"</span>, agg_geo <span class="op">=</span> <span class="st">"tract"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/rac/vt_rac_SA01_JT01_2020.csv.gz to lodes8_vt_rac_SA01_JT01_2020.csv.gz...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: lodes8_vt_rac_SA01_JT01_2020.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_vt_rac_SA01_JT01_2020.csv.gz cleared from cache.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Download 2020 WAC data for Vermont aggregated to tract level</span></span></span>
 <span class="r-in"><span>  <span class="va">trt_wac</span> <span class="op">&lt;-</span> <span class="fu">grab_lodes</span><span class="op">(</span></span></span>
@@ -196,10 +187,7 @@ county, or state level. If <code>geometry = TRUE</code> and <code>lodes_type</co
 <span class="r-in"><span>    lodes_type <span class="op">=</span> <span class="st">"wac"</span>, job_type <span class="op">=</span> <span class="st">"JT01"</span>,</span></span>
 <span class="r-in"><span>    segment <span class="op">=</span> <span class="st">"SA01"</span>, agg_geo <span class="op">=</span> <span class="st">"tract"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/wac/vt_wac_SA01_JT01_2020.csv.gz to lodes8_vt_wac_SA01_JT01_2020.csv.gz...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: lodes8_vt_wac_SA01_JT01_2020.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_vt_wac_SA01_JT01_2020.csv.gz cleared from cache.</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

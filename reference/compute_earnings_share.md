@@ -74,49 +74,17 @@ columns are added for `share_low`, `share_mid`, and `share_high`. In
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   wac <- grab_lodes(
     state = "md", year = 2019,
     lodes_type = "wac", job_type = "JT00",
     segment = "S000", agg_geo = "county"
   )
-#> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/md/wac/md_wac_S000_JT00_2019.csv.gz to lodes8_md_wac_S000_JT00_2019.csv.gz...
-#> Download complete: lodes8_md_wac_S000_JT00_2019.csv.gz
-#> lodes8_md_wac_S000_JT00_2019.csv.gz cleared from cache.
   compute_earnings_share(wac, type = "wac", geo_col = "w_county")
-#> # A tibble: 24 × 10
-#>    w_county  year state count_low count_mid count_high total_earnings share_low
-#>    <chr>    <int> <chr>     <dbl>     <dbl>      <dbl>          <dbl>     <dbl>
-#>  1 24001     2019 MD         6703     10657      10538          27898     0.240
-#>  2 24003     2019 MD        56151     75065     139297         270513     0.208
-#>  3 24005     2019 MD        85069    112452     200519         398040     0.214
-#>  4 24009     2019 MD         5596      6699       9342          21637     0.259
-#>  5 24011     2019 MD         1794      3460       3848           9102     0.197
-#>  6 24013     2019 MD        14972     19219      23687          57878     0.259
-#>  7 24015     2019 MD         6624      9991      14525          31140     0.213
-#>  8 24017     2019 MD        10043     12431      14842          37316     0.269
-#>  9 24019     2019 MD         2422      4597       4883          11902     0.203
-#> 10 24021     2019 MD        22563     31364      50187         104114     0.217
-#> # ℹ 14 more rows
-#> # ℹ 2 more variables: share_mid <dbl>, share_high <dbl>
 
   # Long format, suitable for ggplot2
   compute_earnings_share(
     wac, type = "wac", geo_col = "w_county", output = "long"
   )
-#> # A tibble: 72 × 7
-#>    w_county  year state tier  label                    count share
-#>    <chr>    <int> <chr> <chr> <chr>                    <dbl> <dbl>
-#>  1 24001     2019 MD    low   CE01: up to $1,250/month  6703 0.240
-#>  2 24003     2019 MD    low   CE01: up to $1,250/month 56151 0.208
-#>  3 24005     2019 MD    low   CE01: up to $1,250/month 85069 0.214
-#>  4 24009     2019 MD    low   CE01: up to $1,250/month  5596 0.259
-#>  5 24011     2019 MD    low   CE01: up to $1,250/month  1794 0.197
-#>  6 24013     2019 MD    low   CE01: up to $1,250/month 14972 0.259
-#>  7 24015     2019 MD    low   CE01: up to $1,250/month  6624 0.213
-#>  8 24017     2019 MD    low   CE01: up to $1,250/month 10043 0.269
-#>  9 24019     2019 MD    low   CE01: up to $1,250/month  2422 0.203
-#> 10 24021     2019 MD    low   CE01: up to $1,250/month 22563 0.217
-#> # ℹ 62 more rows
-# }
+} # }
 ```

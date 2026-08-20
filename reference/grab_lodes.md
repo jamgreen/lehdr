@@ -116,16 +116,13 @@ or state level. If `geometry = TRUE` and `lodes_type` is `"rac"` or
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   # Download 2014 block-level OD data for Vermont
   blk_od <- grab_lodes(
     state = "vt", year = 2014,
     lodes_type = "od", job_type = "JT01",
     segment = "SA01", state_part = "main"
   )
-#> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/od/vt_od_main_JT01_2014.csv.gz to lodes8_vt_od_main_JT01_2014.csv.gz...
-#> Download complete: lodes8_vt_od_main_JT01_2014.csv.gz
-#> lodes8_vt_od_main_JT01_2014.csv.gz cleared from cache.
 
   # Download 2014 OD data for Vermont aggregated to tract level
   trt_od <- grab_lodes(
@@ -134,9 +131,6 @@ or state level. If `geometry = TRUE` and `lodes_type` is `"rac"` or
     segment = "SA01", state_part = "main",
     agg_geo = "tract"
   )
-#> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/od/vt_od_main_JT01_2014.csv.gz to lodes8_vt_od_main_JT01_2014.csv.gz...
-#> Download complete: lodes8_vt_od_main_JT01_2014.csv.gz
-#> lodes8_vt_od_main_JT01_2014.csv.gz cleared from cache.
 
   # Download 2020 RAC data for Vermont aggregated to tract level
   trt_rac <- grab_lodes(
@@ -144,9 +138,6 @@ or state level. If `geometry = TRUE` and `lodes_type` is `"rac"` or
     lodes_type = "rac", job_type = "JT01",
     segment = "SA01", agg_geo = "tract"
   )
-#> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/rac/vt_rac_SA01_JT01_2020.csv.gz to lodes8_vt_rac_SA01_JT01_2020.csv.gz...
-#> Download complete: lodes8_vt_rac_SA01_JT01_2020.csv.gz
-#> lodes8_vt_rac_SA01_JT01_2020.csv.gz cleared from cache.
 
   # Download 2020 WAC data for Vermont aggregated to tract level
   trt_wac <- grab_lodes(
@@ -154,8 +145,5 @@ or state level. If `geometry = TRUE` and `lodes_type` is `"rac"` or
     lodes_type = "wac", job_type = "JT01",
     segment = "SA01", agg_geo = "tract"
   )
-#> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/vt/wac/vt_wac_SA01_JT01_2020.csv.gz to lodes8_vt_wac_SA01_JT01_2020.csv.gz...
-#> Download complete: lodes8_vt_wac_SA01_JT01_2020.csv.gz
-#> lodes8_vt_wac_SA01_JT01_2020.csv.gz cleared from cache.
-# }
+} # }
 ```

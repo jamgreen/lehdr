@@ -88,31 +88,16 @@ and states.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Download crosswalk for Vermont</span></span></span>
 <span class="r-in"><span>  <span class="va">vt_xwalk</span> <span class="op">&lt;-</span> <span class="fu">grab_crosswalk</span><span class="op">(</span><span class="st">"vt"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/vt/vt_xwalk.csv.gz to lodes8_vt_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete for lodes8_vt_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_vt_xwalk.csv.gz crosswalk cleared from cache.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Download crosswalk for several small states</span></span></span>
 <span class="r-in"><span>  <span class="va">small_xwalk</span> <span class="op">&lt;-</span> <span class="fu">grab_crosswalk</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wy"</span>, <span class="st">"nd"</span>, <span class="st">"sd"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/wy/wy_xwalk.csv.gz to lodes8_wy_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete for lodes8_wy_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/nd/nd_xwalk.csv.gz to lodes8_nd_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete for lodes8_nd_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/sd/sd_xwalk.csv.gz to lodes8_sd_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete for lodes8_sd_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_wy_xwalk.csv.gz crosswalk cleared from cache.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_nd_xwalk.csv.gz crosswalk cleared from cache.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes8_sd_xwalk.csv.gz crosswalk cleared from cache.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Download a LODES7 crosswalk (2010 Census block vintage)</span></span></span>
 <span class="r-in"><span>  <span class="va">vt_xwalk_7</span> <span class="op">&lt;-</span> <span class="fu">grab_crosswalk</span><span class="op">(</span><span class="st">"vt"</span>, version <span class="op">=</span> <span class="st">"LODES7"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES7/vt/vt_xwalk.csv.gz to lodes7_vt_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete for lodes7_vt_xwalk.csv.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> lodes7_vt_xwalk.csv.gz crosswalk cleared from cache.</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

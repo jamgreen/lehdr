@@ -44,29 +44,14 @@ states.
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   # Download crosswalk for Vermont
   vt_xwalk <- grab_crosswalk("vt")
-#> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/vt/vt_xwalk.csv.gz to lodes8_vt_xwalk.csv.gz
-#> Download complete for lodes8_vt_xwalk.csv.gz
-#> lodes8_vt_xwalk.csv.gz crosswalk cleared from cache.
 
   # Download crosswalk for several small states
   small_xwalk <- grab_crosswalk(c("wy", "nd", "sd"))
-#> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/wy/wy_xwalk.csv.gz to lodes8_wy_xwalk.csv.gz
-#> Download complete for lodes8_wy_xwalk.csv.gz
-#> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/nd/nd_xwalk.csv.gz to lodes8_nd_xwalk.csv.gz
-#> Download complete for lodes8_nd_xwalk.csv.gz
-#> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES8/sd/sd_xwalk.csv.gz to lodes8_sd_xwalk.csv.gz
-#> Download complete for lodes8_sd_xwalk.csv.gz
-#> lodes8_wy_xwalk.csv.gz crosswalk cleared from cache.
-#> lodes8_nd_xwalk.csv.gz crosswalk cleared from cache.
-#> lodes8_sd_xwalk.csv.gz crosswalk cleared from cache.
 
   # Download a LODES7 crosswalk (2010 Census block vintage)
   vt_xwalk_7 <- grab_crosswalk("vt", version = "LODES7")
-#> Downloading crosswalk https://lehd.ces.census.gov/data/lodes/LODES7/vt/vt_xwalk.csv.gz to lodes7_vt_xwalk.csv.gz
-#> Download complete for lodes7_vt_xwalk.csv.gz
-#> lodes7_vt_xwalk.csv.gz crosswalk cleared from cache.
-# }
+} # }
 ```

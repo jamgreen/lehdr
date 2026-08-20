@@ -100,32 +100,13 @@ A tibble with one row per geography, containing:
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
   od <- grab_lodes(
     state = "md", year = 2019,
     lodes_type = "od", job_type = "JT00",
     segment = "S000", state_part = "main",
     agg_geo = "county"
   )
-#> Downloading https://lehd.ces.census.gov/data/lodes/LODES8/md/od/md_od_main_JT00_2019.csv.gz to lodes8_md_od_main_JT00_2019.csv.gz...
-#> Download complete: lodes8_md_od_main_JT00_2019.csv.gz
-#> lodes8_md_od_main_JT00_2019.csv.gz cleared from cache.
   compute_commute_stats(od, agg_geo = "county")
-#> compute_commute_stats(): reducing 576 origin-destination pairs to one row per county.
-#> # A tibble: 24 × 8
-#>    county  year state workers_in workers_out workers_internal net_flow
-#>    <chr>  <int> <chr>      <dbl>       <dbl>            <dbl>    <dbl>
-#>  1 24001   2019 MD         20669        5676            16866    -1873
-#>  2 24003   2019 MD        252820      130836           110416    11568
-#>  3 24005   2019 MD        368877      223785           169441   -24349
-#>  4 24009   2019 MD         20325       19774            12124   -11573
-#>  5 24011   2019 MD          7256       11111             3713    -7568
-#>  6 24013   2019 MD         49617       54659            26959   -32001
-#>  7 24015   2019 MD         22114       15977            15076    -8939
-#>  8 24017   2019 MD         32785       32125            16699   -16039
-#>  9 24019   2019 MD         10550        9010             5421    -3881
-#> 10 24021   2019 MD         88894       63841            50939   -25886
-#> # ℹ 14 more rows
-#> # ℹ 1 more variable: self_containment <dbl>
-# }
+} # }
 ```
