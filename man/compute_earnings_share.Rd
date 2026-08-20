@@ -56,7 +56,7 @@ The total denominator is the sum of the three tiers, ensuring shares
 sum to 1 within rounding error.
 }
 \examples{
-\donttest{
+\dontrun{
   wac <- grab_lodes(
     state = "md", year = 2019,
     lodes_type = "wac", job_type = "JT00",

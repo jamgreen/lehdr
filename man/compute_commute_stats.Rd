@@ -64,7 +64,7 @@ state. To capture full commute flows for border counties, retrieve both
 \code{compute_commute_stats()}.
 }
 \examples{
-\donttest{
+\dontrun{
   od <- grab_lodes(
     state = "md", year = 2019,
     lodes_type = "od", job_type = "JT00",

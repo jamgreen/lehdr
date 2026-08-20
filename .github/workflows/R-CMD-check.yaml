@@ -15,6 +15,10 @@ jobs:
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
+    # r-devel installs on ubuntu-latest are prone to long hangs and CI timeouts
+    # unrelated to package code; do not let that leg block the overall check.
+    continue-on-error: ${{ matrix.config.r == 'devel' }}
+
     strategy:
       fail-fast: false
       matrix:

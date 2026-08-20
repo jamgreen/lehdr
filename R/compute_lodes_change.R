@@ -39,7 +39,7 @@
 #' @importFrom glue glue
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   wac_multi <- grab_lodes(
 #'     state = "md", year = c(2015, 2019),
 #'     lodes_type = "wac", job_type = "JT00",

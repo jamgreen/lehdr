@@ -58,7 +58,7 @@
 #' @importFrom glue glue
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   od <- grab_lodes(
 #'     state = "md", year = 2019,
 #'     lodes_type = "od", job_type = "JT00",

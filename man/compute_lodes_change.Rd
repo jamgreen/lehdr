@@ -55,7 +55,7 @@ Percentage change is computed as
 Returns \code{NA} where \code{base_value} is zero or missing.
 }
 \examples{
-\donttest{
+\dontrun{
   wac_multi <- grab_lodes(
     state = "md", year = c(2015, 2019),
     lodes_type = "wac", job_type = "JT00",

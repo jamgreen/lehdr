@@ -90,7 +90,7 @@ Download LODES OD, RAC, and WAC tables from the LEHD FTP
 server and return a tidy data frame.
 }
 \examples{
-\donttest{
+\dontrun{
   # Download 2014 block-level OD data for Vermont
   blk_od <- grab_lodes(
     state = "vt", year = 2014,

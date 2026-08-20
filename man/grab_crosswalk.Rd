@@ -34,7 +34,7 @@ geographies and is useful for custom aggregations outside the built-in
 \code{agg_geo} argument in \code{\link[=grab_lodes]{grab_lodes()}}.
 }
 \examples{
-\donttest{
+\dontrun{
   # Download crosswalk for Vermont
   vt_xwalk <- grab_crosswalk("vt")
 

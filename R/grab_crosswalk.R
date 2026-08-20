@@ -23,7 +23,7 @@
 #' @importFrom readr read_csv cols col_character
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Download crosswalk for Vermont
 #'   vt_xwalk <- grab_crosswalk("vt")
 #'

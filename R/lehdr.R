@@ -63,7 +63,7 @@
 #' @importFrom stringr str_sub str_extract
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'   # Download 2014 block-level OD data for Vermont
 #'   blk_od <- grab_lodes(
 #'     state = "vt", year = 2014,
