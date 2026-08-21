@@ -100,7 +100,7 @@ head(or_ri_od)
 
 Not all years are available for each state. For the full availability
 matrix, see the LEHD Technical Document at
-<https://lehd.ces.census.gov/data/lodes/LODES8>.
+<https://lehd.ces.census.gov/data/lodes/LODES8/>.
 
 Set `geometry = TRUE` to join Census geometries via the `tigris`
 package. When `lodes_type = "rac"` or `"wac"`, `grab_lodes()` returns an
