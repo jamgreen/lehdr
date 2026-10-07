@@ -182,7 +182,7 @@ grab_lodes <- function(
   # ------------------------------------------------------------------
   # Validate year range
   # ------------------------------------------------------------------
-  year_range <- list(LODES8 = 2002:2022, LODES7 = 2002:2019, LODES5 = 2002:2009)
+  year_range <- list(LODES8 = 2002:2023, LODES7 = 2002:2019, LODES5 = 2002:2009)
   # Use the first element of version for range-checking before arg_match
   ver_check <- toupper(version[1])
   if (!is.na(ver_check) && ver_check %in% names(year_range)) {
