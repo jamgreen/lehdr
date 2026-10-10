@@ -7,30 +7,38 @@ export(grab_crosswalk)
 export(grab_lodes)
 import(dplyr)
 import(httr2)
-importFrom(dplyr,`%>%`)
-importFrom(dplyr,across)
-importFrom(dplyr,all_of)
-importFrom(dplyr,any_of)
-importFrom(dplyr,bind_rows)
-importFrom(dplyr,coalesce)
-importFrom(dplyr,filter)
-importFrom(dplyr,group_by)
-importFrom(dplyr,left_join)
-importFrom(dplyr,mutate)
-importFrom(dplyr,rename)
-importFrom(dplyr,select)
-importFrom(dplyr,summarise)
-importFrom(dplyr,ungroup)
-importFrom(dplyr,where)
+importFrom(dplyr,
+  "%>%",
+  across,
+  all_of,
+  any_of,
+  bind_rows,
+  coalesce,
+  filter,
+  group_by,
+  left_join,
+  mutate,
+  rename,
+  select,
+  summarise,
+  ungroup,
+  where
+)
 importFrom(glue,glue)
-importFrom(magrittr,`%>%`)
-importFrom(readr,col_character)
-importFrom(readr,cols)
-importFrom(readr,read_csv)
+importFrom(magrittr,"%>%")
+importFrom(readr,
+  col_character,
+  cols,
+  read_csv
+)
 importFrom(rlang,":=")
-importFrom(stats,na.omit)
-importFrom(stats,setNames)
-importFrom(stringr,str_extract)
-importFrom(stringr,str_replace)
-importFrom(stringr,str_sub)
+importFrom(stats,
+  na.omit,
+  setNames
+)
+importFrom(stringr,
+  str_extract,
+  str_replace,
+  str_sub
+)
 importFrom(tidyr,pivot_longer)
