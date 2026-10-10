@@ -7,6 +7,6 @@ bibentry(
     person("Dillon", "Mahmoudi")
   ),
   year     = "2026",
-  note     = "R package version 1.2.0",
+  note     = "R package version 1.2.1",
   url      = "https://github.com/jamgreen/lehdr/"
 )

@@ -10,7 +10,7 @@
     "\n",
     "To cite lehdr in published work (Chicago author-date):\n",
     "\n",
-    "  Green, Jamaal, Liming Wang, and Dillon Mahmoudi. 2025.\n",
+    "  Green, Jamaal, Liming Wang, and Dillon Mahmoudi. 2026.\n",
     "  \"lehdr: Grab Longitudinal Employer-Household Dynamics\n",
     "  (LEHD) Flat Files.\" R package version ", ver, ".\n",
     "  https://github.com/jamgreen/lehdr/\n",

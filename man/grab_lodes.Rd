@@ -31,7 +31,7 @@ Can be a vector of years, like \code{c(2014, 2020)} for 2014 and 2020.
 Must be between 2002 and 2023.}
 
 \item{version}{The LODES version to use. \code{"LODES8"} (the default) is
-enumerated at 2020 Census blocks and covers 2002-2022. \code{"LODES7"} is
+enumerated at 2020 Census blocks and covers 2002-2023. \code{"LODES7"} is
 enumerated at 2010 Census blocks and covers 2002-2019. \code{"LODES5"} is
 enumerated at 2000 Census blocks and covers 2002-2009.}
 

@@ -240,11 +240,26 @@ test_that("grab_lodes aborts on mixed-case invalid state", {
   )
 })
 
-test_that("grab_lodes aborts when year is out of range for LODES8", {
+# The range check runs before any download, so these tests are offline-safe.
+# 2099 and 2001 are used so the tests do not need editing when new LODES
+# years are released (LODES8 starts in 2002 and currently ends in 2023).
+test_that("grab_lodes aborts when year is above the valid range for LODES8", {
   expect_error(
     grab_lodes(
       state      = "de",
-      year       = 2023,
+      year       = 2099,
+      version    = "LODES8",
+      lodes_type = "wac"
+    ),
+    "outside the valid range"
+  )
+})
+
+test_that("grab_lodes aborts when year is below the valid range for LODES8", {
+  expect_error(
+    grab_lodes(
+      state      = "de",
+      year       = 2001,
       version    = "LODES8",
       lodes_type = "wac"
     ),
