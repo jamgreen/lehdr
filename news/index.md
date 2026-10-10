@@ -9,6 +9,10 @@
 - Documentation for the LODES8 year range is updated in
   [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   and its Rd file.
+- Added a regression test that downloads 2023 LODES8 WAC data for
+  Massachusetts and checks the total against the published file. Thanks
+  to [@stevenpandrews](https://github.com/stevenpandrews) for the test
+  ([\#46](https://github.com/jamgreen/lehdr/issues/46)).
 - Tests for out-of-range years now use fixed years (2001 and 2099) so
   they do not need editing when new LODES years are released. Tests now
   cover both the lower and upper bounds for LODES8.

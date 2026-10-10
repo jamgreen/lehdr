@@ -155,8 +155,9 @@ plot(or_od_geo["h_geometry"], lwd = 0.25, add = TRUE)
 ```
 
 The optional `version` parameter selects the LODES vintage. LODES8
-(default) uses 2020 Census blocks. LODES7 uses 2010 Census blocks and
-ends in 2019. LODES5 uses 2000 Census blocks and ends in 2009.
+(default) uses 2020 Census blocks and covers 2002-2023. LODES7 uses 2010
+Census blocks and ends in 2019. LODES5 uses 2000 Census blocks and ends
+in 2009.
 
 ## Analytical Functions
 

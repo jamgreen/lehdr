@@ -41,6 +41,7 @@
 <ul><li>
 <code><a href="../reference/grab_lodes.html">grab_lodes()</a></code> now accepts <code>year = 2023</code> for LODES8, following the Census Bureau’s release of 2023 LODES data. LODES8 now covers 2002-2023 (<a href="https://github.com/jamgreen/lehdr/issues/46" class="external-link">#46</a>).</li>
 <li>Documentation for the LODES8 year range is updated in <code><a href="../reference/grab_lodes.html">grab_lodes()</a></code> and its Rd file.</li>
+<li>Added a regression test that downloads 2023 LODES8 WAC data for Massachusetts and checks the total against the published file. Thanks to <a href="https://github.com/stevenpandrews" class="external-link">@stevenpandrews</a> for the test (<a href="https://github.com/jamgreen/lehdr/issues/46" class="external-link">#46</a>).</li>
 <li>Tests for out-of-range years now use fixed years (2001 and 2099) so they do not need editing when new LODES years are released. Tests now cover both the lower and upper bounds for LODES8.</li>
 <li>Examples that download data from the Census Bureau server are now wrapped in <code>\dontrun{}</code> so that <code>R CMD check</code> does not depend on network availability.</li>
 <li>The <code>R-CMD-check</code> workflow no longer fails when the R-devel job on Ubuntu stalls, and installed vignette figures no longer trigger an <code>inst/doc</code> NOTE.</li>
