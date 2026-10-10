@@ -340,9 +340,9 @@ If you use **lehdr** in published work, please cite it:
 citation("lehdr")
 ```
 
-Green, Jamaal, Liming Wang, and Dillon Mahmoudi. 2025. “lehdr: Grab
+Green, Jamaal, Liming Wang, and Dillon Mahmoudi. 2026. “lehdr: Grab
 Longitudinal Employer-Household Dynamics (LEHD) Flat Files.” R package
-version 1.2.0. <https://github.com/jamgreen/lehdr/>
+version 1.2.1. <https://github.com/jamgreen/lehdr/>
 
 ## Acknowledgements
 

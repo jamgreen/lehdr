@@ -1,4 +1,4 @@
 # License
 
-    YEAR: 2017
+    YEAR: 2017-2026
     COPYRIGHT HOLDER: Jamaal Green

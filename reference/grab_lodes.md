@@ -41,7 +41,7 @@ grab_lodes(
 - version:
 
   The LODES version to use. `"LODES8"` (the default) is enumerated at
-  2020 Census blocks and covers 2002-2022. `"LODES7"` is enumerated at
+  2020 Census blocks and covers 2002-2023. `"LODES7"` is enumerated at
   2010 Census blocks and covers 2002-2019. `"LODES5"` is enumerated at
   2000 Census blocks and covers 2002-2009.
 
