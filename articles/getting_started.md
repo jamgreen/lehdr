@@ -80,8 +80,8 @@ head(or_ri_od)
 ```
 
 Not all state-year combinations are available for every LODES version.
-Consult the [LEHD Technical
-Document](https://lehd.ces.census.gov/data/lodes/LODES8/) for
+LODES8, the default, currently covers 2002-2023. Consult the [LEHD
+Technical Document](https://lehd.ces.census.gov/data/lodes/LODES8/) for
 availability.
 
 ### Aggregation levels
