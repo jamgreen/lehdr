@@ -2,6 +2,8 @@
 
 ## lehdr 1.2.1
 
+CRAN release: 2026-11-01
+
 - [`grab_lodes()`](https://jamgreen.github.io/lehdr/reference/grab_lodes.md)
   now accepts `year = 2023` for LODES8, following the Census Bureau’s
   release of 2023 LODES data. LODES8 now covers 2002-2023
