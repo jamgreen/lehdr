@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">lehdr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,14 @@
       <small>Source: <a href="https://github.com/jamgreen/lehdr/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.2" id="lehdr-122">lehdr 1.2.2<a class="anchor" aria-label="anchor" href="#lehdr-122"></a></h2>
+<ul><li>
+<code><a href="../reference/grab_lodes.html">grab_lodes()</a></code> now accepts <code>year = 2024</code> for LODES8, following the Census Bureau’s November 2026 release (labelled LODES 8.5, served from the LODES8 directory). 2024 data are not available for Alaska or Michigan.</li>
+<li>The LODES8 upper year limit is no longer hardcoded, so new LODES8 years work as soon as the Census Bureau publishes them. The lower limit (2002) and the closed LODES7 (2019) and LODES5 (2009) limits are still checked before any download. This restores the behavior of lehdr 1.1.4 for new years.</li>
+<li>A missing state-year file now produces an HTTP 404 error that names the state and year, and the error page is removed from the download directory so that it cannot be reused when <code>use_cache = TRUE</code>. <code><a href="../reference/grab_crosswalk.html">grab_crosswalk()</a></code> also removes the file on a failed download.</li>
+<li>Added tests for 2024 data (requested by <a href="https://github.com/bduongidlabor" class="external-link">@bduongidlabor</a>) and for the missing year error.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.1" id="lehdr-121">lehdr 1.2.1<a class="anchor" aria-label="anchor" href="#lehdr-121"></a></h2><p class="text-muted">CRAN release: 2026-11-01</p>
 <ul><li>
