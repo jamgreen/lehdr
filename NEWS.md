@@ -1,3 +1,19 @@
+# lehdr 1.2.2
+
+* `grab_lodes()` now accepts `year = 2024` for LODES8, following the Census
+  Bureau's November 2026 release (labelled LODES 8.5, served from the LODES8
+  directory). 2024 data are not available for Alaska or Michigan.
+* The LODES8 upper year limit is no longer hardcoded, so new LODES8 years work
+  as soon as the Census Bureau publishes them. The lower limit (2002) and the
+  closed LODES7 (2019) and LODES5 (2009) limits are still checked before any
+  download. This restores the behavior of lehdr 1.1.4 for new years.
+* A missing state-year file now produces an HTTP 404 error that names the
+  state and year, and the error page is removed from the download directory so
+  that it cannot be reused when `use_cache = TRUE`. `grab_crosswalk()` also
+  removes the file on a failed download.
+* Added tests for 2024 data (requested by @bduongidlabor) and for the missing
+  year error.
+
 # lehdr 1.2.1
 
 * `grab_lodes()` now accepts `year = 2023` for LODES8, following the Census

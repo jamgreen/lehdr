@@ -28,10 +28,18 @@ Maryland, and Texas. Two-letter FIPS abbreviations only.}
 
 \item{year}{Year of the LODES data, as a numeric integer.
 Can be a vector of years, like \code{c(2014, 2020)} for 2014 and 2020.
-Must be between 2002 and 2023.}
+Must be 2002 or later. The latest available year differs by LODES
+version and by state: \code{"LODES7"} ends in 2019 and \code{"LODES5"} ends in 2009,
+while \code{"LODES8"} is extended by the Census Bureau as new years are
+released and is not capped by this package. If a state-year file does not
+exist on the Census server, \code{grab_lodes()} stops with an HTTP 404 error.}
 
 \item{version}{The LODES version to use. \code{"LODES8"} (the default) is
-enumerated at 2020 Census blocks and covers 2002-2023. \code{"LODES7"} is
+enumerated at 2020 Census blocks and covers 2002 onward (2002-2024 for most
+states as of November 2026; 2024 is not available for Alaska or Michigan).
+The Census Bureau labels releases since November 2026 as LODES 8.5, but
+they are served from the LODES8 directory, so \code{version = "LODES8"} is
+still correct. \code{"LODES7"} is
 enumerated at 2010 Census blocks and covers 2002-2019. \code{"LODES5"} is
 enumerated at 2000 Census blocks and covers 2002-2009.}
 

@@ -240,21 +240,8 @@ test_that("grab_lodes aborts on mixed-case invalid state", {
   )
 })
 
-# The range check runs before any download, so these tests are offline-safe.
-# 2099 and 2001 are used so the tests do not need editing when new LODES
-# years are released (LODES8 starts in 2002 and currently ends in 2023).
-test_that("grab_lodes aborts when year is above the valid range for LODES8", {
-  expect_error(
-    grab_lodes(
-      state      = "de",
-      year       = 2099,
-      version    = "LODES8",
-      lodes_type = "wac"
-    ),
-    "outside the valid range"
-  )
-})
-
+# The lower bound check runs before any download, so this test is offline-safe.
+# 2001 is used because the LODES series starts in 2002 and that will not change.
 test_that("grab_lodes aborts when year is below the valid range for LODES8", {
   expect_error(
     grab_lodes(
@@ -265,6 +252,27 @@ test_that("grab_lodes aborts when year is below the valid range for LODES8", {
     ),
     "outside the valid range"
   )
+})
+
+# LODES8 has no hardcoded upper bound, so new Census releases work without a
+# package update. A year that does not exist on the server (2099 will never
+# exist) must fail with an informative HTTP 404 error, and the error page must
+# not be left in the download directory where use_cache = TRUE could reuse it.
+test_that("grab_lodes gives an informative 404 error and leaves no file for a missing LODES8 year", {
+  dl <- withr::local_tempdir()
+
+  expect_error(
+    grab_lodes(
+      state        = "de",
+      year         = 2099,
+      version      = "LODES8",
+      lodes_type   = "wac",
+      download_dir = dl,
+      use_cache    = TRUE
+    ),
+    "HTTP 404"
+  )
+  expect_length(list.files(dl), 0)
 })
 
 # Regression test for issue #46: LODES8 data for 2023 must be accepted.
@@ -280,6 +288,19 @@ test_that("grab_lodes accepts year 2023 for LODES8 and matches the published WAC
   ma_wac <- grab_lodes(state = "ma", year = 2023, lodes_type = "wac")
 
   expect_equal(sum(ma_wac$C000), 3637277)
+})
+
+# Follow-up to issue #46: LODES8 data for 2024 (released by the Census Bureau
+# on 2026-11-05 as LODES 8.5) must be accepted. Requested by @bduongidlabor.
+# The expected total was checked against
+# https://lehd.ces.census.gov/data/lodes/LODES8/ma/wac/ma_wac_S000_JT00_2024.csv.gz
+# (sum of C000 = 3648389).
+test_that("grab_lodes accepts year 2024 for LODES8 and matches the published WAC total", {
+  withr::local_options(list(lehdr_use_cache = TRUE))
+
+  ma_wac <- grab_lodes(state = "ma", year = 2024, lodes_type = "wac")
+
+  expect_equal(sum(ma_wac$C000), 3648389)
 })
 
 test_that("grab_lodes aborts when year is out of range for LODES5", {

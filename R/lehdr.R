@@ -5,9 +5,17 @@
 #'   Maryland, and Texas. Two-letter FIPS abbreviations only.
 #' @param year Year of the LODES data, as a numeric integer.
 #'   Can be a vector of years, like `c(2014, 2020)` for 2014 and 2020.
-#'   Must be between 2002 and 2023.
+#'   Must be 2002 or later. The latest available year differs by LODES
+#'   version and by state: `"LODES7"` ends in 2019 and `"LODES5"` ends in 2009,
+#'   while `"LODES8"` is extended by the Census Bureau as new years are
+#'   released and is not capped by this package. If a state-year file does not
+#'   exist on the Census server, `grab_lodes()` stops with an HTTP 404 error.
 #' @param version The LODES version to use. `"LODES8"` (the default) is
-#'   enumerated at 2020 Census blocks and covers 2002-2023. `"LODES7"` is
+#'   enumerated at 2020 Census blocks and covers 2002 onward (2002-2024 for most
+#'   states as of November 2026; 2024 is not available for Alaska or Michigan).
+#'   The Census Bureau labels releases since November 2026 as LODES 8.5, but
+#'   they are served from the LODES8 directory, so `version = "LODES8"` is
+#'   still correct. `"LODES7"` is
 #'   enumerated at 2010 Census blocks and covers 2002-2019. `"LODES5"` is
 #'   enumerated at 2000 Census blocks and covers 2002-2009.
 #' @param lodes_type The LODES table type. Values can be the default
@@ -182,17 +190,38 @@ grab_lodes <- function(
   # ------------------------------------------------------------------
   # Validate year range
   # ------------------------------------------------------------------
-  year_range <- list(LODES8 = 2002:2024, LODES7 = 2002:2019, LODES5 = 2002:2009)
+  # Only limits that cannot change are enforced before downloading. Every
+  # LODES version starts in 2002, and LODES7 and LODES5 are closed vintages.
+  # LODES8 is still extended by the Census Bureau, so its upper bound is
+  # deliberately NOT hardcoded (NA below). The server decides whether a
+  # state-year file exists, and a missing file produces an informative error
+  # in the download step. This means new LODES8 years work without a package
+  # update.
+  year_range <- list(
+    LODES8 = c(2002L, NA_integer_),
+    LODES7 = c(2002L, 2019L),
+    LODES5 = c(2002L, 2009L)
+  )
   # Use the first element of version for range-checking before arg_match
   ver_check <- toupper(version[1])
   if (!is.na(ver_check) && ver_check %in% names(year_range)) {
-    if (!year %in% year_range[[ver_check]]) {
+    yr_lim    <- year_range[[ver_check]]
+    too_early <- is.na(year) || year < yr_lim[1]
+    too_late  <- !is.na(yr_lim[2]) && !is.na(year) && year > yr_lim[2]
+    if (too_early || too_late) {
+      range_txt <- if (is.na(yr_lim[2])) {
+        glue::glue("{yr_lim[1]} or later")
+      } else {
+        glue::glue("{yr_lim[1]} - {yr_lim[2]}")
+      }
       rlang::abort(c(
         glue::glue(
-          "`year` {year} is outside the valid range for {ver_check} \\
-          ({min(year_range[[ver_check]])} - {max(year_range[[ver_check]])})."
+          "`year` {year} is outside the valid range for {ver_check} ",
+          "({range_txt})."
         ),
-        "i" = "See https://lehd.ces.census.gov/data/lodes/LODES8/ for availability."
+        "i" = glue::glue(
+          "See https://lehd.ces.census.gov/data/lodes/{ver_check}/ for availability."
+        )
       ))
     }
   }
@@ -277,16 +306,30 @@ grab_lodes <- function(
     lodes_resp <- .download_lodes_file(url = url, path = fil)
 
     if (lodes_resp$status_code >= 400) {
-      rlang::abort(c(
+      # Remove the error page written to disk so it cannot be mistaken for
+      # data (for example by a later call with `use_cache = TRUE`).
+      unlink(fil)
+      msg <- c(
         glue::glue("Server error downloading: {url}"),
-        "i" = glue::glue("HTTP {lodes_resp$status_code} returned."),
+        "i" = glue::glue("HTTP {lodes_resp$status_code} returned.")
+      )
+      if (lodes_resp$status_code == 404L) {
+        msg <- c(msg, "i" = glue::glue(
+          "No {version} file exists for state \"{toupper(state)}\" and year ",
+          "{year}. Coverage differs by state and year; the newest year is not ",
+          "available for every state."
+        ))
+      }
+      rlang::abort(c(
+        msg,
         "i" = paste0(
           "Consult the LEHD Technical Document to verify ",
           "state/year availability: ",
-          "https://lehd.ces.census.gov/data/lodes/LODES8/"
+          "https://lehd.ces.census.gov/data/lodes/", version, "/"
         )
       ))
     } else if (length(lodes_resp$body) < 1) {
+      unlink(fil)
       rlang::abort(c(
         glue::glue("Empty response downloading: {url}"),
         "i" = "Check your internet connection."

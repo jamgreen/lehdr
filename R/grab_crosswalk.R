@@ -86,6 +86,7 @@ download_xwalk <- function(url, download_dir) {
   )
 
   if (lodes_resp$status_code >= 400) {
+    unlink(fil)
     rlang::abort(c(
       glue::glue("Server error downloading crosswalk: {url}"),
       "i" = glue::glue("HTTP {lodes_resp$status_code} returned."),
